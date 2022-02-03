@@ -9,12 +9,13 @@ import {RecoverPassword} from "../../f2-pages/auth/recoverPassword/RecoverPasswo
 import {Profile} from "../../f2-pages/profile/Profile";
 import {Test} from "../../f2-pages/test/Test";
 import {PageNotFound} from "../../f2-pages/error/pageNotFound/PageNotFound";
+import {Home} from "../../f2-pages/home/Home";
 
 export const App = () => {
     return (
         <div>
             <Routes>
-                <Route path={routes.home} element={<Profile/>}/>
+                <Route path={routes.home} element={<Home/>}/>
                 <Route path={routes.profile} element={<Profile/>}/>
                 <Route path={routes.login} element={<Login/>}/>
                 <Route path={routes.register} element={<Register/>}/>
