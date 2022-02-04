@@ -12,6 +12,24 @@ import {PageNotFound} from "../../f2-pages/error/pageNotFound/PageNotFound";
 import {Home} from "../../f2-pages/home/Home";
 
 export const App = () => {
+  return (
+    <div>
+      111
+      <Routes>
+        <Route path={routes.home} element={<Home />} />
+        <Route path={routes.profile} element={<Profile />} />
+        <Route path={routes.login} element={<Login />} />
+        <Route path={routes.register} element={<Register />} />
+        <Route path={routes.newPassword} element={<NewPassword />} />
+        <Route path={routes.recoverPassword} element={<RecoverPassword />} />
+        <Route path={routes.testPage} element={<Test />} />
+        <Route path={routes.pageNotFound} element={<PageNotFound />} />
+        <Route path={"/*"} element={<Navigate to={"/404"} />} />
+      </Routes>
+    </div>
+  );
+};
+
     return (
         <div>
             <Routes>
