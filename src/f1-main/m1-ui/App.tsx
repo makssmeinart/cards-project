@@ -14,6 +14,7 @@ import {Home} from "../../f2-pages/home/Home";
 export const App = () => {
     return (
         <div>
+            111
             <Routes>
                 <Route path={routes.home} element={<Home/>}/>
                 <Route path={routes.profile} element={<Profile/>}/>
