@@ -38,7 +38,6 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = (
                 type={'text'}
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
-
                 {...restProps}
             />
         </>
