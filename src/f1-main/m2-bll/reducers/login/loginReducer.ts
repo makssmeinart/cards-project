@@ -33,9 +33,13 @@ export const loginReducer = (
   }
 };
 
+// Action Creators
+
 export const LoginAC = (data: InitStateType) => {
   return { type: "AUTH/LOGIN", data } as const;
 };
+
+// Thunk
 
 export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
   // Spinner
@@ -65,6 +69,39 @@ export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
       dispatch(changeStatus("idle"));
     });
 };
+export const LogoutTC = () => (dispatch: Dispatch) => {
+  dispatch(changeStatus("loading"))
+
+  const logoutData = {
+    created: "",
+    email: "",
+    isAdmin: false,
+    name: "",
+    publicCardPacksCount: 0,
+    rememberMe: false,
+    token: "",
+    tokenDeathTime: 0,
+    updated: "",
+    verified: false,
+    __v: 0,
+    _id: "",
+  }
+
+  authApi.logout()
+      .then(res => {
+        dispatch(changeStatus("completed"))
+        dispatch(setIsLoggedInAC(false))
+        dispatch(LoginAC(logoutData))
+        alert(res.data.info)
+      })
+      .catch(err => {
+        dispatch(changeStatus("failed"))
+        alert(err)
+      })
+      .finally(() => {
+        dispatch(changeStatus("idle"))
+      })
+}
 
 // Types
 export type InitStateType = {

@@ -23,3 +23,4 @@ export const store = createStore(reducer, applyMiddleware(thunk))
 export type RootAppStateType = ReturnType<typeof reducer>
 
 //@ts-ignore
+window.store = store

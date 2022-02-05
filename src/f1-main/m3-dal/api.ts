@@ -22,9 +22,12 @@ export const authApi = {
                 withCredentials: true,
             })
     },
-    login(data: LoginParamsType) {
+    login: (data: LoginParamsType) => {
         return instance.post<InitStateType>("/auth/login", data);
     },
+    logout: () => {
+        return instance.delete<Pick<CommonRecoveryResponse, "info">>("/auth/me")
+    } ,
 }
 
 // Types
