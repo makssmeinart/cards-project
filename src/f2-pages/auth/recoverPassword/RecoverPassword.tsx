@@ -43,11 +43,11 @@ export const RecoverPassword = () => {
                             <input
                                 id="email"
                                 name="email"
-                                type="email"
+                                type="text"
                                 onChange={formik.handleChange}
                                 value={formik.values.email}
                             />
-
+                            {formik.errors.email && formik.errors.email}
                             <button type="submit">Submit</button>
                         </form>
                         <Link to={routes.login}>Try logging in</Link>
