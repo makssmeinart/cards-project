@@ -69,7 +69,7 @@ type ActionTypes =
 type setIsLoggedInACTypes = ReturnType<typeof setIsLoggedInAC>;
 type errorMessageACTypes = ReturnType<typeof errorMessageAC>;
 type authMeACTypes = ReturnType<typeof authMeAC>;
-export type PendingStatusType = "idle" | "failed" | "completed"
+export type PendingStatusType = "idle" | "failed" | "completed" | "loading"
 type InitStateTypes = {
   isLoggedIn: boolean;
   errorMessage: string | null;
