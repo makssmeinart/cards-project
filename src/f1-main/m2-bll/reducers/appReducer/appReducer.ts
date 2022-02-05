@@ -36,7 +36,7 @@ type ActionTypes =
     | ReturnType<typeof changeStatus>
 type setIsLoggedInACTypes = ReturnType<typeof setIsLoggedInAC>;
 type errorMessageACTypes = ReturnType<typeof errorMessageAC>;
-type pendingStatusType = "idle" | "failed" | "completed" | "succedded"
+type pendingStatusType = "idle" | "failed" | "completed"
 type InitStateTypes = {
     isLoggedIn: boolean;
     errorMessage: string | null;
