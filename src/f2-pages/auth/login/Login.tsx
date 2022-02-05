@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { RootAppStateType } from "../../../f1-main/m2-bll/store";
 import {PendingStatusType} from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
 import s from "./Login.module.css";
+import {routes} from "../../../f1-main/m2-bll/routes/routes";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ export const Login = () => {
   });
 
   if (isLoggedIn) {
-    return <Navigate to="/profile" />;
+    return <Navigate to={routes.profile} />;
   }
 
   return (

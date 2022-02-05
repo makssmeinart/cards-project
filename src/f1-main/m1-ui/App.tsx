@@ -10,8 +10,9 @@ import { Profile } from "../../f2-pages/profile/Profile";
 import { Test } from "../../f2-pages/test/Test";
 import { PageNotFound } from "../../f2-pages/error/pageNotFound/PageNotFound";
 import { Home } from "../../f2-pages/home/Home";
-import { useDispatch } from "react-redux";
-import { authMeTC } from "../m2-bll/reducers/appReducer/appReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {authMeTC} from "../m2-bll/reducers/appReducer/appReducer";
+import {RootAppStateType} from "../m2-bll/store";
 
 export const App = () => {
 
@@ -20,6 +21,11 @@ export const App = () => {
     dispatch(authMeTC());
   }, []);
 
+  const isInitialized = useSelector<RootAppStateType>(state=> state.app.isInitialized)
+
+  if(!isInitialized) {
+    return <div>...loading...</div>
+  }
 
   return (
     <div>
