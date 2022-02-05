@@ -11,9 +11,9 @@ export const Profile = () => {
     (state) => state.app.status
   );
 
-    const isLoggedIn = useSelector<RootAppStateType>(
-        (state) => state.app.isLoggedIn
-    );
+  const isLoggedIn = useSelector<RootAppStateType>(
+    (state) => state.app.isLoggedIn
+  );
 
   const logout = () => {
     dispatch(LogoutTC());

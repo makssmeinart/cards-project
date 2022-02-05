@@ -6,7 +6,6 @@ import {
   setIsLoggedInAC,
 } from "../appReducer/appReducer";
 
-
 const initState: InitStateType = {
   created: "",
   email: "",
@@ -54,12 +53,15 @@ export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
         dispatch(setIsLoggedInAC(true));
         dispatch(LoginAC(res.data));
         console.log(res.data);
-      } else {}
+      } else {
+      }
     })
     .catch((e) => {
       dispatch(changeStatus("failed"));
-      const error = e.response? e.response.data.error: (e.message + ', more details in the console');
-      console.log(error)
+      const error = e.response
+        ? e.response.data.error
+        : e.message + ", more details in the console";
+      console.log(error);
       dispatch(errorMessageAC(error));
     })
     .finally(() => {
@@ -67,7 +69,7 @@ export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
     });
 };
 export const LogoutTC = () => (dispatch: Dispatch) => {
-  dispatch(changeStatus("loading"))
+  dispatch(changeStatus("loading"));
 
   const logoutData = {
     created: "",
@@ -82,23 +84,24 @@ export const LogoutTC = () => (dispatch: Dispatch) => {
     verified: false,
     __v: 0,
     _id: "",
-  }
+  };
 
-  authApi.logout()
-      .then(res => {
-        dispatch(changeStatus("completed"))
-        dispatch(setIsLoggedInAC(false))
-        dispatch(LoginAC(logoutData))
-        alert(res.data.info)
-      })
-      .catch(err => {
-        dispatch(changeStatus("failed"))
-        alert(err)
-      })
-      .finally(() => {
-        dispatch(changeStatus("idle"))
-      })
-}
+  authApi
+    .logout()
+    .then((res) => {
+      dispatch(changeStatus("completed"));
+      dispatch(setIsLoggedInAC(false));
+      dispatch(LoginAC(logoutData));
+      alert(res.data.info);
+    })
+    .catch((err) => {
+      dispatch(changeStatus("failed"));
+      alert(err);
+    })
+    .finally(() => {
+      dispatch(changeStatus("idle"));
+    });
+};
 
 // Types
 export type InitStateType = {

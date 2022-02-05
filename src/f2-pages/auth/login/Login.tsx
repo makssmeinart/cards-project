@@ -8,14 +8,14 @@ import { LoginTC } from "../../../f1-main/m2-bll/reducers/login/loginReducer";
 import { Link, Navigate } from "react-router-dom";
 import React, { useState } from "react";
 import { RootAppStateType } from "../../../f1-main/m2-bll/store";
-import {PendingStatusType} from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
+import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
 import s from "./Login.module.css";
 import {routes} from "../../../f1-main/m2-bll/routes/routes";
 
 export const Login = () => {
   const dispatch = useDispatch();
   const [reverseType, setReverseType] = useState<"password" | "text">(
-      "password"
+    "password"
   );
   const isLoggedIn = useSelector<RootAppStateType>(
     (state) => state.app.isLoggedIn
@@ -24,8 +24,8 @@ export const Login = () => {
     (state) => state.app.errorMessage
   );
   const status = useSelector<RootAppStateType, PendingStatusType>(
-      (state) => state.app.status
-  )
+    (state) => state.app.status
+  );
   const onClickHandler = () => {
     if (reverseType === "password") {
       setReverseType("text");
@@ -67,40 +67,40 @@ export const Login = () => {
   }
 
   return (
-      <>
-      {
-        status === "loading" ? <div>loading...</div>
-        :
-      <section className={s.s}>
-        <form className={s.s} onSubmit={formik.handleSubmit}>
-          <SuperInputText type={"text"} {...formik.getFieldProps("email")} />
-          {formik.touched.email && formik.errors.email ? (
+    <>
+      {status === "loading" ? (
+        <div>loading...</div>
+      ) : (
+        <section className={s.s}>
+          <form className={s.s} onSubmit={formik.handleSubmit}>
+            <SuperInputText type={"text"} {...formik.getFieldProps("email")} />
+            {formik.touched.email && formik.errors.email ? (
               <div>{formik.errors.email}</div>
-          ) : null}
-          <SuperInputText
+            ) : null}
+            <SuperInputText
               type={reverseType}
               {...formik.getFieldProps("password")}
-          />
-          {formik.touched.password && formik.errors.password ? (
+            />
+            {formik.touched.password && formik.errors.password ? (
               <div>{formik.errors.password}</div>
-          ) : null}
-        </form>
+            ) : null}
+          </form>
 
-        <SuperButton onClick={onClickHandler}>hide</SuperButton>
+          <SuperButton onClick={onClickHandler}>hide</SuperButton>
 
-        <form className={s.s} onSubmit={formik.handleSubmit}>
-          <SuperCheckbox
+          <form className={s.s} onSubmit={formik.handleSubmit}>
+            <SuperCheckbox
               name="rememberMe"
               onChange={formik.handleChange}
               checked={formik.values.rememberMe}
-          />
-          <SuperButton type={"submit"}>Login</SuperButton>
-        </form>
-        {errorMessage ? <div>.{errorMessage}.</div> : null}
+            />
+            <SuperButton type={"submit"}>Login</SuperButton>
+          </form>
+          {errorMessage ? <div>.{errorMessage}.</div> : null}
 
-        <Link to={"/register"}>Register</Link>
-      </section>
-}
-      </>
-);
+          <Link to={"/register"}>Register</Link>
+        </section>
+      )}
+    </>
+  );
 };
