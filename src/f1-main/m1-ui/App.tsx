@@ -12,7 +12,7 @@ import {PageNotFound} from "../../f2-pages/error/pageNotFound/PageNotFound";
 import {Home} from "../../f2-pages/home/Home";
 
 export const App = () => {
-    // New ting
+
     return (
         <div>
             <Routes>
