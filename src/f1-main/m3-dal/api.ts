@@ -40,7 +40,7 @@ type AuthForgotResponse = {
 import { InitStateType } from "../m2-bll/reducers/login/loginReducer";
 
 export type LoginParamsType = {
-  email: string;
-  password: string;
-  rememberMe: boolean;
+    email: string;
+    password: string;
+    rememberMe: boolean;
 }
