@@ -1,6 +1,12 @@
+import { Dispatch } from "redux";
+import { authApi } from "../../../m3-dal/api";
+import { RootAppStateType } from "../../store";
+import { LoginAC } from "../login/loginReducer";
+
 const initState: InitStateTypes = {
   isLoggedIn: false,
   errorMessage: null,
+  authMe: false,
 };
 
 export const appReducer = (
@@ -12,22 +18,48 @@ export const appReducer = (
       return { ...state, isLoggedIn: action.value };
     case "APP/ERROR/MESSAGE":
       return { ...state, errorMessage: action.value };
+    case "APP/AUTH/ME":
+      return { ...state, authMe: action.value };
     default:
       return state;
   }
 };
 
 export const setIsLoggedInAC = (value: boolean) =>
-    ({ type: "AUTH/LOGIN/SET-IS-LOGGED-IN", value } as const);
+  ({ type: "AUTH/LOGIN/SET-IS-LOGGED-IN", value } as const);
 
 export const errorMessageAC = (value: string | null) =>
-    ({type: "APP/ERROR/MESSAGE", value} as const);
+  ({ type: "APP/ERROR/MESSAGE", value } as const);
+
+export const authMeAC = (value: boolean) => {
+  return {
+    type: "APP/AUTH/ME",
+    value,
+  } as const;
+};
+
+export const authMeTC = () => (dispatch: Dispatch, getState: () => RootAppStateType) => {
+    authApi
+      .authMe()
+      .then((res) => {
+        console.log("authMe()", res.data);
+        dispatch(LoginAC(res.data))
+        dispatch(setIsLoggedInAC(true));
+        dispatch(authMeAC(true));
+        const state = getState();
+        const token = state.login;
+        console.log("getState", token);
+      })
+  };
 
 // Types
-type ActionTypes = setIsLoggedInACTypes | errorMessageACTypes;
+type ActionTypes = setIsLoggedInACTypes | errorMessageACTypes | authMeACTypes;
 type setIsLoggedInACTypes = ReturnType<typeof setIsLoggedInAC>;
 type errorMessageACTypes = ReturnType<typeof errorMessageAC>;
+type authMeACTypes = ReturnType<typeof authMeAC>;
+
 type InitStateTypes = {
   isLoggedIn: boolean;
   errorMessage: string | null;
+  authMe: boolean;
 };

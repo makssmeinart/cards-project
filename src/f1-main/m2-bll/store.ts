@@ -18,6 +18,8 @@ const reducer = combineReducers({
 
 export const store = createStore(reducer, applyMiddleware(thunk))
 
-// Types 
+//@ts-ignore
+window.store = store;
 
+// Types
 export type RootAppStateType = ReturnType<typeof reducer>

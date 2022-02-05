@@ -5,17 +5,30 @@ import { SuperButton } from "../../../f1-main/m1-ui/components/common/superButto
 import { SuperCheckbox } from "../../../f1-main/m1-ui/components/common/superCheckbox/SuperCheckbox";
 import { LoginParamsType } from "../../../f1-main/m3-dal/api";
 import { LoginTC } from "../../../f1-main/m2-bll/reducers/login/loginReducer";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { RootAppStateType } from "../../../f1-main/m2-bll/store";
+import React, { useState } from "react";
+import s from "./Login.module.css";
+
 
 export const Login = () => {
   const dispatch = useDispatch();
+  const [reverseType, setReverseType] = useState<"password" | "text">(
+    "password"
+  );
   const isLoggedIn = useSelector<RootAppStateType>(
     (state) => state.app.isLoggedIn
   );
   const errorMessage = useSelector<RootAppStateType>(
     (state) => state.app.errorMessage
   );
+  const onClickHandler = () => {
+    if (reverseType === "password") {
+      setReverseType("text");
+    } else if (reverseType === "text") {
+      setReverseType("password");
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -50,28 +63,34 @@ export const Login = () => {
   }
 
   return (
-    <section>
-      <form onSubmit={formik.handleSubmit}>
-        <SuperInputText {...formik.getFieldProps("email")} />
+    <section className={s.s}>
+      <form className={s.s} onSubmit={formik.handleSubmit}>
+        <SuperInputText type={"text"} {...formik.getFieldProps("email")} />
         {formik.touched.email && formik.errors.email ? (
           <div>{formik.errors.email}</div>
         ) : null}
-
-        <SuperInputText {...formik.getFieldProps("password")} />
+        <SuperInputText
+          type={reverseType}
+          {...formik.getFieldProps("password")}
+        />
         {formik.touched.password && formik.errors.password ? (
-          <div>{formik.touched.password && formik.errors.password}</div>
+          <div>{formik.errors.password}</div>
         ) : null}
+      </form>
 
+      <SuperButton onClick={onClickHandler}>hide</SuperButton>
+
+      <form className={s.s} onSubmit={formik.handleSubmit}>
         <SuperCheckbox
           name="rememberMe"
           onChange={formik.handleChange}
           checked={formik.values.rememberMe}
         />
-
         <SuperButton type={"submit"}>Login</SuperButton>
       </form>
+      {errorMessage ? <div>.{errorMessage}.</div> : null}
 
-        {errorMessage ? <div>.{errorMessage}.</div> : null}
+      <Link to={"/register"}>Register</Link>
     </section>
   );
 };

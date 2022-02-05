@@ -51,14 +51,6 @@ export const RecoverPassword = () => {
                             <button type="submit">Submit</button>
                         </form>
                         <Link to={routes.login}>Try logging in</Link>
-
-                        {/*<div>Recover Password</div>*/}
-                        {/*<div>*/}
-                        {/*    <input type="email"/>*/}
-                        {/*    <button onClick={recoverPasswordCallback}>Send Instructions</button>*/}
-                        {/*</div>*/}
-                        {/*<div>*/}
-                        {/*</div>*/}
                     </>
                     :
                     <h1>Check your email</h1>

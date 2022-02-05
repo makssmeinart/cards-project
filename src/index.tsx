@@ -5,12 +5,15 @@ import { App } from "./f1-main/m1-ui/App";
 import { HashRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./f1-main/m2-bll/store";
+import {CookiesProvider} from "react-cookie";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <App />
+          <CookiesProvider>
+              <App />
+          </CookiesProvider>
       </Router>
     </Provider>
   </React.StrictMode>,

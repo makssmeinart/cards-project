@@ -46,7 +46,6 @@ export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
     })
     .catch((e) => {
       const error = e.response? e.response.data.error: (e.message + ', more details in the console');
-      //console.log('Error22222: ', JSON.stringify(error))
       console.log(error)
       dispatch(errorMessageAC(error));
     });
