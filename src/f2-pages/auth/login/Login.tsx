@@ -17,5 +17,5 @@ export const Login = () => {
     }, [])
 
 
-    return <section>Login Page11</section>;
+    return <section>Login Page</section>;
 };
