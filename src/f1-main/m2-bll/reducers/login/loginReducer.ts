@@ -53,16 +53,12 @@ export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
         dispatch(setIsLoggedInAC(true));
         dispatch(LoginAC(res.data));
         console.log(res.data);
-      } else {
-      }
+      } else {}
     })
     .catch((e) => {
       dispatch(changeStatus("failed"));
-      const error = e.response
-        ? e.response.data.error
-        : e.message + ", more details in the console";
-      //console.log('Error22222: ', JSON.stringify(error))
-      console.log(error);
+      const error = e.response? e.response.data.error: (e.message + ', more details in the console');
+      console.log(error)
       dispatch(errorMessageAC(error));
     })
     .finally(() => {

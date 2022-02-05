@@ -17,7 +17,7 @@ type SuperInputTextPropsType = DefaultInputPropsType & {
 };
 
 export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
-  type,
+  // type,
   onChange,
   onChangeText,
   onKeyPress,
@@ -38,7 +38,7 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
   return (
     <>
       <input
-        type={"text"}
+        // type={"text"}
         onChange={onChangeCallback}
         onKeyPress={onKeyPressCallback}
         {...restProps}

@@ -10,13 +10,13 @@ export const Profile = () => {
   const status = useSelector<RootAppStateType, PendingStatusType>(
     (state) => state.app.status
   );
-  const isLoggedIn = useSelector<RootAppStateType>(
-    (state) => state.app.isLoggedIn
-  );
 
-  if (!isLoggedIn) {
-    return <Navigate to={routes.login} />;
-  }
+    const authMe = useSelector<RootAppStateType>(
+        (state) => state.app.authMe
+    );
+    if (!authMe) {
+        return <Navigate to={routes.login} />;
+    }
 
   const logout = () => {
     dispatch(LogoutTC());
