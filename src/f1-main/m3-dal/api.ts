@@ -20,7 +20,10 @@ export const authApi = {
                 baseURL: "https://neko-back.herokuapp.com/2.0",
                 withCredentials: true,
             })
-    }
+    },
+    login(data: LoginParamsType) {
+        return instance.post<InitStateType>("/auth/login", data);
+    },
 }
 
 // Types
@@ -33,4 +36,11 @@ type AuthForgotResponse = {
     email: string
     from: string
     message: string
+}
+import { InitStateType } from "../m2-bll/reducers/login/loginReducer";
+
+export type LoginParamsType = {
+  email: string;
+  password: string;
+  rememberMe: boolean;
 }
