@@ -13,6 +13,7 @@ export const Login = () => {
             password: "1475963mashko",
             rememberMe: false,
         }).then(resp => console.log(resp.data))
+            .then(res=>res)
     }, [])
 
 
