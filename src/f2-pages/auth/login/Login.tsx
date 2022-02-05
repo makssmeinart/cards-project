@@ -71,7 +71,7 @@ export const Login = () => {
         <SuperButton type={"submit"}>Login</SuperButton>
       </form>
 
-        {errorMessage ? <div>...{errorMessage}...</div> : null}
+        {errorMessage ? <div>.{errorMessage}.</div> : null}
     </section>
   );
 };
