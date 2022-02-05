@@ -1,4 +1,4 @@
-import { api, LoginParamsType } from "../../../m3-dal/api";
+import { authApi, LoginParamsType } from "../../../m3-dal/api";
 import { Dispatch } from "redux";
 import {errorMessageAC, setIsLoggedInAC} from "../appReducer/appReducer";
 
@@ -35,7 +35,7 @@ export const LoginAC = (data: InitStateType) => {
 
 
 export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
-  api
+  authApi
     .login(data)
     .then((res) => {
       if (res.status === 200) {
