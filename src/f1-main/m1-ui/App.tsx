@@ -10,30 +10,36 @@ import { Profile } from "../../f2-pages/profile/Profile";
 import { Test } from "../../f2-pages/test/Test";
 import { PageNotFound } from "../../f2-pages/error/pageNotFound/PageNotFound";
 import { Home } from "../../f2-pages/home/Home";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authMeTC } from "../m2-bll/reducers/appReducer/appReducer";
+import {RootAppStateType} from "../m2-bll/store";
 
 export const App = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authMeTC());
+
   }, []);
 
+  const isInitialized = useSelector<RootAppStateType>(state=> state.app.isInitialized)
+
+  if(!isInitialized) {
+    return <div>...loading...</div>
+  }
 
   return (
-    <div>
-      <Routes>
-        <Route path={routes.home} element={<Home />} />
-        <Route path={routes.profile} element={<Profile />} />
-        <Route path={routes.login} element={<Login />} />
-        <Route path={routes.register} element={<Register />} />
-        <Route path={routes.newPassword} element={<NewPassword />} />
-        <Route path={routes.recoverPassword} element={<RecoverPassword />} />
-        <Route path={routes.testPage} element={<Test />} />
-        <Route path={routes.pageNotFound} element={<PageNotFound />} />
-        <Route path={"/*"} element={<Navigate to={"/404"} />} />
-      </Routes>
-    </div>
+            <Routes>
+              <Route path={routes.home} element={<Home />} />
+              <Route path={routes.profile} element={<Profile />} />
+              <Route path={routes.login} element={<Login />} />
+              <Route path={routes.register} element={<Register />} />
+              <Route path={routes.newPassword} element={<NewPassword />} />
+              <Route path={routes.recoverPassword} element={<RecoverPassword />} />
+              <Route path={routes.testPage} element={<Test />} />
+              <Route path={routes.pageNotFound} element={<PageNotFound />} />
+              <Route path={"/*"} element={<Navigate to={"/404"} />} />
+            </Routes>
+
   );
 };

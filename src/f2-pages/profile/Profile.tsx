@@ -11,16 +11,17 @@ export const Profile = () => {
     (state) => state.app.status
   );
 
-    const authMe = useSelector<RootAppStateType>(
-        (state) => state.app.authMe
-    );
-    if (!authMe) {
-        return <Navigate to={routes.login} />;
-    }
+  const isLoggedIn = useSelector<RootAppStateType>(
+    (state) => state.app.isLoggedIn
+  );
 
   const logout = () => {
     dispatch(LogoutTC());
   };
+
+  if (!isLoggedIn) {
+    return <Navigate to={routes.login} />;
+  }
 
   return (
     <>
