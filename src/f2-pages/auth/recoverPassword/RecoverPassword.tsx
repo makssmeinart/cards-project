@@ -1,16 +1,21 @@
 import {Link} from "react-router-dom";
 import {routes} from "../../../f1-main/m2-bll/routes/routes";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {recoverPassword} from "../../../f1-main/m2-bll/reducers/recoverPassword/recoverPassword";
 import {useState} from "react";
 import {useFormik} from "formik";
+import {RootAppStateType} from "../../../f1-main/m2-bll/store";
+import {SuperInputText} from "../../../f1-main/m1-ui/components/common/superInput/SuperInput";
+import {SuperButton} from "../../../f1-main/m1-ui/components/common/superButton/SuperButton";
+import {PendingStatusType} from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
 
 export const RecoverPassword = () => {
+    const status = useSelector<RootAppStateType, PendingStatusType>(state => state.app.status)
     const [emailChecked, setEmailChecked] = useState(true)
     const dispatch = useDispatch()
 
     const recoverPasswordCallback = (values: RecoverPasswordFormValues) => {
-        dispatch(recoverPassword(values,setEmailChecked))
+        dispatch(recoverPassword(values, setEmailChecked))
     }
 
     const formik = useFormik({
@@ -18,7 +23,7 @@ export const RecoverPassword = () => {
             email: '',
         },
         validate: (values) => {
-            const errors: any = {}
+            const errors: {email?: string} = {}
             if (!values.email) {
                 errors.email = 'Email is required!';
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
@@ -33,37 +38,35 @@ export const RecoverPassword = () => {
     });
 
     return (
-        <section>
+        <>
             {
-                emailChecked
+                // If page is loading load the spinner
+                status === "loading"
                     ?
-                    <>
-                        <form onSubmit={formik.handleSubmit}>
-                            <label htmlFor="email">Email Address</label>
-                            <input
-                                id="email"
-                                name="email"
-                                type="text"
-                                onChange={formik.handleChange}
-                                value={formik.values.email}
-                            />
-                            {formik.errors.email && formik.errors.email}
-                            <button type="submit">Submit</button>
-                        </form>
-                        <Link to={routes.login}>Try logging in</Link>
-
-                        {/*<div>Recover Password</div>*/}
-                        {/*<div>*/}
-                        {/*    <input type="email"/>*/}
-                        {/*    <button onClick={recoverPasswordCallback}>Send Instructions</button>*/}
-                        {/*</div>*/}
-                        {/*<div>*/}
-                        {/*</div>*/}
-                    </>
+                    <div>Loading</div>
                     :
-                    <h1>Check your email</h1>
+                    <section>
+                        {
+                            emailChecked
+                                ?
+                                <>
+                                    <form onSubmit={formik.handleSubmit}>
+                                        <SuperInputText {...formik.getFieldProps("email")} />
+                                        {formik.touched.email && formik.errors.email ? (
+                                            <div>{formik.errors.email}</div>
+                                        ) : null}
+
+                                        <SuperButton type={"submit"}>Login</SuperButton>
+                                    </form>
+
+                                    <Link to={routes.login}>Try logging in</Link>
+                                </>
+                                :
+                                <h1>Check your email</h1>
+                        }
+                    </section>
             }
-        </section>
+        </>
     )
 }
 

@@ -26,7 +26,7 @@ export const setIsLoggedInAC = (value: boolean) =>
 export const errorMessageAC = (value: string | null) =>
     ({type: "APP/ERROR/MESSAGE", value} as const);
 
-export const changeStatus = (value: pendingStatusType) =>
+export const changeStatus = (value: PendingStatusType) =>
     ({type: "APP/STATUS/CHANGE-STATUS", value} as const)
 
 // Types
@@ -36,9 +36,9 @@ type ActionTypes =
     | ReturnType<typeof changeStatus>
 type setIsLoggedInACTypes = ReturnType<typeof setIsLoggedInAC>;
 type errorMessageACTypes = ReturnType<typeof errorMessageAC>;
-type pendingStatusType = "idle" | "failed" | "completed"
+export type PendingStatusType = "idle" | "failed" | "completed" | "loading"
 type InitStateTypes = {
     isLoggedIn: boolean;
     errorMessage: string | null;
-    status: pendingStatusType
+    status: PendingStatusType
 };

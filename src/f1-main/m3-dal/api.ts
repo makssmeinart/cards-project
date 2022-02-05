@@ -1,5 +1,6 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import {RecoverPasswordFormValues} from "../../f2-pages/auth/recoverPassword/RecoverPassword";
+import { InitStateType } from "../m2-bll/reducers/login/loginReducer";
 
 // Axios Instance
 const instance = axios.create({
@@ -10,7 +11,7 @@ const instance = axios.create({
 export const authApi = {
     // hello
     recoverPassword: (values: RecoverPasswordFormValues) => {
-        return axios.post<any>("auth/forgot", {
+        return axios.post<AuthForgotDataType, AxiosResponse<AuthForgotResponseType>>("auth/forgot", {
                 email: values.email,
                 from: `test-front-admin <${values.email}>`,
                 message: `<div > password recovery link: 
@@ -32,12 +33,17 @@ type CommonRecoveryResponse = {
     error?: string
 }
 
-type AuthForgotResponse = {
+type AuthForgotDataType = {
     email: string
     from: string
     message: string
 }
-import { InitStateType } from "../m2-bll/reducers/login/loginReducer";
+type AuthForgotResponseType = {
+    answer: boolean
+    html: boolean
+    info: string
+    success: boolean
+}
 
 export type LoginParamsType = {
     email: string;

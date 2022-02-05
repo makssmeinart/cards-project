@@ -1,6 +1,10 @@
 import { authApi, LoginParamsType } from "../../../m3-dal/api";
 import { Dispatch } from "redux";
-import {errorMessageAC, setIsLoggedInAC} from "../appReducer/appReducer";
+import {
+  changeStatus,
+  errorMessageAC,
+  setIsLoggedInAC,
+} from "../appReducer/appReducer";
 
 const initState: InitStateType = {
   created: "",
@@ -33,22 +37,32 @@ export const LoginAC = (data: InitStateType) => {
   return { type: "AUTH/LOGIN", data } as const;
 };
 
-
 export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
+  // Spinner
+  dispatch(changeStatus("loading"));
+
   authApi
     .login(data)
     .then((res) => {
       if (res.status === 200) {
+        dispatch(changeStatus("completed"));
         dispatch(setIsLoggedInAC(true));
         dispatch(LoginAC(res.data));
         console.log(res.data);
-      } else {}
+      } else {
+      }
     })
     .catch((e) => {
-      const error = e.response? e.response.data.error: (e.message + ', more details in the console');
+      dispatch(changeStatus("failed"));
+      const error = e.response
+        ? e.response.data.error
+        : e.message + ", more details in the console";
       //console.log('Error22222: ', JSON.stringify(error))
-      console.log(error)
+      console.log(error);
       dispatch(errorMessageAC(error));
+    })
+    .finally(() => {
+      dispatch(changeStatus("idle"));
     });
 };
 

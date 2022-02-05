@@ -21,3 +21,5 @@ export const store = createStore(reducer, applyMiddleware(thunk))
 // Types 
 
 export type RootAppStateType = ReturnType<typeof reducer>
+
+//@ts-ignore
