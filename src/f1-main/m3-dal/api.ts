@@ -37,13 +37,11 @@ type CommonRecoveryResponse = {
   info: string;
   error?: string;
 };
-
 type AuthForgotResponse = {
   email: string;
   from: string;
   message: string;
 };
-
 export type LoginParamsType = {
   email: string;
   password: string;

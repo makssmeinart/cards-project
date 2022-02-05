@@ -1,6 +1,6 @@
 import { authApi, LoginParamsType } from "../../../m3-dal/api";
 import { Dispatch } from "redux";
-import {errorMessageAC, setIsLoggedInAC} from "../appReducer/appReducer";
+import { errorMessageAC, setIsLoggedInAC } from "../appReducer/appReducer";
 
 const initState: InitStateType = {
   created: "",
@@ -17,10 +17,7 @@ const initState: InitStateType = {
   _id: "",
 };
 
-export const loginReducer = (
-  state = initState,
-  action: ActionTypes
-): InitStateType => {
+export const loginReducer = (state = initState, action: ActionTypes): InitStateType => {
   switch (action.type) {
     case "AUTH/LOGIN":
       return { ...action.data };
@@ -32,7 +29,6 @@ export const loginReducer = (
 export const LoginAC = (data: InitStateType) => {
   return { type: "AUTH/LOGIN", data } as const;
 };
-
 
 export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
   authApi

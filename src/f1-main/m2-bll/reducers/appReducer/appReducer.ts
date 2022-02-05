@@ -9,10 +9,7 @@ const initState: InitStateTypes = {
   authMe: false,
 };
 
-export const appReducer = (
-  state = initState,
-  action: ActionTypes
-): InitStateTypes => {
+export const appReducer = (state = initState, action: ActionTypes): InitStateTypes => {
   switch (action.type) {
     case "AUTH/LOGIN/SET-IS-LOGGED-IN":
       return { ...state, isLoggedIn: action.value };
@@ -53,13 +50,12 @@ export const authMeTC = () => (dispatch: Dispatch, getState: () => RootAppStateT
   };
 
 // Types
-type ActionTypes = setIsLoggedInACTypes | errorMessageACTypes | authMeACTypes;
-type setIsLoggedInACTypes = ReturnType<typeof setIsLoggedInAC>;
-type errorMessageACTypes = ReturnType<typeof errorMessageAC>;
-type authMeACTypes = ReturnType<typeof authMeAC>;
-
 type InitStateTypes = {
   isLoggedIn: boolean;
   errorMessage: string | null;
   authMe: boolean;
 };
+type ActionTypes = setIsLoggedInACTypes | errorMessageACTypes | authMeACTypes;
+type setIsLoggedInACTypes = ReturnType<typeof setIsLoggedInAC>;
+type errorMessageACTypes = ReturnType<typeof errorMessageAC>;
+type authMeACTypes = ReturnType<typeof authMeAC>;

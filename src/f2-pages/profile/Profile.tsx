@@ -5,10 +5,10 @@ import { routes } from "../../f1-main/m2-bll/routes/routes";
 import React from "react";
 
 export const Profile = () => {
-  const isLoggedIn = useSelector<RootAppStateType>(
-    (state) => state.app.isLoggedIn
+  const authMe = useSelector<RootAppStateType>(
+    (state) => state.app.authMe
   );
-  if (!isLoggedIn) {
+  if (!authMe) {
     return <Navigate to={routes.login} />;
   }
   return <section>Profile</section>;

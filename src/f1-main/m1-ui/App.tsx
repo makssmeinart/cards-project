@@ -14,12 +14,11 @@ import { useDispatch } from "react-redux";
 import { authMeTC } from "../m2-bll/reducers/appReducer/appReducer";
 
 export const App = () => {
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authMeTC());
   }, []);
-
-
 
 
   return (
