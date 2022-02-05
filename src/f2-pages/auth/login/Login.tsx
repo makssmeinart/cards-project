@@ -7,13 +7,13 @@ const instance = axios.create({
 
 
 export const Login = () => {
-
     useEffect(() => {
         instance.post<any>("/auth/login", {
             email: "maks.mashko@gmail.com",
             password: "1475963mashko",
             rememberMe: false,
         }).then(resp => console.log(resp.data))
+            .then(res=>res)
     }, [])
 
 

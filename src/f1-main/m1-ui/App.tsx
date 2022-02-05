@@ -12,6 +12,9 @@ import {PageNotFound} from "../../f2-pages/error/pageNotFound/PageNotFound";
 import {Home} from "../../f2-pages/home/Home";
 
 export const App = () => {
+
+
+    // asdasdasd
     return (
         <div>
             <Routes>
