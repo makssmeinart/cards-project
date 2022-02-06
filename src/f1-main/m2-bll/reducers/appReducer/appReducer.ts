@@ -64,6 +64,9 @@ export const authMeTC =
         const token = state.login;
         console.log("getState", token);
       })
+        .catch(err => {
+            console.error(err)
+        })
       .finally(() => {
         dispatch(changeInitialized(true));
       });

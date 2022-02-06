@@ -53,7 +53,7 @@ export const RecoverPassword = () => {
                                     <form onSubmit={formik.handleSubmit}>
                                         <SuperInputText {...formik.getFieldProps("email")} />
                                         {formik.touched.email && formik.errors.email ? (
-                                            <div>{formik.errors.email}</div>
+                                            <div >{formik.errors.email}</div>
                                         ) : null}
 
                                         <SuperButton type={"submit"}>Login</SuperButton>

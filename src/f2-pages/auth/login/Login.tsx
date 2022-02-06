@@ -11,6 +11,7 @@ import { RootAppStateType } from "../../../f1-main/m2-bll/store";
 import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
 import s from "./Login.module.css";
 import {routes} from "../../../f1-main/m2-bll/routes/routes";
+import {ErrorInput} from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -75,24 +76,23 @@ export const Login = () => {
           <form className={s.s} onSubmit={formik.handleSubmit}>
             <SuperInputText type={"text"} {...formik.getFieldProps("email")} />
             {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
+              // <div>{formik.errors.email}</div>
+                <ErrorInput error={formik.errors.email} />
             ) : null}
             <SuperInputText
               type={reverseType}
               {...formik.getFieldProps("password")}
             />
             {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
+              // <div>{formik.errors.password}</div>
+                <ErrorInput error={formik.errors.password} />
             ) : null}
-          </form>
-
-          <SuperButton onClick={onClickHandler}>hide</SuperButton>
-
-          <form className={s.s} onSubmit={formik.handleSubmit}>
+            <SuperButton type={"button"} onClick={onClickHandler}>hide</SuperButton>
             <SuperCheckbox
               name="rememberMe"
               onChange={formik.handleChange}
               checked={formik.values.rememberMe}
+
             />
             <SuperButton type={"submit"}>Login</SuperButton>
           </form>
