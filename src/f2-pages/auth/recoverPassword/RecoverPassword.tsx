@@ -8,6 +8,7 @@ import {RootAppStateType} from "../../../f1-main/m2-bll/store";
 import {SuperInputText} from "../../../f1-main/m1-ui/components/common/superInput/SuperInput";
 import {SuperButton} from "../../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import {PendingStatusType} from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
+import {ErrorSnackbar} from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
 
 export const RecoverPassword = () => {
     const status = useSelector<RootAppStateType, PendingStatusType>(state => state.app.status)
@@ -64,6 +65,8 @@ export const RecoverPassword = () => {
                                 :
                                 <h1>Check your email</h1>
                         }
+                        {/* Error Snackbar */}
+                        <ErrorSnackbar />
                     </section>
             }
         </>

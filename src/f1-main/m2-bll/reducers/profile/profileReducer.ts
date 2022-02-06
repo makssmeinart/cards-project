@@ -1,14 +1,17 @@
-const initState: InitStateType = {}
+const initState: InitStateType = {};
 
-export const profileReducer = (state = initState, action: ActionTypes): InitStateType => {
-    switch(action.type) {
-
-        default: return state
-    }
-}
+export const profileReducer = (
+  state = initState,
+  action: ActionTypes
+): InitStateType => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
 
 // Types
 
-type ActionTypes = any
+type ActionTypes = any;
 
-type InitStateType = any
+type InitStateType = any;

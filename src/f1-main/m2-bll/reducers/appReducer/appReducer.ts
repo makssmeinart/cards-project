@@ -64,9 +64,9 @@ export const authMeTC =
         const token = state.login;
         console.log("getState", token);
       })
-        .catch(err => {
-            console.error(err)
-        })
+      .catch((err) => {
+        console.error(err);
+      })
       .finally(() => {
         dispatch(changeInitialized(true));
       });
@@ -76,13 +76,14 @@ export const authMeTC =
 type ActionTypes =
   | setIsLoggedInACTypes
   | errorMessageACTypes
-  | ReturnType<typeof changeStatus>
+  | changeStatusACTypes
   | authMeACTypes
   | changeInitializedType;
 type setIsLoggedInACTypes = ReturnType<typeof setIsLoggedInAC>;
-type errorMessageACTypes = ReturnType<typeof errorMessageAC>;
+export type changeStatusACTypes = ReturnType<typeof changeStatus>;
+export type errorMessageACTypes = ReturnType<typeof errorMessageAC>;
 type authMeACTypes = ReturnType<typeof authMeAC>;
-type changeInitializedType = ReturnType<typeof changeInitialized>;
+export type changeInitializedType = ReturnType<typeof changeInitialized>;
 export type PendingStatusType = "idle" | "failed" | "completed" | "loading";
 type InitStateTypes = {
   isLoggedIn: boolean;

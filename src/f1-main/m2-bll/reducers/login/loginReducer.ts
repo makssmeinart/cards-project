@@ -5,6 +5,7 @@ import {
   errorMessageAC,
   setIsLoggedInAC,
 } from "../appReducer/appReducer";
+import { serverErrorHandling } from "../../../m4-utility/serverErrorHandling";
 
 const initState: InitStateType = {
   created: "",
@@ -57,10 +58,7 @@ export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
     })
     .catch((e) => {
       dispatch(changeStatus("failed"));
-      const error = e.response
-        ? e.response.data.error
-        : e.message
-      dispatch(errorMessageAC(error));
+      serverErrorHandling(e, dispatch);
     })
     .finally(() => {
       dispatch(changeStatus("idle"));
@@ -90,11 +88,9 @@ export const LogoutTC = () => (dispatch: Dispatch) => {
       dispatch(changeStatus("completed"));
       dispatch(setIsLoggedInAC(false));
       dispatch(LoginAC(logoutData));
-      alert(res.data.info);
     })
     .catch((err) => {
       dispatch(changeStatus("failed"));
-      alert(err);
     })
     .finally(() => {
       dispatch(changeStatus("idle"));
