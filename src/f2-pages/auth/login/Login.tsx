@@ -12,6 +12,7 @@ import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/a
 import s from "./Login.module.css";
 import {routes} from "../../../f1-main/m2-bll/routes/routes";
 import {ErrorInput} from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
+import {ErrorSnackbar} from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -99,6 +100,9 @@ export const Login = () => {
           {errorMessage ? <div>.{errorMessage}.</div> : null}
 
           <Link to={"/register"}>Register</Link>
+
+          {/* Error Snackbar */}
+          <ErrorSnackbar/>
         </section>
       )}
     </>

@@ -1,14 +1,13 @@
 import s from "./snackbar.module.css"
 import {useEffect} from "react";
 
-export const Snackbar = ({open, autoHideDuration, onClose}: SnackbarPropsType) => {
+export const Snackbar = ({open, autoHideDuration, onClose, error}: SnackbarPropsType) => {
 
     useEffect(() => {
-        console.log("Runs")
-        setTimeout(() => {
-            onCloseCallback()
-        }, autoHideDuration)
-    }, [autoHideDuration])
+       open && setTimeout(() => {
+           onCloseCallback()
+       }, autoHideDuration)
+    }, [open])
 
     const onCloseCallback = () => {
         return onClose()
@@ -19,9 +18,8 @@ export const Snackbar = ({open, autoHideDuration, onClose}: SnackbarPropsType) =
             {
                 open &&
                 <div className={`${s.snackbar} ${s.show}`}>
-                    <span>Icons</span>
-                    <p>Text</p>
-                    <button onClick={onCloseCallback}>Close</button>
+                    <p>{error}</p>
+                    <button className={s.close} onClick={onCloseCallback}>+</button>
                 </div>
             }
         </>
@@ -34,4 +32,5 @@ type SnackbarPropsType = {
     open: boolean
     autoHideDuration?: number
     onClose: () => void
+    error: string
 }

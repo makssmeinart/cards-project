@@ -13,5 +13,5 @@ export const ErrorSnackbar = () => {
       dispatch(errorMessageAC(null))
   }
 
-  return <Snackbar open={error !== null} autoHideDuration={5000} onClose={handleClose} />
+  return <Snackbar open={error !== null} autoHideDuration={2500} onClose={handleClose} error={error ? error : ""} />
 };

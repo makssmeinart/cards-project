@@ -52,7 +52,6 @@ export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
         dispatch(changeStatus("completed"));
         dispatch(setIsLoggedInAC(true));
         dispatch(LoginAC(res.data));
-        console.log(res.data);
       } else {
       }
     })
@@ -60,8 +59,7 @@ export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
       dispatch(changeStatus("failed"));
       const error = e.response
         ? e.response.data.error
-        : e.message + ", more details in the console";
-      console.log(error);
+        : e.message
       dispatch(errorMessageAC(error));
     })
     .finally(() => {
