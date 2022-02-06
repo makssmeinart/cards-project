@@ -80,14 +80,13 @@ export const Login = () => {
               type={reverseType}
               {...formik.getFieldProps("password")}
             />
+
             {formik.touched.password && formik.errors.password ? (
               <div>{formik.errors.password}</div>
             ) : null}
-          </form>
 
-          <SuperButton onClick={onClickHandler}>hide</SuperButton>
+            <SuperButton type ={'button'} onClick={onClickHandler}>hide</SuperButton>
 
-          <form className={s.s} onSubmit={formik.handleSubmit}>
             <SuperCheckbox
               name="rememberMe"
               onChange={formik.handleChange}
@@ -95,6 +94,7 @@ export const Login = () => {
             />
             <SuperButton type={"submit"}>Login</SuperButton>
           </form>
+
           {errorMessage ? <div>.{errorMessage}.</div> : null}
 
           <Link to={"/register"}>Register</Link>
