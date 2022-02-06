@@ -1,0 +1,11 @@
+.wrapper {
+    /*background: #F9F9FE;*/
+    background-color: white;
+    border-radius: 8px;
+    width: 413px;
+    height: 600px;
+    left: 434px;
+    top: 60px;
+    z-index: -1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
