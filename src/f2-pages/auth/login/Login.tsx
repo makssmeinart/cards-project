@@ -10,6 +10,9 @@ import React, { useState } from "react";
 import { RootAppStateType } from "../../../f1-main/m2-bll/store";
 import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
 import s from "./Login.module.css";
+import { routes } from "../../../f1-main/m2-bll/routes/routes";
+import { ErrorInput } from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
+import { ErrorSnackbar } from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -62,7 +65,7 @@ export const Login = () => {
   });
 
   if (isLoggedIn) {
-    return <Navigate to="/profile" />;
+    return <Navigate to={routes.profile} />;
   }
 
   return (
@@ -74,19 +77,20 @@ export const Login = () => {
           <form className={s.s} onSubmit={formik.handleSubmit}>
             <SuperInputText type={"text"} {...formik.getFieldProps("email")} />
             {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
+              // <div>{formik.errors.email}</div>
+              <ErrorInput error={formik.errors.email} />
             ) : null}
             <SuperInputText
               type={reverseType}
               {...formik.getFieldProps("password")}
             />
-
             {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
+              // <div>{formik.errors.password}</div>
+              <ErrorInput error={formik.errors.password} />
             ) : null}
-
-            <SuperButton type ={'button'} onClick={onClickHandler}>hide</SuperButton>
-
+            <SuperButton type={"button"} onClick={onClickHandler}>
+              hide
+            </SuperButton>
             <SuperCheckbox
               name="rememberMe"
               onChange={formik.handleChange}
@@ -94,10 +98,12 @@ export const Login = () => {
             />
             <SuperButton type={"submit"}>Login</SuperButton>
           </form>
-
           {errorMessage ? <div>.{errorMessage}.</div> : null}
 
           <Link to={"/register"}>Register</Link>
+
+          {/* Error Snackbar */}
+          <ErrorSnackbar />
         </section>
       )}
     </>
