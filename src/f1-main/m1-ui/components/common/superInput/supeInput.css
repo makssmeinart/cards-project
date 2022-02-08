@@ -30,7 +30,12 @@
 }
 .searchformfld input:focus{
     outline: none;
+    border-bottom: 2px solid rgba(12, 30, 141, 0.7);
 }
+.searchformfld input:not(:placeholder-shown) {
+    border-bottom: 2px solid rgba(12, 30, 141, 0.7);
+}
+
 .searchformfld{
     padding: 15px;
 }

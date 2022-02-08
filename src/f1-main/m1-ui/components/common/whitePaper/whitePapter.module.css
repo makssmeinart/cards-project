@@ -20,6 +20,7 @@
     font-size: 1.65rem;
     line-height: 2.43rem;
     margin: 0 0 1.3em;
+    font-family: 'Poppins', sans-serif;
 }
 
 .subtitle {
@@ -27,4 +28,5 @@
     font-weight: 600;
     font-size: 1.375rem;
     line-height: 2rem;
+    font-family: 'Poppins', sans-serif;
 }

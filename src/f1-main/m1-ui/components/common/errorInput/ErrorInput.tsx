@@ -1,8 +1,9 @@
 import React from "react";
+import s from "./errorInput.module.css"
 
 export const ErrorInput = ({error}: ErrorInputPropsType) => {
     return (
-        <div style={{color: "red"}}>{error}</div>
+        <div className={s.error}>{error}</div>
     )
 }
 

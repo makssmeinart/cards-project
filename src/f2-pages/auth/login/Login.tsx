@@ -71,7 +71,7 @@ export const Login = () => {
                             <SuperInputText labelValue={"Email"} type={"text"} {...formik.getFieldProps("email")} />
                             {formik.touched.email && formik.errors.email ? (
                                 <ErrorInput error={formik.errors.email}/>
-                            ) : null}
+                            ) : <div style={{height: "21px"}}></div>}
                             <SuperPasswordInput
                                 value={formik.getFieldProps("password").value}
                                 onChange={formik.getFieldProps("password").onChange}
@@ -80,7 +80,7 @@ export const Login = () => {
                             />
                             {formik.touched.password && formik.errors.password ? (
                                 <ErrorInput error={formik.errors.password}/>
-                            ) : null}
+                            ) : <div style={{height: "21px"}}></div>}
                             <SuperCheckbox
                                 name="rememberMe"
                                 onChange={formik.handleChange}
