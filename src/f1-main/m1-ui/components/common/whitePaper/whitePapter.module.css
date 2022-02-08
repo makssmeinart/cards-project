@@ -1,11 +1,30 @@
 .wrapper {
-    /*background: #F9F9FE;*/
-    background-color: white;
+    max-width: 400px;
+    background: #F9F9FE;
     border-radius: 8px;
-    width: 413px;
     height: 600px;
-    left: 434px;
-    top: 60px;
     z-index: -1;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 25px 33px 30px;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.title {
+    color: #2D2E46;
+    font-weight: 600;
+    font-size: 1.65rem;
+    line-height: 2.43rem;
+    margin: 0 0 1.3em;
+}
+
+.subtitle {
+    color: #2D2E46;
+    font-weight: 600;
+    font-size: 1.375rem;
+    line-height: 2rem;
 }
