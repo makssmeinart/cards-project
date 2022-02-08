@@ -19,8 +19,6 @@ export const appReducer = (
       return { ...state, isLoggedIn: action.value };
     case "APP/ERROR/MESSAGE":
       return { ...state, errorMessage: action.value };
-    case "APP/AUTH/ME":
-      return { ...state, isLoggedIn: action.value };
     case "APP/STATUS/CHANGE-STATUS":
       return { ...state, status: action.value };
     case "APP/CHANGE-INITIALIZED":
@@ -39,12 +37,6 @@ export const errorMessageAC = (value: string | null) =>
 export const changeStatus = (value: PendingStatusType) =>
   ({ type: "APP/STATUS/CHANGE-STATUS", value } as const);
 
-export const authMeAC = (value: boolean) => {
-  return {
-    type: "APP/AUTH/ME",
-    value,
-  } as const;
-};
 
 export const changeInitialized = (value: boolean) =>
   ({ type: "APP/CHANGE-INITIALIZED", value } as const);
@@ -59,7 +51,6 @@ export const authMeTC =
         console.log("authMe()", res.data);
         dispatch(LoginAC(res.data));
         dispatch(setIsLoggedInAC(true));
-        dispatch(authMeAC(true));
         const state = getState();
         const token = state.login;
         console.log("getState", token);
@@ -77,12 +68,10 @@ type ActionTypes =
   | setIsLoggedInACTypes
   | errorMessageACTypes
   | changeStatusACTypes
-  | authMeACTypes
   | changeInitializedType;
 type setIsLoggedInACTypes = ReturnType<typeof setIsLoggedInAC>;
 export type changeStatusACTypes = ReturnType<typeof changeStatus>;
 export type errorMessageACTypes = ReturnType<typeof errorMessageAC>;
-type authMeACTypes = ReturnType<typeof authMeAC>;
 export type changeInitializedType = ReturnType<typeof changeInitialized>;
 export type PendingStatusType = "idle" | "failed" | "completed" | "loading";
 type InitStateTypes = {

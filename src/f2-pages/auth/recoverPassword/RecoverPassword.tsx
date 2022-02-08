@@ -2,13 +2,14 @@ import {Link} from "react-router-dom";
 import {routes} from "../../../f1-main/m2-bll/routes/routes";
 import {useDispatch, useSelector} from "react-redux";
 import {recoverPassword} from "../../../f1-main/m2-bll/reducers/recoverPassword/recoverPassword";
-import {useState} from "react";
+import React, {useState} from "react";
 import {useFormik} from "formik";
 import {RootAppStateType} from "../../../f1-main/m2-bll/store";
 import {SuperInputText} from "../../../f1-main/m1-ui/components/common/superInput/SuperInput";
 import {SuperButton} from "../../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import {PendingStatusType} from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
 import {ErrorSnackbar} from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
+import {Loading} from "../../../f1-main/m1-ui/components/common/loading/Loading";
 
 export const RecoverPassword = () => {
   const status = useSelector<RootAppStateType, PendingStatusType>(
@@ -46,7 +47,7 @@ export const RecoverPassword = () => {
                 // If page is loading load the spinner
                 status === "loading"
                     ?
-                    <div>Loading</div>
+                    <Loading/>
                     :
                     <section>
                         {

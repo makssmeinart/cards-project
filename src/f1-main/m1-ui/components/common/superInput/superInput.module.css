@@ -1,0 +1,50 @@
+.searchformfld {
+    position: relative;
+}
+.searchformfld label{
+    position: absolute;
+    left: 20px;
+    top:15px;
+    cursor: text;
+    color: #24254A;
+    opacity: 0.5;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+.searchformfld input:focus + label,.searchformfld input:not(:placeholder-shown) + label{
+    opacity:1;
+    transform: scale(.8) translateY(-100%) translateX(-9px);
+    color:#24254A;
+}
+.searchformfld input:focus {
+    outline: none;
+}
+.searchformfld input:focus {
+    border-bottom: 2px solid rgba(2, 7, 54, 0.8);
+}
+
+.searchformfld input:not(:placeholder-shown) {
+    border-bottom: 2px solid rgba(2, 7, 54, 0.8);
+}
+
+.searchformfld{
+    padding: 15px;
+    margin:15px 0px;
+}
+.searchformfld input{
+    width:100%;
+    height: 35px;
+    border: none;
+    border-bottom: 2px solid rgba(2, 7, 54, 0.3);
+    background: transparent;
+    color: #24254A;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+.searchformfld label,.searchformfld input{
+    transition: all 0.2s;
+    transition-timing-function: ease;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
