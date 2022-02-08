@@ -1,11 +1,11 @@
 .wrapper {
+    padding: 35px 33px 30px;
+    margin: 10rem auto 0;
     max-width: 400px;
     background: #F9F9FE;
     border-radius: 8px;
-    height: 600px;
     z-index: -1;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding: 25px 33px 30px;
 }
 
 .inner {
@@ -19,7 +19,7 @@
     font-weight: 600;
     font-size: 1.65rem;
     line-height: 2.43rem;
-    margin: 0 0 1.3em;
+    margin: 0 0 1em;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -29,4 +29,33 @@
     font-size: 1.375rem;
     line-height: 2rem;
     font-family: 'Poppins', sans-serif;
+    margin-top: .5em;
+    margin-bottom: 1.2em;
+}
+
+.rememberMe {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 80px;
+}
+.forgot {
+    font-size: .875rem;
+    line-height: 1.3rem;
+    color: #2D2E46;
+}
+
+.dontHaveAccount {
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    color: #2D2E46;
+    opacity: 0.5;
+}
+
+.signUp {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #21268F;
 }

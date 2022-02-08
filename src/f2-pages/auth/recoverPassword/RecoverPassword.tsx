@@ -10,24 +10,27 @@ import {SuperButton} from "../../../f1-main/m1-ui/components/common/superButton/
 import {PendingStatusType} from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
 import {ErrorSnackbar} from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
 import {Loading} from "../../../f1-main/m1-ui/components/common/loading/Loading";
+import {WhitePaper} from "../../../f1-main/m1-ui/components/common/whitePaper/WhitePaper";
+import wpS from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css"
+import {ErrorInput} from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
 
 export const RecoverPassword = () => {
-  const status = useSelector<RootAppStateType, PendingStatusType>(
-    (state) => state.app.status
-  );
-  const [emailChecked, setEmailChecked] = useState(true);
-  const dispatch = useDispatch();
+    const status = useSelector<RootAppStateType, PendingStatusType>(
+        (state) => state.app.status
+    );
+    const [emailChecked, setEmailChecked] = useState(true);
+    const dispatch = useDispatch();
 
-  const recoverPasswordCallback = (values: RecoverPasswordFormValues) => {
-    dispatch(recoverPassword(values, setEmailChecked));
-  };
+    const recoverPasswordCallback = (values: RecoverPasswordFormValues) => {
+        dispatch(recoverPassword(values, setEmailChecked));
+    };
 
     const formik = useFormik({
         initialValues: {
             email: '',
         },
         validate: (values) => {
-            const errors: {email?: string} = {}
+            const errors: { email?: string } = {}
             if (!values.email) {
                 errors.email = 'Email is required!';
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
@@ -54,22 +57,27 @@ export const RecoverPassword = () => {
                             emailChecked
                                 ?
                                 <>
-                                    <form onSubmit={formik.handleSubmit}>
-                                        <SuperInputText {...formik.getFieldProps("email")} />
-                                        {formik.touched.email && formik.errors.email ? (
-                                            <div >{formik.errors.email}</div>
-                                        ) : null}
+                                    <WhitePaper>
+                                        <h2 className={wpS.subtitle}>
+                                            Sign Up
+                                        </h2>
+                                        <form onSubmit={formik.handleSubmit}>
+                                            <SuperInputText labelValue={"Email"} {...formik.getFieldProps("email")} />
+                                            {formik.touched.email && formik.errors.email ? (
+                                                <ErrorInput error={formik.errors.email} />
+                                            ) : <div style={{height: "21px"}}></div>}
 
-                                        <SuperButton type={"submit"}>Login</SuperButton>
-                                    </form>
+                                            <SuperButton type={"submit"}>Login</SuperButton>
+                                        </form>
 
-                                    <Link to={routes.login}>Try logging in</Link>
+                                        <Link to={routes.login}>Try logging in</Link>
+                                    </WhitePaper>
                                 </>
                                 :
                                 <h1>Check your email</h1>
                         }
                         {/* Error Snackbar */}
-                        <ErrorSnackbar />
+                        <ErrorSnackbar/>
                     </section>
             }
         </>

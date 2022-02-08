@@ -8,7 +8,11 @@
     top:15px;
     cursor: text;
     font-weight: 500;
-    color: #2D2E46;
+    pointer-events: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(12, 30, 141, 0.6);
+    opacity: 0.5;
 }
 .searchformfld input {
     font-weight: 500;
