@@ -1,47 +1,50 @@
-.searchformfld {
+.searchformfld{
     position: relative;
+    margin: 5px 0px;
 }
 .searchformfld label{
     position: absolute;
     left: 20px;
     top:15px;
     cursor: text;
-    color: #24254A;
+    font-weight: 500;
+    pointer-events: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(12, 30, 141, 0.6);
     opacity: 0.5;
-    font-weight: normal;
+}
+.searchformfld input {
+    font-weight: 500;
     font-size: 1rem;
     line-height: 1.5rem;
-}
-.searchformfld input:focus + label,.searchformfld input:not(:placeholder-shown) + label{
-    opacity:1;
-    transform: scale(.8) translateY(-100%) translateX(-9px);
-    color:#24254A;
-}
-.searchformfld input:focus {
-    outline: none;
-}
-.searchformfld input:focus {
-    border-bottom: 2px solid rgba(2, 7, 54, 0.8);
+    color: #2D2E46;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(12, 30, 141, 0.2);
+    padding: .2em 0;
 }
 
+.searchformfld input:focus + label,.searchformfld input:not(:placeholder-shown) + label{
+    opacity:1;
+    transform: scale(.9) translateY(-100%) translateX(-10px);
+    font-size: 13px;
+    line-height: 20px;
+
+}
+.searchformfld input:focus{
+    outline: none;
+    border-bottom: 2px solid rgba(12, 30, 141, 0.7);
+}
 .searchformfld input:not(:placeholder-shown) {
-    border-bottom: 2px solid rgba(2, 7, 54, 0.8);
+    border-bottom: 2px solid rgba(12, 30, 141, 0.7);
 }
 
 .searchformfld{
     padding: 15px;
-    margin:15px 0px;
 }
 .searchformfld input{
     width:100%;
-    height: 35px;
-    border: none;
-    border-bottom: 2px solid rgba(2, 7, 54, 0.3);
-    background: transparent;
-    color: #24254A;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
 }
 .searchformfld label,.searchformfld input{
     transition: all 0.2s;

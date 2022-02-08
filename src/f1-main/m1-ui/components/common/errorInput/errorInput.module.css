@@ -1,0 +1,18 @@
+.error {
+    color: #f31a1a;
+    animation-duration: .5s;
+    animation-name: slideDown;
+    height: 21px;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

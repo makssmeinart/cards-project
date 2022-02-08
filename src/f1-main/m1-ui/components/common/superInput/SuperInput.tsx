@@ -4,7 +4,7 @@ import React, {
     InputHTMLAttributes,
     KeyboardEvent,
 } from "react";
-import s from "./superInput.module.css"
+import "./supeInput.css"
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement>;
@@ -26,8 +26,7 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
                                                                       className,
                                                                       labelValue,
                                                                       ...restProps
-                                                                  }) =>
-    {
+                                                                  }) => {
         const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
             onChange && onChange(e);
             onChangeText && onChangeText(e.currentTarget.value);
@@ -41,17 +40,23 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
 
         return (
             <>
-                <div className={s.searchformfld}>
+                <div className="searchformfld">
                     <input
+                        type="text"
+                        className="candidateName"
                         id="candidateName"
                         name={restProps.name}
+                        placeholder=" "
                         onChange={onChangeCallback}
                         onKeyPress={onKeyPressCallback}
                         {...restProps}
                     />
                     <label htmlFor={restProps.name}>{labelValue}</label>
                 </div>
+
             </>
         );
     }
 ;
+
+
