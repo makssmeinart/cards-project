@@ -1,0 +1,37 @@
+.searchformfld{
+    position: relative;
+    margin: 5px 0px;
+}
+.searchformfld label{
+    position: absolute;
+    left: 20px;
+    top:15px;
+    cursor: text;
+
+}
+.searchformfld input:focus + label,.searchformfld input:not(:placeholder-shown) + label{
+    opacity:1;
+    transform: scale(.9) translateY(-100%) translateX(-10px);
+    color:#000;
+    outline: none;
+    border: none;
+
+}
+.searchformfld input:focus{
+    outline-color: #000;
+    border: none;
+}
+.searchformfld{
+    padding: 15px;
+    margin:15px 0px;
+}
+.searchformfld input{
+    width:100%;
+    padding-left: 10px;
+}
+.searchformfld label,.searchformfld input{
+    transition: all 0.2s;
+    transition-timing-function: ease;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    opacity:0.5;
+}

@@ -1,8 +1,7 @@
 import React, {
-    ChangeEvent,
     DetailedHTMLProps,
     InputHTMLAttributes,
-    KeyboardEvent, useState,
+     useState,
 } from "react";
 import {SuperInputText} from "../superInput/SuperInput";
 import s from "./superPasswordInput.module.css"
