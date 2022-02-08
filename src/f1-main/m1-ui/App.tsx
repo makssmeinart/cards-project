@@ -13,6 +13,7 @@ import { Home } from "../../f2-pages/home/Home";
 import { useDispatch, useSelector } from "react-redux";
 import { authMeTC } from "../m2-bll/reducers/appReducer/appReducer";
 import { RootAppStateType } from "../m2-bll/store";
+import {Loading} from "./components/common/loading/Loading";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export const App = () => {
   );
 
   if (!isInitialized) {
-    return <div>...loading...</div>;
+    return <Loading/>
   }
 
   return (

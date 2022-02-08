@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { SuperInputText } from "../../../f1-main/m1-ui/components/common/superInput/SuperInput";
@@ -6,13 +7,13 @@ import { SuperCheckbox } from "../../../f1-main/m1-ui/components/common/superChe
 import { LoginParamsType } from "../../../f1-main/m3-dal/api";
 import { LoginTC } from "../../../f1-main/m2-bll/reducers/login/loginReducer";
 import { Link, Navigate } from "react-router-dom";
-import React, { useState } from "react";
 import { RootAppStateType } from "../../../f1-main/m2-bll/store";
 import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
 import s from "./Login.module.css";
 import { routes } from "../../../f1-main/m2-bll/routes/routes";
 import { ErrorInput } from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
 import { ErrorSnackbar } from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
+import {Loading} from "../../../f1-main/m1-ui/components/common/loading/Loading";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -21,9 +22,6 @@ export const Login = () => {
   );
   const isLoggedIn = useSelector<RootAppStateType>(
     (state) => state.app.isLoggedIn
-  );
-  const errorMessage = useSelector<RootAppStateType>(
-    (state) => state.app.errorMessage
   );
   const status = useSelector<RootAppStateType, PendingStatusType>(
     (state) => state.app.status
@@ -58,7 +56,7 @@ export const Login = () => {
       if (!values.password) {
         errors.password = "Required";
       } else if (values.password.length < 5) {
-        errors.email = "Invalid password";
+        errors.password = "Invalid password";
       }
       return errors;
     },
@@ -71,23 +69,26 @@ export const Login = () => {
   return (
     <>
       {status === "loading" ? (
-        <div>loading...</div>
+        <Loading/>
       ) : (
         <section className={s.s}>
           <form className={s.s} onSubmit={formik.handleSubmit}>
             <SuperInputText type={"text"} {...formik.getFieldProps("email")} />
+
             {formik.touched.email && formik.errors.email ? (
-              // <div>{formik.errors.email}</div>
               <ErrorInput error={formik.errors.email} />
             ) : null}
+
             <SuperInputText
               type={reverseType}
               {...formik.getFieldProps("password")}
             />
+
+
             {formik.touched.password && formik.errors.password ? (
-              // <div>{formik.errors.password}</div>
               <ErrorInput error={formik.errors.password} />
             ) : null}
+
             <SuperButton type={"button"} onClick={onClickHandler}>
               hide
             </SuperButton>
@@ -98,7 +99,6 @@ export const Login = () => {
             />
             <SuperButton type={"submit"}>Login</SuperButton>
           </form>
-          {errorMessage ? <div>.{errorMessage}.</div> : null}
 
           <Link to={"/register"}>Register</Link>
 
