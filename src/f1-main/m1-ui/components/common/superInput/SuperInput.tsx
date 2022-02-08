@@ -45,13 +45,13 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
                         type="text"
                         className="candidateName"
                         id="candidateName"
-                        name="candidateName"
+                        name={restProps.name}
                         placeholder=" "
                         onChange={onChangeCallback}
                         onKeyPress={onKeyPressCallback}
                         {...restProps}
                     />
-                    <label htmlFor="candidateName">Candidate name</label>
+                    <label htmlFor={restProps.name}>{labelValue}</label>
                 </div>
 
             </>

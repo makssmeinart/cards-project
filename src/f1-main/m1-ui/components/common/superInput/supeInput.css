@@ -7,31 +7,38 @@
     left: 20px;
     top:15px;
     cursor: text;
-
+    font-weight: 500;
+    color: #2D2E46;
 }
+.searchformfld input {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #2D2E46;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(12, 30, 141, 0.2);
+    padding: .2em 0;
+}
+
 .searchformfld input:focus + label,.searchformfld input:not(:placeholder-shown) + label{
     opacity:1;
     transform: scale(.9) translateY(-100%) translateX(-10px);
-    color:#000;
-    outline: none;
-    border: none;
+    font-size: 13px;
+    line-height: 20px;
 
 }
 .searchformfld input:focus{
-    outline-color: #000;
-    border: none;
+    outline: none;
 }
 .searchformfld{
     padding: 15px;
-    margin:15px 0px;
 }
 .searchformfld input{
     width:100%;
-    padding-left: 10px;
 }
 .searchformfld label,.searchformfld input{
     transition: all 0.2s;
     transition-timing-function: ease;
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-    opacity:0.5;
 }
