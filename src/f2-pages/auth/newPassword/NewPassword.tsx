@@ -11,8 +11,6 @@ import {useDispatch} from "react-redux";
 import {useNavigate} from 'react-router-dom';
 import {ErrorSnackbar} from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
 
-
-
 export const NewPassword = () => {
     const dispatch = useDispatch()
     const [nav, setNav] = useState<boolean>(false)
