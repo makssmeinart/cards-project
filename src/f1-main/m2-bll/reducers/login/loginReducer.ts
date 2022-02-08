@@ -2,7 +2,6 @@ import { authApi, LoginParamsType } from "../../../m3-dal/api";
 import { Dispatch } from "redux";
 import {
   changeStatus,
-  errorMessageAC,
   setIsLoggedInAC,
 } from "../appReducer/appReducer";
 import { serverErrorHandling } from "../../../m4-utility/serverErrorHandling";
@@ -22,10 +21,7 @@ const initState: InitStateType = {
   _id: "",
 };
 
-export const loginReducer = (
-  state = initState,
-  action: ActionTypes
-): InitStateType => {
+export const loginReducer = (state = initState, action: ActionTypes): InitStateType => {
   switch (action.type) {
     case "AUTH/LOGIN":
       return { ...action.data };
@@ -84,12 +80,12 @@ export const LogoutTC = () => (dispatch: Dispatch) => {
 
   authApi
     .logout()
-    .then((res) => {
+    .then(() => {
       dispatch(changeStatus("completed"));
       dispatch(setIsLoggedInAC(false));
       dispatch(LoginAC(logoutData));
     })
-    .catch((err) => {
+    .catch(() => {
       dispatch(changeStatus("failed"));
     })
     .finally(() => {

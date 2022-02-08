@@ -36,6 +36,9 @@ export const authApi = {
   authMe() {
     return instance.post<InitStateType>("/auth/me", {});
   },
+  setNewPassword(newPass: string, resToken: string){
+    return instance.post<any>("/auth/set-new-password", {password: newPass, resetPasswordToken: resToken})
+  }
 };
 
 // Types

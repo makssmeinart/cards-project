@@ -2,7 +2,7 @@ import React from "react";
 
 export const ErrorInput = ({error}: ErrorInputPropsType) => {
     return (
-        <div style={{color: "red"}}>{error}</div>
+        <div style={{color: "red", height: "21px"}}>{error}</div>
     )
 }
 

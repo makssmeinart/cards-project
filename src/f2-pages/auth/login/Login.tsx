@@ -1,25 +1,24 @@
-import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import { SuperInputText } from "../../../f1-main/m1-ui/components/common/superInput/SuperInput";
-import { SuperButton } from "../../../f1-main/m1-ui/components/common/superButton/SuperButton";
-import { SuperCheckbox } from "../../../f1-main/m1-ui/components/common/superCheckbox/SuperCheckbox";
-import { LoginParamsType } from "../../../f1-main/m3-dal/api";
-import { LoginTC } from "../../../f1-main/m2-bll/reducers/login/loginReducer";
-import { Link, Navigate } from "react-router-dom";
+import {useFormik} from "formik";
+import {useDispatch, useSelector} from "react-redux";
+import {SuperInputText} from "../../../f1-main/m1-ui/components/common/superInput/SuperInput";
+import {SuperButton} from "../../../f1-main/m1-ui/components/common/superButton/SuperButton";
+import {SuperCheckbox} from "../../../f1-main/m1-ui/components/common/superCheckbox/SuperCheckbox";
+import {LoginParamsType} from "../../../f1-main/m3-dal/api";
+import {LoginTC} from "../../../f1-main/m2-bll/reducers/login/loginReducer";
+import {Link, Navigate} from "react-router-dom";
 import React from "react";
-import { RootAppStateType } from "../../../f1-main/m2-bll/store";
-import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
-import s from "./Login.module.css";
-import { routes } from "../../../f1-main/m2-bll/routes/routes";
-import { ErrorInput } from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
-import { ErrorSnackbar } from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
+import {RootAppStateType} from "../../../f1-main/m2-bll/store";
+import {PendingStatusType} from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
+import {routes} from "../../../f1-main/m2-bll/routes/routes";
+import {ErrorInput} from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
+import {ErrorSnackbar} from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
 import {Loading} from "../../../f1-main/m1-ui/components/common/loading/Loading";
 import {SuperPasswordInput} from "../../../f1-main/m1-ui/components/common/superPasswordInput/SuperPasswordInput";
 import {WhitePaper} from "../../../f1-main/m1-ui/components/common/whitePaper/WhitePaper";
 
+
 export const Login = () => {
     const dispatch = useDispatch();
-
     const isLoggedIn = useSelector<RootAppStateType>(
         (state) => state.app.isLoggedIn
     );
@@ -56,18 +55,18 @@ export const Login = () => {
         },
     });
 
-  if (isLoggedIn) {
-    return <Navigate to={routes.profile} />;
-  }
+    if (isLoggedIn) {
+        return <Navigate to={routes.profile}/>;
+    }
 
     return (
         <>
             {status === "loading" ? (
                 <Loading/>
             ) : (
-                <section className={s.s}>
+                <section>
                     <WhitePaper>
-                        <form className={s.s} onSubmit={formik.handleSubmit}>
+                        <form onSubmit={formik.handleSubmit}>
                             <SuperInputText labelValue={"Email"} type={"text"} {...formik.getFieldProps("email")} />
                             {formik.touched.email && formik.errors.email ? (
                                 <ErrorInput error={formik.errors.email}/>
@@ -89,7 +88,7 @@ export const Login = () => {
                             <SuperButton className={"primaryButton"} type={"submit"}>Login</SuperButton>
                         </form>
 
-          <Link to={"/register"}>Register</Link>
+                        <Link to={"/register"}>Register</Link>
 
                         {/* Error Snackbar */}
                         <ErrorSnackbar/>
