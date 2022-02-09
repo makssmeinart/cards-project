@@ -10,6 +10,7 @@ import {setNewPasswordTC} from "../../../f1-main/m2-bll/reducers/newPassword/new
 import {useDispatch} from "react-redux";
 import {useNavigate} from 'react-router-dom';
 import {ErrorSnackbar} from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
+import wpS from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css"
 
 export const NewPassword = () => {
     const dispatch = useDispatch()
@@ -41,7 +42,8 @@ export const NewPassword = () => {
         <section>
             {nav ? navigate("/login") : null}
             <WhitePaper>
-                <form onSubmit={formik.handleSubmit}>
+                <h2 className={wpS.subtitle}>Create new password</h2>
+                <form className={wpS.marginBottomSmall} onSubmit={formik.handleSubmit}>
                     <SuperPasswordInput
                         value={formik.getFieldProps("password").value}
                         onChange={formik.getFieldProps("password").onChange}
@@ -51,8 +53,8 @@ export const NewPassword = () => {
                     {formik.touched.password && formik.errors.password ? (
                         <ErrorInput error={formik.errors.password}/>
                     ) : null}
-
-                    <SuperButton className={"primaryButton"} type={"submit"}>Set</SuperButton>
+                    <p className={`${wpS.dontHaveAccount} ${wpS.marginLeft} ${wpS.marginBottomLarge}`}>Create new password and we will send you further instructions to email </p>
+                    <SuperButton className={"primaryButton"} type={"submit"}>Create new password</SuperButton>
                 </form>
                 <ErrorSnackbar/>
             </WhitePaper>

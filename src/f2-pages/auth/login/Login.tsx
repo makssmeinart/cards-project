@@ -84,7 +84,7 @@ export const Login = () => {
                                 <ErrorInput error={formik.errors.password}/>
                             ) : <div style={{height: "21px"}}></div>}
 
-                            <div className={wpS.column}>
+                            <div >
                                 <div className={wpS.rememberMe}>
                                     <div>
                                         Remember me:

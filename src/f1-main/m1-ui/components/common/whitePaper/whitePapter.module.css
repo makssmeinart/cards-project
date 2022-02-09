@@ -45,6 +45,7 @@
     color: #2D2E46;
 }
 
+
 .dontHaveAccount {
     font-weight: 600;
     font-size: 0.875rem;
@@ -52,10 +53,30 @@
     color: #2D2E46;
     opacity: 0.5;
 }
+.marginLeft {
+    text-align: left;
+    margin-left: 15px;
+}
+.marginBottomLarge {
+    margin-bottom: 90px;
+}
+.marginBottomSmall {
+    margin-bottom: 1rem;
+}
+.marginYSmall {
+    margin: 2rem 0 1rem;
+}
+
 
 .signUp {
     font-weight: 600;
     font-size: 1rem;
     line-height: 1.5rem;
     color: #21268F;
+}
+
+.messageSendIcon {
+    max-width: 110px;
+    height: 100%;
+    margin-bottom: .7em;
 }

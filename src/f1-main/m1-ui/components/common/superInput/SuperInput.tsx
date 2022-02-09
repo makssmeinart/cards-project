@@ -14,6 +14,7 @@ type SuperInputTextPropsType = DefaultInputPropsType & {
     onEnter?: () => void;
     error?: string;
     labelValue?: string
+    isPassword?: boolean
 };
 
 export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
@@ -25,6 +26,7 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
                                                                       error,
                                                                       className,
                                                                       labelValue,
+                                                                      isPassword,
                                                                       ...restProps
                                                                   }) => {
         const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,12 +38,13 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
             onEnter && e.key === "Enter" && onEnter();
         };
 
-        console.log(restProps.value)
+        const customStyles = isPassword ? "45px" : "0"
 
         return (
             <>
                 <div className="searchformfld">
                     <input
+                        style={{paddingRight: customStyles}}
                         type="text"
                         className="candidateName"
                         id="candidateName"

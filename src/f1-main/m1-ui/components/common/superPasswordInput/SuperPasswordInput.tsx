@@ -1,7 +1,7 @@
 import React, {
     DetailedHTMLProps,
     InputHTMLAttributes,
-     useState,
+    useState,
 } from "react";
 import {SuperInputText} from "../superInput/SuperInput";
 import s from "./superPasswordInput.module.css"
@@ -48,6 +48,7 @@ export const SuperPasswordInput: React.FC<SuperInputTextPropsType> = ({
                                     value={restProps.value}
                                     onBlur={restProps.onBlur}
                                     name={restProps.name}
+                                    isPassword={true}
                     />
                     <button type={"button"} className={s.visible} onClick={onClickHandler}>
                         <img src={hidePass} alt=""/>

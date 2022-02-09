@@ -41,7 +41,6 @@ export const recoverPassword =
         // On success turn off spinner
         dispatch(changeStatus("completed"));
         setEmailChecked(false);
-        alert(res.data.info);
       })
       .catch((e) => {
         // On error turn off spinner

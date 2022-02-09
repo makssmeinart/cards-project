@@ -13,6 +13,7 @@ import {Loading} from "../../../f1-main/m1-ui/components/common/loading/Loading"
 import {WhitePaper} from "../../../f1-main/m1-ui/components/common/whitePaper/WhitePaper";
 import wpS from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css"
 import {ErrorInput} from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
+import sendMessageIcon from "../../../f3-assets/images/icons/sentMessageIcon.png"
 
 export const RecoverPassword = () => {
     const status = useSelector<RootAppStateType, PendingStatusType>(
@@ -66,15 +67,21 @@ export const RecoverPassword = () => {
                                             {formik.touched.email && formik.errors.email ? (
                                                 <ErrorInput error={formik.errors.email} />
                                             ) : <div style={{height: "21px"}}></div>}
-
-                                            <SuperButton type={"submit"}>Login</SuperButton>
+                                            <p className={`${wpS.dontHaveAccount} ${wpS.marginLeft} ${wpS.marginBottomLarge}`}>Enter your email address and we will send you further instructions </p>
+                                            <SuperButton className={"primaryButton"} type={"submit"}>Login</SuperButton>
                                         </form>
+                                        <p className={`${wpS.dontHaveAccount} ${wpS.marginYSmall}`}>Don’t have an account?</p>
 
-                                        <Link to={routes.login}>Try logging in</Link>
+                                        <Link to={routes.register} className={wpS.signUp}>Sign Up.</Link>
                                     </WhitePaper>
+
                                 </>
                                 :
-                                <h1>Check your email</h1>
+                                <WhitePaper>
+                                    <img className={wpS.messageSendIcon} src={sendMessageIcon} alt="Message sent icon"/>
+                                    <h2 className={wpS.subtitle}>Check Email</h2>
+                                    <p className={`${wpS.dontHaveAccount} ${wpS.marginYSmall}`}>We’ve sent an Email with instructions to example@mail.com</p>
+                                </WhitePaper>
                         }
                         {/* Error Snackbar */}
                         <ErrorSnackbar/>
