@@ -36,6 +36,9 @@ export const authApi = {
   authMe() {
     return instance.post<InitStateType>("/auth/me", {});
   },
+  register(data: RegisterDataType) {
+    return instance.post<any>("/auth/register", data);
+  }
 };
 
 // Types
@@ -59,3 +62,7 @@ export type LoginParamsType = {
   password: string;
   rememberMe: boolean;
 };
+export type RegisterDataType = {
+  email: string;
+  password: string;
+}
