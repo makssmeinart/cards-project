@@ -1,6 +1,6 @@
 .searchformfld{
     position: relative;
-    margin: 5px 0px;
+    margin: 5px 0;
 }
 .searchformfld label{
     position: absolute;
@@ -11,8 +11,9 @@
     pointer-events: none;
     font-size: 16px;
     line-height: 24px;
-    color: rgba(12, 30, 141, 0.6);
-    opacity: 0.5;
+    color: rgba(45, 46, 70, 0.8);
+    /*color: rgba(33, 38, 143, 0.8);*/
+    opacity: 0.8;
 }
 .searchformfld input {
     font-weight: 500;
@@ -29,6 +30,7 @@
     opacity:1;
     transform: scale(.9) translateY(-100%) translateX(-10px);
     font-size: 13px;
+    color: rgba(45, 46, 70, 1);
     line-height: 20px;
 
 }

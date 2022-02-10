@@ -2,9 +2,13 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  background: rgb(233,202,202);
-  background: linear-gradient(95deg, rgba(233,202,202,1) 34%, rgba(148,187,233,1) 100%);
+  /*overflow: hidden;*/
+
+
+  background: #59FCEA;
+  background: linear-gradient(to top left, #59FCEA, #B44193);
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
