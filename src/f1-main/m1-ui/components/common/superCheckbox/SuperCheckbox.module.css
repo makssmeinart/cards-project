@@ -1,0 +1,63 @@
+/**,*/
+/**::before,*/
+/**::after {*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+
+.checkbox.styleE {
+    /*display: inline-block;*/
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.checkbox.styleE input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkbox.styleE input:checked ~ .checkboxCheckmark {
+    background-color: #d9a770;
+}
+.checkbox.styleE input:checked ~ .checkboxCheckmark:after {
+    left: 21px;
+}
+.checkbox.styleE:hover input ~ .checkboxCheckmark {
+    background-color: #220d46;
+}
+.checkbox.styleE:hover input:checked ~ .checkboxCheckmark {
+    background-color: #be7861;
+}
+.checkbox.styleE .checkboxCheckmark {
+    position: absolute;
+    top: -20px;
+    left: 60px;
+    height: 22px;
+    width: 40px;
+    background-color: #2b2b2b;
+    transition: background-color 0.25s ease;
+    border-radius: 11px;
+}
+.checkbox.styleE .checkboxCheckmark:after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 16px;
+    height: 16px;
+    display: block;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: left 0.25s ease;
+}
+.checkbox.styleE .checkboxBody {
+    color: #333;
+    line-height: 1.4;
+    font-size: 16px;
+    transition: color 0.25s ease;
+}

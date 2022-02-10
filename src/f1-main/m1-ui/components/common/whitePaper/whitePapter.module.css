@@ -39,9 +39,11 @@
 }
 
 .rememberMe {
+    margin: 0 auto;
+    margin-top: 23px;
+    max-width: 304px;
     display: flex;
-    justify-content: space-around;
-    gap: 1rem;
+    justify-content: space-between;
     margin-bottom: 80px;
     color: #111e27;
 }
