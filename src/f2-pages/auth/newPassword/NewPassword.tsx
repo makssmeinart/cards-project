@@ -60,9 +60,10 @@ export const NewPassword = () => {
                                 name={formik.getFieldProps("password").name}
                                 onBlur={formik.getFieldProps("password").onBlur}
                             />
+
                             {formik.touched.password && formik.errors.password ? (
                                 <ErrorInput error={formik.errors.password}/>
-                            ) : null}
+                            ) : <div style={{height: "21px"}}/>}
 
                             <SuperButton className={"primaryButton"} type={"submit"}>Set</SuperButton>
 

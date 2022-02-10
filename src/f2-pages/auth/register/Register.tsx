@@ -12,6 +12,7 @@ import {useFormik} from "formik";
 import {SuperButton} from "../../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import {ErrorInput} from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
 
+
 export const Register = () => {
     const [isSuccessRegister, setIsSuccessRegister] = useState<boolean>(false)
 
@@ -72,21 +73,22 @@ export const Register = () => {
                     <SuperInputText labelValue={"Email"} type={"text"} {...formik.getFieldProps("email")} />
                     {formik.touched.email && formik.errors.email ? (
                         <ErrorInput error={formik.errors.email}/>
-                    ) : null}
+                    ) : <div style={{height: "21px"}}/>}
                     <SuperPasswordInput value={formik.getFieldProps("password").value}
                                         onChange={formik.getFieldProps("password").onChange}
                                         name={formik.getFieldProps("password").name}
                                         onBlur={formik.getFieldProps("password").onBlur}/>
                     {formik.touched.password && formik.errors.password ? (
                         <ErrorInput error={formik.errors.password}/>
-                    ) : null}
+                    ) : <div style={{height: "21px"}}/>}
+
                     <SuperPasswordInput value={formik.getFieldProps("passwordRepeat").value}
                                         onChange={formik.getFieldProps("passwordRepeat").onChange}
                                         name={formik.getFieldProps("passwordRepeat").name}
                                         onBlur={formik.getFieldProps("passwordRepeat").onBlur}/>
                     {formik.touched.passwordRepeat && formik.errors.passwordRepeat ? (
                         <ErrorInput error={formik.errors.passwordRepeat}/>
-                    ) : null}
+                    ) : <div style={{height: "21px"}}/>}
                     <SuperButton className={"primaryButton"} type={"submit"}>Login</SuperButton>
                 </form>
             </WhitePaper>

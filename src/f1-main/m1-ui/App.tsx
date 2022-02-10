@@ -22,7 +22,7 @@ export const App = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(authMeTC());
-    }, []);
+    }, [dispatch]);
 
     const isInitialized = useSelector<RootAppStateType>(
         (state) => state.app.isInitialized

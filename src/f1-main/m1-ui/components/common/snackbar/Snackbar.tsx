@@ -35,3 +35,5 @@ type SnackbarPropsType = {
     error: string
     type?: string
 }
+
+
