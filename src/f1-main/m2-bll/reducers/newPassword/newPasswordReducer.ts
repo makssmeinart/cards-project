@@ -23,16 +23,18 @@ export const setNewPasswordAC = (newPass: string, token: string) => {
         type: "APP/SET-NEW-PASSWORD", newPass, token
     } as const
 }
-type setNewPasswordACType = ReturnType<typeof setNewPasswordAC>
 
 export const setNewPasswordTC = (newPassword: string, token: string, setNav: (nav: boolean) => void) => (dispatch: Dispatch) => {
+    dispatch(changeStatus('loading'))
     authApi.setNewPassword(newPassword, token)
         .then(() => {
             dispatch(setNewPasswordAC(newPassword, token))
+            dispatch(changeStatus('completed'))
             setNav(true)
         })
         .catch(e=> {
             serverErrorHandling(e, dispatch);
+            dispatch(changeStatus('failed'))
         })
         .finally(() => {
             dispatch(changeStatus("idle"));
@@ -43,7 +45,7 @@ export const setNewPasswordTC = (newPassword: string, token: string, setNav: (na
 // Types
 
 type ActionTypes = setNewPasswordACType;
-
+type setNewPasswordACType = ReturnType<typeof setNewPasswordAC>
 type InitStateTypes = {
     newPassword: string,
     token: string

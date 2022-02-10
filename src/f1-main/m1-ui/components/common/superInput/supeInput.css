@@ -42,6 +42,7 @@
 
 .searchformfld{
     padding: 15px;
+    padding-bottom: 9px;
 }
 .searchformfld input{
     width:100%;

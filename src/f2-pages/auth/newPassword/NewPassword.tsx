@@ -10,11 +10,15 @@ import {setNewPasswordTC} from "../../../f1-main/m2-bll/reducers/newPassword/new
 import {useDispatch} from "react-redux";
 import {useNavigate} from 'react-router-dom';
 import {ErrorSnackbar} from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
-import wpS from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css"
+
+
 
 export const NewPassword = () => {
     const dispatch = useDispatch()
     const [nav, setNav] = useState<boolean>(false)
+    const status = useSelector<RootAppStateType, PendingStatusType>(
+        (state) => state.app.status
+    );
     const {token} = useParams<"token">();
     const formik = useFormik({
         initialValues: {
@@ -39,25 +43,32 @@ export const NewPassword = () => {
     });
     const navigate = useNavigate();
     return (
-        <section>
-            {nav ? navigate("/login") : null}
-            <WhitePaper>
-                <h2 className={wpS.subtitle}>Create new password</h2>
-                <form className={wpS.marginBottomSmall} onSubmit={formik.handleSubmit}>
-                    <SuperPasswordInput
-                        value={formik.getFieldProps("password").value}
-                        onChange={formik.getFieldProps("password").onChange}
-                        name={formik.getFieldProps("password").name}
-                        onBlur={formik.getFieldProps("password").onBlur}
-                    />
-                    {formik.touched.password && formik.errors.password ? (
-                        <ErrorInput error={formik.errors.password}/>
-                    ) : null}
-                    <p className={`${wpS.dontHaveAccount} ${wpS.marginLeft} ${wpS.marginBottomLarge}`}>Create new password and we will send you further instructions to email </p>
-                    <SuperButton className={"primaryButton"} type={"submit"}>Create new password</SuperButton>
-                </form>
-                <ErrorSnackbar/>
-            </WhitePaper>
-        </section>
+        <>
+            {status === "loading" ? (
+                <Loading/>
+            ) : (
+                <section>
+                    {nav ? navigate("/login") : null}
+                    <WhitePaper>
+                        <form onSubmit={formik.handleSubmit}>
+
+                            <SuperPasswordInput
+                                value={formik.getFieldProps("password").value}
+                                onChange={formik.getFieldProps("password").onChange}
+                                name={formik.getFieldProps("password").name}
+                                onBlur={formik.getFieldProps("password").onBlur}
+                            />
+                            {formik.touched.password && formik.errors.password ? (
+                                <ErrorInput error={formik.errors.password}/>
+                            ) : null}
+
+                            <SuperButton className={"primaryButton"} type={"submit"}>Set</SuperButton>
+
+                        </form>
+                        <ErrorSnackbar/>
+                    </WhitePaper>
+                </section>
+            )}
+        </>
     )
 }
