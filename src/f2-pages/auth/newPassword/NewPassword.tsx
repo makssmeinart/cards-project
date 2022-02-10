@@ -7,10 +7,12 @@ import {useParams} from "react-router-dom";
 import {SuperButton} from "../../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import {WhitePaper} from "../../../f1-main/m1-ui/components/common/whitePaper/WhitePaper";
 import {setNewPasswordTC} from "../../../f1-main/m2-bll/reducers/newPassword/newPasswordReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from 'react-router-dom';
 import {ErrorSnackbar} from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
-
+import {Loading} from "../../../f1-main/m1-ui/components/common/loading/Loading";
+import {RootAppStateType} from "../../../f1-main/m2-bll/store";
+import {PendingStatusType} from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
 
 
 export const NewPassword = () => {
