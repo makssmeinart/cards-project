@@ -15,6 +15,8 @@ import wpS from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter
 import {ErrorInput} from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
 import sendMessageIcon from "../../../f3-assets/images/icons/sentMessageIcon.png"
 
+// console.log
+
 export const RecoverPassword = () => {
     const status = useSelector<RootAppStateType, PendingStatusType>(
         (state) => state.app.status
