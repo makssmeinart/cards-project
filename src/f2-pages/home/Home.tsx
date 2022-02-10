@@ -4,6 +4,7 @@ import {routes} from "../../f1-main/m2-bll/routes/routes";
 export const Home = () => {
     return (
         <section>
+
             <h1>Home Page</h1>
             <ul>
                 <li>
