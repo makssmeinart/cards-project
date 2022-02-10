@@ -9,7 +9,6 @@ import {Link, Navigate} from "react-router-dom";
 import React from "react";
 import { RootAppStateType } from "../../../f1-main/m2-bll/store";
 import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
-import s from "./Login.module.css";
 import { routes } from "../../../f1-main/m2-bll/routes/routes";
 import { ErrorInput } from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
 import { ErrorSnackbar } from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
@@ -66,14 +65,14 @@ export const Login = () => {
             {status === "loading" ? (
                 <Loading/>
             ) : (
-                <section className={s.s}>
+                <section>
                     <WhitePaper>
-                        <form className={s.s} onSubmit={formik.handleSubmit}>
+                        <form onSubmit={formik.handleSubmit}>
                             <h2 className={wpS.subtitle}>Sign In</h2>
                             <SuperInputText labelValue={"Email"} type={"text"} {...formik.getFieldProps("email")} />
                             {formik.touched.email && formik.errors.email ? (
                                 <ErrorInput error={formik.errors.email}/>
-                            ) : <div style={{height: "21px"}}></div>}
+                            ) : <div style={{height: "21px"}}/>}
                             <SuperPasswordInput
                                 value={formik.getFieldProps("password").value}
                                 onChange={formik.getFieldProps("password").onChange}
@@ -82,7 +81,7 @@ export const Login = () => {
                             />
                             {formik.touched.password && formik.errors.password ? (
                                 <ErrorInput error={formik.errors.password}/>
-                            ) : <div style={{height: "21px"}}></div>}
+                            ) : <div style={{height: "21px"}}/>}
 
                             <div className={wpS.column}>
                                 <div className={wpS.rememberMe}>
