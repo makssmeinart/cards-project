@@ -33,4 +33,5 @@ type SnackbarPropsType = {
     autoHideDuration?: number
     onClose: () => void
     error: string
+    type?: string
 }
