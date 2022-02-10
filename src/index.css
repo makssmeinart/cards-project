@@ -2,11 +2,9 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  /*overflow: hidden;*/
-
-
-  background: #59FCEA;
-  background: linear-gradient(to top left, #59FCEA, #B44193);
+  background: url(./f3-assets/images/paper.webp);
+  background-size: cover;
+  background-position: center top;
 }
 
 

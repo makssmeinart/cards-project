@@ -16,7 +16,6 @@ import {RootAppStateType} from "../m2-bll/store";
 import {Loading} from "./components/common/loading/Loading";
 import "./App.css"
 
-// console.log
 export const App = () => {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -33,10 +32,6 @@ export const App = () => {
 
     return (
         <section className="wrapper">
-            <div className="circle"/>
-            <div className="circle1 circle"/>
-            <div className="circle2 circle"/>
-            <div className="circle3 circle"/>
             <Routes>
                 <Route path={routes.home} element={<Home/>}/>
                 <Route path={routes.profile} element={<Profile/>}/>
