@@ -16,7 +16,7 @@ import {RootAppStateType} from "../m2-bll/store";
 import {Loading} from "./components/common/loading/Loading";
 import "./App.css"
 
-
+// console.log
 export const App = () => {
     const dispatch = useDispatch();
     useEffect(() => {
