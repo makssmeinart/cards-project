@@ -15,6 +15,8 @@ import {RootAppStateType} from "../../../f1-main/m2-bll/store";
 import {PendingStatusType} from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
 
 
+
+// hello
 export const NewPassword = () => {
     const dispatch = useDispatch()
     const [nav, setNav] = useState<boolean>(false)
