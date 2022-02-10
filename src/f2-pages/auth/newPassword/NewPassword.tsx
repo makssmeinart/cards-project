@@ -10,13 +10,12 @@ import {setNewPasswordTC} from "../../../f1-main/m2-bll/reducers/newPassword/new
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from 'react-router-dom';
 import {ErrorSnackbar} from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
-import {Loading} from "../../../f1-main/m1-ui/components/common/loading/Loading";
 import {RootAppStateType} from "../../../f1-main/m2-bll/store";
 import {PendingStatusType} from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
+import {Loading} from "../../../f1-main/m1-ui/components/common/loading/Loading";
 
 
 
-// hello
 export const NewPassword = () => {
     const dispatch = useDispatch()
     const [nav, setNav] = useState<boolean>(false)
