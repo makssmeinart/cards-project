@@ -1,9 +1,6 @@
 import { authApi, LoginParamsType } from "../../../m3-dal/api";
 import { Dispatch } from "redux";
-import {
-  changeStatus,
-  setIsLoggedInAC,
-} from "../appReducer/appReducer";
+import { changeStatus, setIsLoggedInAC } from "../appReducer/appReducer";
 import { serverErrorHandling } from "../../../m4-utility/serverErrorHandling";
 
 const initState: InitStateType = {
@@ -31,13 +28,11 @@ export const loginReducer = (state = initState, action: ActionTypes): InitStateT
 };
 
 // Action Creators
-
 export const LoginAC = (data: InitStateType) => {
   return { type: "AUTH/LOGIN", data } as const;
 };
 
 // Thunk
-
 export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
   // Spinner
   dispatch(changeStatus("loading"));
