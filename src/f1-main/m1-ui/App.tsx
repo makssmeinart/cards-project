@@ -17,7 +17,7 @@ import {Loading} from "./components/common/loading/Loading";
 import "./App.css"
 
 
-// console.log
+// console.
 export const App = () => {
     const dispatch = useDispatch();
     useEffect(() => {
