@@ -66,9 +66,9 @@ export const Login = () => {
             {status === "loading" ? (
                 <Loading/>
             ) : (
-                <section className={s.s}>
+                <section>
                     <WhitePaper>
-                        <form className={s.s} onSubmit={formik.handleSubmit}>
+                        <form onSubmit={formik.handleSubmit}>
                             <h2 className={wpS.subtitle}>Sign In</h2>
                             <SuperInputText labelValue={"Email"} type={"text"} {...formik.getFieldProps("email")} />
                             {formik.touched.email && formik.errors.email ? (
