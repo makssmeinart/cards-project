@@ -18,6 +18,7 @@ export const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
         ...restProps
     }
 ) => {
+    // console .log
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         onChange && onChange(e)
 
