@@ -106,10 +106,9 @@ export const Login = () => {
                                 Sign Up
                             </Link>
                         </div>
-
-                        {/* Error Snackbar */}
-                        <ErrorSnackbar/>
                     </WhitePaper>
+                    {/* Error Snackbar */}
+                    <ErrorSnackbar/>
                 </section>
             )}
         </>

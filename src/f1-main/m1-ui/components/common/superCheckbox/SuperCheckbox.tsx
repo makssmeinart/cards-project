@@ -31,8 +31,6 @@ export const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
                 <div className={s.checkboxCheckmark}/>
             </label>
         </div>
-
-
     )
 }
 
