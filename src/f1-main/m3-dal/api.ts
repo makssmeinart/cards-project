@@ -51,14 +51,16 @@ export const packsApi = {
     },
     addPack: (name?: string, deckCover?: string, statusPrivate?: boolean) => {
         return instance.post("/cards/pack", {
-            name,
-            path: "/def",
-            grade: 0,
-            shots: 0,
-            rating: 0,
-            deckCover,
-            private: statusPrivate,
-            type: "pack",
+            cardsPack: {
+                name,
+                path: "/def",
+                grade: 0,
+                shots: 0,
+                rating: 0,
+                deckCover,
+                private: statusPrivate,
+                type: "pack",
+            }
         })
     }
 }

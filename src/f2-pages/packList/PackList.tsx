@@ -1,58 +1,96 @@
 import {useDispatch, useSelector} from "react-redux";
-import {LogoutTC} from "../../f1-main/m2-bll/reducers/login/loginReducer";
-import {RootAppStateType} from "../../f1-main/m2-bll/store";
-import {Link, Navigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import {routes} from "../../f1-main/m2-bll/routes/routes";
-import {PendingStatusType} from "../../f1-main/m2-bll/reducers/appReducer/appReducer";
 import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
-import {cardPacksType, packsReducerTC} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
+import {
+    inputChangeHandlerAC,
+    packsReducerTC,
+    sortedPackBtnAC
+} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
+import {SuperInputText} from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
+import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
+import {
+    appStatusSelector,
+    isLoggedInSelector,
+    maxRangeSelector,
+    minRangeSelector,
+    packNameSelector,
+    packSelector,
+    sortedPackValueSelector
+} from "../../f1-main/m2-bll/selectors/selectAppStatus";
+import { DoubleRange } from "../../f1-main/m1-ui/components/common/doubleRange/DoubleRange";
+
 
 export const PackList = () => {
-    useEffect(() => {
-        dispatch(packsReducerTC())
-    }, [packsReducerTC])
+        const dispatch = useDispatch();
+        const [inputValue, setInputValue] = useState("")
+        const [sortedPackBtn, setSortedPackBtn] = useState(true)
+        const packName = useSelector(packNameSelector)
+        const status = useSelector(appStatusSelector)
+        const pack = useSelector(packSelector)
+        const isLoggedIn = useSelector(isLoggedInSelector)
+        const minRange = useSelector(minRangeSelector)
+        const maxRange = useSelector(maxRangeSelector)
+        const sortedPackValue = useSelector(sortedPackValueSelector)
 
-    const dispatch = useDispatch();
-    const status = useSelector<RootAppStateType, PendingStatusType>(
-        (state) => state.app.status
-    );
+        const sendInput = () => {
+            dispatch(inputChangeHandlerAC(inputValue))
+        }
+        const setMyPacks = () => {
+            setSortedPackBtn(true)
 
-    const pack = useSelector<RootAppStateType, cardPacksType[]>(state => state.packs.cardPacks)
+            dispatch(sortedPackBtnAC(sortedPackBtn))
+        }
+
+        const setAllPacks = () => {
+            setSortedPackBtn(false)
+
+            dispatch(sortedPackBtnAC(sortedPackBtn))
+        }
+        useEffect(() => {
+            dispatch(packsReducerTC())
+        }, [packName, sortedPackValue, minRange, maxRange])
+
+        if (!isLoggedIn) {
+            return <Navigate to={routes.login}/>;
+        }
+
+        return (
+            <>
+                {status === "loading" ? (
+                    <Loading/>
+                ) : (
+                    <section style={{backgroundColor: "yellow", height: "100vh"}}>
+                        <Header/>
+
+                        <main style={{backgroundColor: "black"}}>
+                            <aside style={{backgroundColor: "green"}}>
+                                filtred:
+                                <div>
+                                    <SuperButton onClick={setAllPacks}>My</SuperButton>
+                                    <SuperButton onClick={setMyPacks}>All</SuperButton>
+                                </div>
+                                <div>
+                                    <SuperInputText value={inputValue} onChange={(e) => setInputValue(e.currentTarget.value)}/>
+                                    <SuperButton onClick={sendInput}>SEND</SuperButton>
+                                </div>
+                                <DoubleRange/>
+                            </aside>
+
+                            <div style={{backgroundColor: "pink"}}>
+
+                                {pack.map(p => {
+                                    return <div>{p.name}</div>
+                                })}
+                            </div>
+                        </main>
 
 
-    const isLoggedIn = useSelector<RootAppStateType>(
-        (state) => state.app.isLoggedIn
-    );
-
-    const logout = () => {
-        dispatch(LogoutTC());
-    };
-
-    if (!isLoggedIn) {
-        return <Navigate to={routes.login}/>;
+                    </section>
+                )}
+            </>
+        );
     }
-
-    return (
-        <>
-            {status === "loading" ? (
-                <Loading/>
-            ) : (
-                <section style={{backgroundColor: "yellow", height: "100vh"}}>
-                    <Header />
-                    <main style={{backgroundColor: "black"}}>
-                        <aside style={{backgroundColor: "green"}}>
-                            1
-                        </aside>
-                        <div style={{backgroundColor: "pink"}}>
-
-                        </div>
-                    </main>
-
-                </section>
-            )}
-        </>
-    );
-}
 ;
