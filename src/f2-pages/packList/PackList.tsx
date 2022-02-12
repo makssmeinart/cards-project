@@ -50,12 +50,14 @@ export const PackList = () => {
 
 
 
+
         return (
             <>
                 {status === "loading" ? (
                     <Loading/>
                 ) : (
                     <section style={{backgroundColor: "yellow", height: "100vh"}}>
+
                         <Header/>
                         <main style={{backgroundColor: "black"}}>
                             <aside style={{backgroundColor: "green"}}>
