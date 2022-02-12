@@ -1,5 +1,8 @@
+import {PackList} from "../../../../../../f2-pages/packList/PackList";
+
+
 export const PackListContent = () => {
     return (
-        <div>1</div>
+        <PackList/>
     )
 }
