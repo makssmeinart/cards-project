@@ -7,15 +7,16 @@ import {LoginParamsType} from "../../../f1-main/m3-dal/api";
 import {LoginTC} from "../../../f1-main/m2-bll/reducers/login/loginReducer";
 import {Link, Navigate} from "react-router-dom";
 import React from "react";
-import { RootAppStateType } from "../../../f1-main/m2-bll/store";
-import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
-import { routes } from "../../../f1-main/m2-bll/routes/routes";
-import { ErrorInput } from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
-import { ErrorSnackbar } from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
+import {RootAppStateType} from "../../../f1-main/m2-bll/store";
+import {PendingStatusType} from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
+import {routes} from "../../../f1-main/m2-bll/routes/routes";
+import {ErrorInput} from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
+import {ErrorSnackbar} from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
 import {Loading} from "../../../f1-main/m1-ui/components/common/loading/Loading";
 import {SuperPasswordInput} from "../../../f1-main/m1-ui/components/common/superPasswordInput/SuperPasswordInput";
 import {WhitePaper} from "../../../f1-main/m1-ui/components/common/whitePaper/WhitePaper";
 import wpS from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css"
+
 
 export const Login = () => {
     const dispatch = useDispatch();
@@ -56,9 +57,9 @@ export const Login = () => {
         },
     });
 
-  if (isLoggedIn) {
-    return <Navigate to={routes.profile} />;
-  }
+    if (isLoggedIn) {
+        return <Navigate to={routes.profile}/>;
+    }
 
     return (
         <>
@@ -83,7 +84,7 @@ export const Login = () => {
                                 <ErrorInput error={formik.errors.password}/>
                             ) : <div style={{height: "21px"}}/>}
 
-                            <div >
+                            <div>
                                 <div className={wpS.rememberMe}>
                                     <div>
                                         Remember me:
@@ -107,7 +108,6 @@ export const Login = () => {
                             </Link>
                         </div>
                     </WhitePaper>
-                    {/* Error Snackbar */}
                     <ErrorSnackbar/>
                 </section>
             )}

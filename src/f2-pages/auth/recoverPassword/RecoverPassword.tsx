@@ -68,7 +68,7 @@ export const RecoverPassword = () => {
                                             <SuperInputText labelValue={"Email"} {...formik.getFieldProps("email")} />
                                             {formik.touched.email && formik.errors.email ? (
                                                 <ErrorInput error={formik.errors.email} />
-                                            ) : <div style={{height: "21px"}}></div>}
+                                            ) : <div style={{height: "21px"}}/>}
                                             <p className={`${wpS.dontHaveAccount} ${wpS.marginLeft} ${wpS.marginBottomLarge}`}>Enter your email address and we will send you further instructions </p>
                                             <SuperButton className={"primaryButton"} type={"submit"}>Login</SuperButton>
                                         </form>
@@ -85,7 +85,6 @@ export const RecoverPassword = () => {
                                     <p className={`${wpS.dontHaveAccount} ${wpS.marginYSmall}`}>We’ve sent an Email with instructions to example@mail.com</p>
                                 </WhitePaper>
                         }
-                        {/* Error Snackbar */}
                         <ErrorSnackbar/>
                     </section>
             }
