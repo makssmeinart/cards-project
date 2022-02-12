@@ -33,6 +33,8 @@ export const LoginAC = (data: InitStateType) => {
     return {type: "AUTH/LOGIN", data} as const;
 };
 
+
+
 // Thunk
 export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
     // Spinner
