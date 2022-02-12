@@ -1,7 +1,8 @@
 export const routes = {
     home: "/",
-    main: "/main",
-    mainProfile: "/mainProfile",
+    packList: "/main/pack-list",
+    packListAdd: "/main/pack-list/add",
+    cardsList: "/main/cards-list",
     profile: "/main/profile",
     login: "/login",
     register: "/register",
