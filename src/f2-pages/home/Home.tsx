@@ -29,7 +29,10 @@ export const Home = () => {
                     <Link to={routes.testPage}>Test Page</Link>
                 </li>
                 <li>
-                    <Link to={routes.main}>Main PROFILE</Link>
+                    <Link to={routes.packList}>PackList</Link>
+                </li>
+                <li>
+                    <Link to={routes.cardsList}>cardsList</Link>
                 </li>
             </ul>
         </section>

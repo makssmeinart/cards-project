@@ -7,6 +7,7 @@ import { PendingStatusType } from "../../f1-main/m2-bll/reducers/appReducer/appR
 import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
 import React, {useEffect} from "react";
 import {cardPacksType, packsReducerTC} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
+import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
 
 export const Profile = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export const Profile = () => {
           <Loading/>
       ) : (
         <section>
+          <Header/>
           <h1>Profile</h1>
           <button onClick={logout}>Logout</button>
         </section>
