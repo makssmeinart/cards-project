@@ -17,7 +17,7 @@ const initState: InitStateType = {
 export const packsReducer = (state = initState, action: ActionTypes): InitStateType => {
     switch (action.type) {
         case "CARDS/PACKS":
-            return {...action.data}
+            return {...state, ...action.data}
         case "CARDS/INPUT":
             return {...state, filter: action.value}
         default:
@@ -36,15 +36,14 @@ export const inputChangeHandlerAC = (value: string) => {
 
 // Thunk
 export const packsReducerTC = () => (dispatch: Dispatch, getState: ()=> RootAppStateType) => {
-    debugger
     const state = getState().packs
     const uID = getState().login._id
     const {filter, minCardsCount, maxCardsCount, page, pageCount } = state
 
     packsApi.getPacks(filter, minCardsCount, maxCardsCount, "" , page,pageCount).then(res=> {
         dispatch(packsReducerAC(res.data))
-        const st = getState().packs
-        console.log("getState()",st)
+        // const st = getState().packs
+        console.log("getState()",res.data)
     })
 
 };

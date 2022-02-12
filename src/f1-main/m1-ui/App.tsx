@@ -15,7 +15,6 @@ import {authMeTC} from "../m2-bll/reducers/appReducer/appReducer";
 import {RootAppStateType} from "../m2-bll/store";
 import {Loading} from "./components/common/loading/Loading";
 import "./App.css"
-import {CardsListContent} from "./components/common/mainContent/cards/CardsListContent";
 import {PackListContent} from "./components/common/mainContent/packs/PackListContent";
 
 
@@ -45,7 +44,7 @@ export const App = () => {
                 <Route path={routes.testPage} element={<Test/>}/>
                 <Route path={routes.pageNotFound} element={<PageNotFound/>}/>
                 <Route path={routes.packList} element={<PackListContent/>}/>
-                <Route path={routes.cardsList} element={<CardsListContent/>}/>
+                {/*<Route path={routes.cardsList} element={<CardsListContent/>}/>*/}
                 <Route path={routes.profile} element={<Profile/>}/>
                 <Route path={"/*"} element={<Navigate to={"/404"}/>}/>
             </Routes>
