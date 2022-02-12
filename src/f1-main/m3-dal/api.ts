@@ -42,8 +42,24 @@ export const authApi = {
     }
 };
 export const packsApi = {
-    getPacks: () => {
-        return instance.get("/cards/pack")
+    getPacks: (packName: string, min: number, max: number, sortPacks: string, page: number, pageCount: number, user_id?: string) => {
+        return instance.get("/cards/pack", {
+            params: {
+                packName, min, max, sortPacks, page, pageCount, user_id
+            }
+        })
+    },
+    addPack: (name?: string, deckCover?: string, statusPrivate?: boolean) => {
+        return instance.post("/cards/pack", {
+            name,
+            path: "/def",
+            grade: 0,
+            shots: 0,
+            rating: 0,
+            deckCover,
+            private: statusPrivate,
+            type: "pack",
+        })
     }
 }
 export const cardsApi = {}

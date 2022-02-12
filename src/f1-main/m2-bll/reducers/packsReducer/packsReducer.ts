@@ -39,7 +39,6 @@ export const packsReducerTC = () => (dispatch: Dispatch, getState: ()=> RootAppS
         const st = getState().packs
         console.log("getState()",st)
     })
-
 };
 
 // Types
