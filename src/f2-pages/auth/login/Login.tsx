@@ -58,7 +58,7 @@ export const Login = () => {
     });
 
     if (isLoggedIn) {
-        return <Navigate to={routes.main}/>;
+        return <Navigate to={routes.packList}/>;
     }
 
     return (

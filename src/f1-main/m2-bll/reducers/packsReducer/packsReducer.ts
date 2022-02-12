@@ -2,7 +2,6 @@ import {Dispatch} from "redux";
 import {RootAppStateType} from "../../store";
 import {packsApi} from "../../../m3-dal/api";
 
-
 const initState: InitStateType = {
     cardPacks: [],
     cardPacksTotalCount: 0,
@@ -14,7 +13,6 @@ const initState: InitStateType = {
     tokenDeathTime: 0,
 };
 
-
 export const packsReducer = (state = initState, action: ActionTypes): InitStateType => {
     switch (action.type) {
         case "CARDS/PACKS":
@@ -24,7 +22,9 @@ export const packsReducer = (state = initState, action: ActionTypes): InitStateT
     }
 };
 
+
 // Action Creators
+
 export const packsReducerAC = (data: InitStateType) => {
     return {type: "CARDS/PACKS", data} as const;
 };
@@ -32,6 +32,8 @@ export const packsReducerAC = (data: InitStateType) => {
 // Thunk
 
 export const packsReducerTC = () => (dispatch: Dispatch, getState: ()=> RootAppStateType) => {
+
+
     packsApi.getPacks().then(res=> {
         dispatch(packsReducerAC(res.data))
         const st = getState().packs

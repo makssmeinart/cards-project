@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import "./App.css";
-import {Link, Navigate, Route, Routes} from "react-router-dom";
+import { Navigate, Route, Routes} from "react-router-dom";
 import {Login} from "../../f2-pages/auth/login/Login";
 import {routes} from "../m2-bll/routes/routes";
 import {Register} from "../../f2-pages/auth/register/Register";
@@ -15,7 +15,7 @@ import {authMeTC} from "../m2-bll/reducers/appReducer/appReducer";
 import {RootAppStateType} from "../m2-bll/store";
 import {Loading} from "./components/common/loading/Loading";
 import "./App.css"
-import {Main} from "../../f2-pages/main/Main";
+import {PackList} from "../../f2-pages/packList/PackList";
 
 
 export const App = () => {
@@ -43,8 +43,8 @@ export const App = () => {
                 <Route path={routes.recoverPassword} element={<RecoverPassword/>}/>
                 <Route path={routes.testPage} element={<Test/>}/>
                 <Route path={routes.pageNotFound} element={<PageNotFound/>}/>
-                <Route path={routes.main} element={<Main/>}/>
-                <Route path={routes.mainProfile} element={<div>profile</div>}/>
+                <Route path={routes.packList} element={<PackList/>}/>
+                <Route path={routes.profile} element={<Profile/>}/>
                 <Route path={"/*"} element={<Navigate to={"/404"}/>}/>
             </Routes>
         </section>
