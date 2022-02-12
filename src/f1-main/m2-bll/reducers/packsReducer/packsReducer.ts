@@ -11,15 +11,15 @@ const initState: InitStateType = {
     pageCount: 10,
     token: "",
     tokenDeathTime: 0,
-    filter: ''
+    packName: ''
 };
 
 export const packsReducer = (state = initState, action: ActionTypes): InitStateType => {
     switch (action.type) {
         case "CARDS/PACKS":
-            return {...action.data}
+            return {...state, ...action.data}
         case "CARDS/INPUT":
-            return {...state, filter: action.value}
+            return {...state, packName: action.value}
         default:
             return state;
     }
@@ -39,9 +39,9 @@ export const packsReducerTC = () => (dispatch: Dispatch, getState: ()=> RootAppS
     debugger
     const state = getState().packs
     const uID = getState().login._id
-    const {filter, minCardsCount, maxCardsCount, page, pageCount } = state
+    const {packName, minCardsCount, maxCardsCount, page, pageCount } = state
 
-    packsApi.getPacks(filter, minCardsCount, maxCardsCount, "" , page,pageCount).then(res=> {
+    packsApi.getPacks(packName, minCardsCount, maxCardsCount, "" , page,pageCount, uID).then(res=> {
         dispatch(packsReducerAC(res.data))
         const st = getState().packs
         console.log("getState()",st)
@@ -59,7 +59,7 @@ export type InitStateType = {
     pageCount: number,
     token: string,
     tokenDeathTime: number,
-    filter: string
+    packName: string
 
 };
 export type cardPacksType = {

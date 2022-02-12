@@ -1,50 +1,36 @@
 import {useDispatch, useSelector} from "react-redux";
-import {LogoutTC} from "../../f1-main/m2-bll/reducers/login/loginReducer";
-import {RootAppStateType} from "../../f1-main/m2-bll/store";
-import {Link, Navigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import {routes} from "../../f1-main/m2-bll/routes/routes";
-import {PendingStatusType} from "../../f1-main/m2-bll/reducers/appReducer/appReducer";
 import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
 import React, {useEffect, useState} from "react";
 import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
-import {cardPacksType, inputChangeHandlerAC, packsReducerTC} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
+import {inputChangeHandlerAC, packsReducerTC} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {SuperInputText} from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
 import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
+import {appStatusSelector, isLoggedInSelector, packNameSelector, packSelector} from "../../f1-main/m2-bll/selectors/selectAppStatus";
 
 
 export const PackList = () => {
-        const filter = useSelector<RootAppStateType>(state => state.packs.filter)
-        const [inpState, setinpState] = useState<string>("")
         const dispatch = useDispatch();
-        debugger
-        const status = useSelector<RootAppStateType, PendingStatusType>(
-            (state) => state.app.status
-        );
-        const pack = useSelector<RootAppStateType, cardPacksType[]>(state => state.packs.cardPacks)
-        const isLoggedIn = useSelector<RootAppStateType>(
-            (state) => state.app.isLoggedIn
-        );
+        const [inputValue, setInputValue] = useState<string>("")
+        const packName = useSelector(packNameSelector)
+        const status = useSelector(appStatusSelector)
+        const pack = useSelector(packSelector)
+        const isLoggedIn = useSelector(isLoggedInSelector)
 
-        const logout = () => {
-            dispatch(LogoutTC());
-        };
-
-        const send = () => {
-            dispatch(inputChangeHandlerAC(inpState))
+        const sendInput = () => {
+            dispatch(inputChangeHandlerAC(inputValue))
         }
-
         useEffect(() => {
             debugger
             dispatch(packsReducerTC())
-        }, [filter])
+        }, [packName])
 
 
 
         if (!isLoggedIn) {
             return <Navigate to={routes.login}/>;
         }
-
-
 
         return (
             <>
@@ -54,8 +40,8 @@ export const PackList = () => {
                     <section style={{backgroundColor: "yellow", height: "100vh"}}>
                         <Header/>
 
-                        <SuperInputText value={inpState} onChange={(e) => setinpState(e.currentTarget.value)}/>
-                        <SuperButton onClick={send}>SEND</SuperButton>
+                        <SuperInputText value={inputValue} onChange={(e) => setInputValue(e.currentTarget.value)}/>
+                        <SuperButton onClick={sendInput}>SEND</SuperButton>
                         <main style={{backgroundColor: "black"}}>
                             <aside style={{backgroundColor: "green"}}>
                                 1
@@ -66,6 +52,7 @@ export const PackList = () => {
                                 })}
                             </div>
                         </main>
+
 
                     </section>
                 )}
