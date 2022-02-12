@@ -68,8 +68,8 @@ export const NewPassword = () => {
                             <SuperButton className={"primaryButton"} type={"submit"}>Set</SuperButton>
 
                         </form>
-                        <ErrorSnackbar/>
                     </WhitePaper>
+                    <ErrorSnackbar/>
                 </section>
             )}
         </>
