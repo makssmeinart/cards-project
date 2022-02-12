@@ -5,7 +5,8 @@ import { Navigate } from "react-router-dom";
 import { routes } from "../../f1-main/m2-bll/routes/routes";
 import { PendingStatusType } from "../../f1-main/m2-bll/reducers/appReducer/appReducer";
 import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
-import React from "react";
+import React, {useEffect} from "react";
+import {cardPacksType, packsReducerTC} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 
 export const Profile = () => {
   const dispatch = useDispatch();

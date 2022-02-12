@@ -12,7 +12,7 @@ export const authApi = {
     recoverPassword: (values: RecoverPasswordFormValues) => {
         return axios.post<AuthForgotDataType,
             AxiosResponse<AuthForgotResponseType>>(
-            "auth/forgot",
+            "/auth/forgot",
             {
                 email: values.email,
                 from: `test-front-admin <${values.email}>`,
@@ -41,7 +41,11 @@ export const authApi = {
         return instance.post<any>("/auth/set-new-password", {password: newPass, resetPasswordToken: resToken})
     }
 };
-export const packsApi = {}
+export const packsApi = {
+    getPacks: () => {
+        return instance.get("/cards/pack")
+    }
+}
 export const cardsApi = {}
 
 // Types

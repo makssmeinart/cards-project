@@ -1,10 +1,12 @@
 export const routes = {
     home: "/",
-    profile: "/profile",
+    main: "/main",
+    mainProfile: "/mainProfile",
+    profile: "/main/profile",
     login: "/login",
     register: "/register",
     recoverPassword: "/recover-password",
     newPassword: "/new-password/:token*",
     testPage: "/test",
-    pageNotFound: "404",
+    pageNotFound: "404"
 }
