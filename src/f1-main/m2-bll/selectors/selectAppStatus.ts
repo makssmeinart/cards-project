@@ -8,3 +8,5 @@ export const packSelector = (state:RootAppStateType):cardPacksType[]  => state.p
 export const isLoggedInSelector = (state:RootAppStateType)  => state.app.isLoggedIn
 export const minRangeSelector = (state:RootAppStateType)  => state.packs.minCardsCount
 export const maxRangeSelector = (state:RootAppStateType)  => state.packs.maxCardsCount
+export const maxSelector = (state:RootAppStateType)  => state.packs.max
+export const minSelector = (state:RootAppStateType)  => state.packs.min
