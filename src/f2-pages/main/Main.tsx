@@ -53,7 +53,7 @@ export const Main = () => {
                                 <Link to={routes.main}>packList</Link>
                             </li>
                             <li>
-                                <Link to={routes.mainProfile}>Profile Page</Link>
+                                <Link to={routes.main}>Profile Page</Link>
                             </li>
                         </ul>
                     </header>
@@ -65,7 +65,6 @@ export const Main = () => {
                             1
                         </aside>
                         <div style={{backgroundColor: "pink"}}>
-
                         </div>
                     </main>
 
