@@ -28,6 +28,9 @@ export const Home = () => {
                 <li>
                     <Link to={routes.testPage}>Test Page</Link>
                 </li>
+                <li>
+                    <Link to={routes.mainProfile}>Main PROFILE</Link>
+                </li>
             </ul>
         </section>
     )
