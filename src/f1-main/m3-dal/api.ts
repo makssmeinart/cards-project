@@ -43,7 +43,6 @@ export const authApi = {
 };
 export const packsApi = {
     getPacks: (packName: string, min: number, max: number, sortPacks: string, page: number, pageCount: number, user_id?: string) => {
-        //debugger
         return instance.get("/cards/pack", {
             params: {
                 packName, min, max, sortPacks, page, pageCount, user_id
