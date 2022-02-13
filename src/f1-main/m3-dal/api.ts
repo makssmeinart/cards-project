@@ -4,7 +4,8 @@ import {InitStateType} from "../m2-bll/reducers/login/loginReducer";
 
 // Axios Instance
 const instance = axios.create({
-    baseURL: "https://neko-back.herokuapp.com/2.0",
+    // baseURL: "https://neko-back.herokuapp.com/2.0",
+    baseURL: "http://localhost:7542/2.0/",
     withCredentials: true,
 });
 
@@ -48,6 +49,13 @@ export const packsApi = {
                 packName, min, max, sortPacks, page, pageCount, user_id
             }
         })
+    },
+    deletePacks: (id: string) => {
+       return instance.delete("/cards/pack", {
+           params: {
+               id
+           }
+       })
     },
     addPack: (name?: string, deckCover?: string, statusPrivate?: boolean) => {
         return instance.post("/cards/pack", {
