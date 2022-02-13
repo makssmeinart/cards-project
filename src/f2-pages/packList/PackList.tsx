@@ -31,6 +31,7 @@ import {RootAppStateType} from "../../f1-main/m2-bll/store";
 
 export const PackList = () => {
     const dispatch = useDispatch();
+
     const [inputValue, setInputValue] = useState("");
     const [sortedPackBtn, setSortedPackBtn] = useState(true);
 
@@ -65,7 +66,6 @@ export const PackList = () => {
 
     }
 
-
     const [lastUpdatedValue, setLastUpdatedValue] = useState<"0updated" | "1updated">("0updated")
     const lastUpdatedHandler = () => {
         if (lastUpdatedValue === "1updated") {
@@ -76,14 +76,7 @@ export const PackList = () => {
         dispatch(changeSortedPackValueAC(lastUpdatedValue))
 
     }
-
-
-
-    // useEffect(()=> {
-    //
-    //
-    // }, [nameSortValue, userIdValue, cardsValue])
-
+    
     const packName = useSelector(packNameSelector);
     const status = useSelector(appStatusSelector);
     const pack = useSelector(packSelector);
