@@ -7,7 +7,7 @@ import {
     inputChangeHandlerAC,
     fetchPacksTC,
     sortedPackBtnAC,
-    deletePacksTC, editPackTC, addPackTC, changeSortedPackValueAC, changePackIdAC
+    deletePacksTC, editPackTC, addPackTC, changeSortedPackValueAC
 } from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {SuperInputText} from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
 import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
@@ -20,7 +20,6 @@ import {
     minSelector,
     packNameSelector,
     packSelector,
-    userIdSelector
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
 import {DoubleRange} from "../../f1-main/m1-ui/components/common/doubleRange/DoubleRange";
 import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
@@ -31,7 +30,6 @@ import {RootAppStateType} from "../../f1-main/m2-bll/store";
 
 export const PackList = () => {
     const dispatch = useDispatch();
-
     const [inputValue, setInputValue] = useState("");
     const [sortedPackBtn, setSortedPackBtn] = useState(true);
 
@@ -66,6 +64,7 @@ export const PackList = () => {
 
     }
 
+
     const [lastUpdatedValue, setLastUpdatedValue] = useState<"0updated" | "1updated">("0updated")
     const lastUpdatedHandler = () => {
         if (lastUpdatedValue === "1updated") {
@@ -76,7 +75,7 @@ export const PackList = () => {
         dispatch(changeSortedPackValueAC(lastUpdatedValue))
 
     }
-    
+
     const packName = useSelector(packNameSelector);
     const status = useSelector(appStatusSelector);
     const pack = useSelector(packSelector);
@@ -110,9 +109,6 @@ export const PackList = () => {
     const editPackHandler = (idPack: string, packName: string) => {
         dispatch(editPackTC(idPack, packName))
     }
-    const changePackIdHandler = (idPack: string) => {
-        dispatch(changePackIdAC(idPack))
-    }
 
     useEffect(() => {
         dispatch(fetchPacksTC());
@@ -129,7 +125,7 @@ export const PackList = () => {
             ) : (
                 <section style={{backgroundColor: "yellow", height: "100vh"}}>
                     <Header/>
-                    <main style={{backgroundColor: "black"}}>
+                    <main className={tableS.content} style={{backgroundColor: "black"}}>
                         <aside style={{backgroundColor: "green"}}>
 
                             filtred:
@@ -148,7 +144,7 @@ export const PackList = () => {
                             <DoubleRange min={minRange} max={maxRange}/>
                         </aside>
 
-                        <div className={tableS.table}>
+                        <div className={`${tableS.table}`}>
                             <ul className={`${tableS.tableItem} ${tableS.tableHeader}`}>
                                 <li onClick={nameSortHandler}>Name</li>
                                 <li onClick={cardsSortHandler}>Cards</li>
@@ -163,7 +159,6 @@ export const PackList = () => {
                                         pack={p}
                                         deletePack={deletePackHandler}
                                         editPack={editPackHandler}
-                                        changePackId={changePackIdHandler}
                                     />
                                 })}
                             </div>

@@ -1,6 +1,7 @@
 import {RootAppStateType} from "../store";
 import {cardPacksType} from "../reducers/packsReducer/packsReducer";
 
+// Packs
 
 export const appStatusSelector = (state: RootAppStateType) => state.app.status;
 export const packNameSelector = (state:RootAppStateType) => state.packs.packName;
@@ -13,3 +14,8 @@ export const minSelector = (state:RootAppStateType)  => state.packs.min
 export const sortedPackValueSelector = (state:RootAppStateType) => state.packs.sortedPackBtn
 export const userIdSelector = (state: RootAppStateType) => state.login._id
 export const currentPackIdSelector = (state: RootAppStateType) => state.packs.id
+
+// Cards
+
+export const getCardsSelector = (state: RootAppStateType) => state.cards.cards
+export const currentUserIdSelector = (state: RootAppStateType) => state.cards.packUserId

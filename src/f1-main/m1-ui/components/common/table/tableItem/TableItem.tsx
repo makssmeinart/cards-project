@@ -7,7 +7,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {userIdSelector} from "../../../../../m2-bll/selectors/selectAppStatus";
 
-export const TableItem = ({pack, deletePack, editPack, changePackId}: TableItemType) => {
+export const TableItem = ({pack, deletePack, editPack}: TableItemType) => {
     const userId = useSelector(userIdSelector)
     const updated = pack.updated.slice(0,10)
 
@@ -47,5 +47,4 @@ type TableItemType = {
     pack: cardPacksType
     deletePack: (idPack: string) => void
     editPack: (idPack: string, name: string) => void
-    changePackId: (idPack: string) => void
 }

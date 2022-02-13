@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import headerS from "./header.module.css"
 import {routes} from "../../../../m2-bll/routes/routes";
 import React from "react";
 import {useDispatch} from "react-redux";
@@ -14,7 +15,7 @@ export const Header = () => {
 
     return (
         <header style={{backgroundColor: "red"}}>
-            <h1>Header</h1>
+            <h1 className={headerS.title}>Header</h1>
             <ul>
                 <li>
                     <Link to={routes.packList}>packList</Link>
