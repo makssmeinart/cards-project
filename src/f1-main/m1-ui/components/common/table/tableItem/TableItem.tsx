@@ -1,21 +1,21 @@
 import tableS from "../table.module.css"
 import {cardPacksType} from "../../../../../m2-bll/reducers/packsReducer/packsReducer";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {routes} from "../../../../../m2-bll/routes/routes";
 import {SuperButton} from "../../superButton/SuperButton";
 import React from "react";
 import {useSelector} from "react-redux";
 import {userIdSelector} from "../../../../../m2-bll/selectors/selectAppStatus";
 
-export const TableItem = ({pack, deletePack, editPack}: TableItemType) => {
+export const TableItem = ({pack, deletePack, editPack, changePackId}: TableItemType) => {
     const userId = useSelector(userIdSelector)
     const updated = pack.updated.slice(0,10)
 
     return (
         <div className={tableS.tableItem} key={pack._id}>
-            <Link to={routes.cardsList}>
+            <NavLink to={`/main/cards-list/${pack._id}`}>
                 {pack.name}
-            </Link>
+            </NavLink>
             <div>
                 {pack.cardsCount}
             </div>
@@ -47,4 +47,5 @@ type TableItemType = {
     pack: cardPacksType
     deletePack: (idPack: string) => void
     editPack: (idPack: string, name: string) => void
+    changePackId: (idPack: string) => void
 }

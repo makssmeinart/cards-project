@@ -7,7 +7,7 @@ import {
     inputChangeHandlerAC,
     fetchPacksTC,
     sortedPackBtnAC,
-    deletePacksTC, editPackTC, addPackTC, changeSortedPackValueAC
+    deletePacksTC, editPackTC, addPackTC, changeSortedPackValueAC, changePackIdAC
 } from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {SuperInputText} from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
 import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
@@ -110,6 +110,9 @@ export const PackList = () => {
     const editPackHandler = (idPack: string, packName: string) => {
         dispatch(editPackTC(idPack, packName))
     }
+    const changePackIdHandler = (idPack: string) => {
+        dispatch(changePackIdAC(idPack))
+    }
 
     useEffect(() => {
         dispatch(fetchPacksTC());
@@ -155,7 +158,13 @@ export const PackList = () => {
                             </ul>
                             <div style={{backgroundColor: "orange"}}>
                                 {pack.map((p) => {
-                                    return <TableItem key={p._id} pack={p} deletePack={deletePackHandler} editPack={editPackHandler}/>
+                                    return <TableItem
+                                        key={p._id}
+                                        pack={p}
+                                        deletePack={deletePackHandler}
+                                        editPack={editPackHandler}
+                                        changePackId={changePackIdHandler}
+                                    />
                                 })}
                             </div>
                         </div>
