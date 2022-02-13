@@ -51,7 +51,7 @@ export const packsReducer = (state = initState, action: ActionTypes): InitStateT
 // Action Creators
 export const packsReducerAC = (data: InitStateType) => {
     return {type: "CARDS/PACKS", data} as const;
-};
+}
 export const inputChangeHandlerAC = (value: string) => {
     return {type: "CARDS/PACKS/INPUT", value} as const
 }
@@ -74,7 +74,7 @@ export const fetchPacksTC = () => (dispatch: Dispatch, getState: () => RootAppSt
     const state = getState().packs
     const switcherBtn = getState().packs.sortedPackBtn
 
-    let user_id = "";
+    let user_id
     if (!switcherBtn) {
         user_id = ""
     } else {
@@ -90,14 +90,14 @@ export const fetchPacksTC = () => (dispatch: Dispatch, getState: () => RootAppSt
         console.log("getPacks", st)
     })
 
-};
+}
 export const addPackTC = () => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
     const state = getState().packs
 
     const {packName} = state
 
     packsApi.addPack(packName, img, false)
-        .then(res => {
+        .then(() => {
             dispatch(fetchPacksTC())
         })
 }
@@ -110,7 +110,7 @@ export const editPackTC = (idPack: string, packName: string) => (dispatch: Thunk
     const {name, id} = state
 
     packsApi.editPack(id, name)
-        .then(res => {
+        .then(() => {
             dispatch(fetchPacksTC())
         })
 }
@@ -140,7 +140,7 @@ export type InitStateType = {
     max: number
     id: string
     name: string
-};
+}
 export type cardPacksType = {
     cardsCount: number
     created: string

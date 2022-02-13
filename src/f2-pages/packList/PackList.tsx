@@ -12,13 +12,23 @@ import {
 } from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {SuperInputText} from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
 import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
-import {appStatusSelector, isLoggedInSelector, maxRangeSelector, maxSelector, minRangeSelector, minSelector, packNameSelector, packSelector} from "../../f1-main/m2-bll/selectors/selectAppStatus";
+import {
+  appStatusSelector, currentPackIdSelector,
+  isLoggedInSelector,
+  maxRangeSelector,
+  maxSelector,
+  minRangeSelector,
+  minSelector,
+  packNameSelector,
+  packSelector,
+  userIdSelector
+} from "../../f1-main/m2-bll/selectors/selectAppStatus";
 import {DoubleRange} from "../../f1-main/m1-ui/components/common/doubleRange/DoubleRange";
-import { RootAppStateType } from "../../f1-main/m2-bll/store";
+
 export const PackList = () => {
   const dispatch = useDispatch();
-  const [inputValue, setInputValue] = useState<string>("");
-  const [sortedPackBtn, setSortedPackBtn] = useState<boolean>(true);
+  const [inputValue, setInputValue] = useState("");
+  const [sortedPackBtn, setSortedPackBtn] = useState(true);
   const packName = useSelector(packNameSelector);
   const status = useSelector(appStatusSelector);
   const pack = useSelector(packSelector);
@@ -27,9 +37,8 @@ export const PackList = () => {
   const maxRange = useSelector(maxRangeSelector);
   const max = useSelector(maxSelector);
   const min = useSelector(minSelector);
-  const userId = useSelector<RootAppStateType>((state) => state.login._id);
-  const idDeletedPack = useSelector<RootAppStateType>(state=> state.packs.id)
-
+  const userId = useSelector(userIdSelector)
+  const currentPackId = useSelector(currentPackIdSelector)
 
   const sendInput = () => {
     dispatch(inputChangeHandlerAC(inputValue));
@@ -56,7 +65,7 @@ export const PackList = () => {
 
   useEffect(() => {
     dispatch(fetchPacksTC());
-  }, [packName, sortedPackBtn, min, max, idDeletedPack]);
+  }, [packName, sortedPackBtn, min, max, currentPackId]);
 
   if (!isLoggedIn) {
     return <Navigate to={routes.login} />;
