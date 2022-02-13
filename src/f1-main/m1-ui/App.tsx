@@ -19,6 +19,7 @@ import {PackListContent} from "./components/common/mainContent/packs/PackListCon
 
 
 export const App = () => {
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(authMeTC());
@@ -49,5 +50,5 @@ export const App = () => {
                 <Route path={"/*"} element={<Navigate to={"/404"}/>}/>
             </Routes>
         </section>
-    );
+    )
 };

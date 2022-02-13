@@ -4,7 +4,12 @@ import {routes} from "../../f1-main/m2-bll/routes/routes";
 import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
 import React, {useEffect, useState} from "react";
 import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
-import {inputChangeHandlerAC, packsReducerTC, sortedPackBtnAC} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
+import {
+  inputChangeHandlerAC,
+  fetchPacksTC,
+  sortedPackBtnAC,
+  deletePacksTC, editPackTC, addPackTC
+} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {SuperInputText} from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
 import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import {appStatusSelector, isLoggedInSelector, maxRangeSelector, maxSelector, minRangeSelector, minSelector, packNameSelector, packSelector} from "../../f1-main/m2-bll/selectors/selectAppStatus";
@@ -39,13 +44,18 @@ export const PackList = () => {
 
     dispatch(sortedPackBtnAC(sortedPackBtn));
   };
+  const addPackHandler = () => {
+    dispatch(addPackTC())
+  }
   const deletePackHandler = (idPack: string) => {
-
       dispatch(deletePacksTC(idPack))
+  }
+  const editPackHandler = (idPack: string, packName: string) => {
+    dispatch(editPackTC(idPack, packName))
   }
 
   useEffect(() => {
-    dispatch(packsReducerTC());
+    dispatch(fetchPacksTC());
   }, [packName, sortedPackBtn, min, max, idDeletedPack]);
 
   if (!isLoggedIn) {
@@ -62,8 +72,10 @@ export const PackList = () => {
 
           <main style={{ backgroundColor: "black" }}>
             <aside style={{ backgroundColor: "green" }}>
+
               filtred:
               <div>
+                <SuperButton onClick={addPackHandler}>Add Pack</SuperButton>
                 <SuperButton onClick={setAllPacks}>My</SuperButton>
                 <SuperButton onClick={setMyPacks}>All</SuperButton>
               </div>
@@ -83,7 +95,10 @@ export const PackList = () => {
                   <div key={p._id}>
                     {p.name}
                     {userId === p.user_id ? (
+                        <>
                       <SuperButton onClick={()=>deletePackHandler(p._id)}>Delete</SuperButton>
+                          <SuperButton onClick={() => editPackHandler(p._id, "New name test")} >Edit</SuperButton>
+                        </>
                     ) : null}
                   </div>
                 );

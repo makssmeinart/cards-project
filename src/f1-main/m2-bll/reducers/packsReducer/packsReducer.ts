@@ -21,8 +21,10 @@ const initState: InitStateType = {
     //range
     min: 0,
     max: 10,
-    //delete pack
+    // currentPackId
     id: "",
+    // currentPackName
+    name: "",
 };
 
 export const packsReducer = (state = initState, action: ActionTypes): InitStateType => {
@@ -37,7 +39,9 @@ export const packsReducer = (state = initState, action: ActionTypes): InitStateT
             return {...state, min: action.min, max: action.max}
         case "CARDS/PACKS/DELETE":
             return {...state, id: action.idPack}
-
+        case "CARDS/PACKS/GET-NAME": {
+            return {...state, name: action.name}
+        }
         default:
             return state;
     }
@@ -57,9 +61,13 @@ export const sortedPackBtnAC = (value: boolean) => {
 export const rangeValueAC = (min: number, max: number) => {
     return {type: "CARDS/PACKS/RANGE-VALUE", min, max} as const
 }
-export const deletePackAC = (idPack: string) => {
+export const changePackIdAC = (idPack: string) => {
     return {type: "CARDS/PACKS/DELETE", idPack} as const
 }
+export const changePackNameAC = (name: string) => {
+    return {type: "CARDS/PACKS/GET-NAME", name} as const
+}
+
 
 // Thunk
 export const fetchPacksTC = () => (dispatch: Dispatch, getState: () => RootAppStateType) => {
@@ -93,32 +101,45 @@ export const addPackTC = () => (dispatch: ThunkDispatch<RootAppStateType, void, 
             dispatch(fetchPacksTC())
         })
 }
-export const editPackTC = () => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
+export const editPackTC = (idPack: string, packName: string) => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
+    // ChangeID
+    dispatch(changePackIdAC(idPack))
+    dispatch(changePackNameAC(packName))
+
     const state = getState().packs
+    const {name, id} = state
 
-    const {packName} = state
-
-    packsApi.editPack("12", packName)
+    packsApi.editPack(id, name)
         .then(res => {
             dispatch(fetchPacksTC())
         })
 }
+export const deletePacksTC = (idPack: string) => (dispatch: ThunkDispatch<RootAppStateType, any, any>, getState: () => RootAppStateType) => {
+    dispatch(changePackIdAC(idPack))
+    const state = getState().packs
+    const {id} = state
+    packsApi.deletePacks(id).then(res => {
+        console.log(res)
+        dispatch(fetchPacksTC())
+    })
+}
 
 // Types
 export type InitStateType = {
-    cardPacks: cardPacksType[],
-    cardPacksTotalCount: number,
-    maxCardsCount: number,
-    minCardsCount: number,
-    page: number,
-    pageCount: number,
-    token: string,
-    tokenDeathTime: number,
+    cardPacks: cardPacksType[]
+    cardPacksTotalCount: number
+    maxCardsCount: number
+    minCardsCount: number
+    page: number
+    pageCount: number
+    token: string
+    tokenDeathTime: number
     packName: string
-    sortedPackBtn: boolean,
-    min: number,
+    sortedPackBtn: boolean
+    min: number
     max: number
     id: string
+    name: string
 };
 export type cardPacksType = {
     cardsCount: number
@@ -140,8 +161,9 @@ export type cardPacksType = {
 }
 
 type packsReducerACType = ReturnType<typeof packsReducerAC>
-type deletePackACType = ReturnType<typeof deletePackAC>
+type deletePackACType = ReturnType<typeof changePackIdAC>
 type rangeValueACType = ReturnType<typeof rangeValueAC>
 type inputChangeHandlerACType = ReturnType<typeof inputChangeHandlerAC>
+type getPackNameAC = ReturnType<typeof changePackNameAC>
 export type sortedPackBtnACType = ReturnType<typeof sortedPackBtnAC>
-type ActionTypes = packsReducerACType | inputChangeHandlerACType | sortedPackBtnACType | rangeValueACType | deletePackACType;
+type ActionTypes = packsReducerACType | inputChangeHandlerACType | sortedPackBtnACType | rangeValueACType | deletePackACType | getPackNameAC
