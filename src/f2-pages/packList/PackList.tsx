@@ -27,9 +27,11 @@ import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
 import tableS from "../../f1-main/m1-ui/components/common/table/table.module.css"
 import {TableItem} from "../../f1-main/m1-ui/components/common/table/tableItem/TableItem";
 import {RootAppStateType} from "../../f1-main/m2-bll/store";
+import {fetchCardsTC} from "../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
 
 
 export const PackList = () => {
+    // 6208ed6a677f2635d8950510
     const dispatch = useDispatch();
     const [inputValue, setInputValue] = useState("");
     const [sortedPackBtn, setSortedPackBtn] = useState(true);
@@ -77,13 +79,6 @@ export const PackList = () => {
 
     }
 
-
-
-    // useEffect(()=> {
-    //
-    //
-    // }, [nameSortValue, userIdValue, cardsValue])
-
     const packName = useSelector(packNameSelector);
     const status = useSelector(appStatusSelector);
     const pack = useSelector(packSelector);
@@ -120,6 +115,7 @@ export const PackList = () => {
 
     useEffect(() => {
         dispatch(fetchPacksTC());
+        dispatch(fetchCardsTC())
     }, [packName, sortedPackBtn, min, max, currentPackId, sortValue]);
 
     if (!isLoggedIn) {
