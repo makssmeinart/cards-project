@@ -77,11 +77,6 @@ const dispatch = useDispatch()
                         {values[index].toFixed(0)}
                         {/*// 10.12345 => 10; (1) => 10.1; (2) > 10.12; ...*/}
                     </div>
-                    {/*<div style={{*/}
-                    {/*    height: '16px',*/}
-                    {/*    width: '5px',*/}
-                    {/*    backgroundColor: isDragged ? '#548BF4' : '#CCC'*/}
-                    {/*}}/>*/}
                 </div>
             )}
         />
