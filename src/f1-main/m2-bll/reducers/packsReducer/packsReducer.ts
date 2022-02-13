@@ -60,7 +60,7 @@ export const deletePackAC = (idPack: string) => {
     return {type: "CARDS/PACKS/DELETE", idPack} as const
 }
 
-// Thunk
+// Thunki
 export const packsReducerTC = () => (dispatch: Dispatch, getState: () => RootAppStateType) => {
     const state = getState().packs
     const switcherBtn = getState().packs.sortedPackBtn
@@ -78,12 +78,6 @@ export const packsReducerTC = () => (dispatch: Dispatch, getState: () => RootApp
         const st = getState().packs
         console.log("getPacks", st)
     })
-    // if(id) {
-    //     packsApi.deletePacks(id).then(res=> {
-    //         console.log(res)
-    //         // dispatch(packsReducerTC)
-    //     })
-    // }
 
 };
 export const deletePacksTC = (idPack: string) => (dispatch: ThunkDispatch<RootAppStateType, any, any>, getState: () => RootAppStateType) => {
