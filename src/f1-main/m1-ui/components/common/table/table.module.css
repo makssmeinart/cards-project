@@ -1,0 +1,29 @@
+.table {
+    display: flex;
+    flex-direction: column;
+    background-color: pink;
+    height: 500px;
+    width: 670px;
+}
+
+.tableItem {
+    display: grid;
+    gap: 1.3rem;
+    width: 100%;
+    grid-template-areas:
+    "name cards lastUpdated createdBy actions";
+    grid-template-columns: 7rem 3rem 9rem 7rem;
+    list-style: none;
+    text-align: left;
+    overflow-wrap: break-word;
+    padding-left: 1rem;
+    height: 48px;
+    align-items: center;
+}
+.tableHeader li {
+    cursor: pointer;
+    transition: .1s linear color;
+}
+.tableHeader li:hover {
+    color: #c113cc;
+}
