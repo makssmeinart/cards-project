@@ -25,6 +25,8 @@ const initState: InitStateType = {
     id: "",
     // currentPackName
     name: "",
+    // sortPackValue
+    sortedPackValue: ''
 };
 
 export const packsReducer = (state = initState, action: ActionTypes): InitStateType => {
@@ -39,9 +41,10 @@ export const packsReducer = (state = initState, action: ActionTypes): InitStateT
             return {...state, min: action.min, max: action.max}
         case "CARDS/PACKS/DELETE":
             return {...state, id: action.idPack}
-        case "CARDS/PACKS/GET-NAME": {
+        case "CARDS/PACKS/GET-NAME":
             return {...state, name: action.name}
-        }
+        case "CARDS/PACKS/SORTED-VALUE":
+            return {...state, sortedPackValue: action.value}
         default:
             return state;
     }
@@ -67,6 +70,9 @@ export const changePackIdAC = (idPack: string) => {
 export const changePackNameAC = (name: string) => {
     return {type: "CARDS/PACKS/GET-NAME", name} as const
 }
+export const changeSortedPackValueAC = (value: string) => {
+    return {type: "CARDS/PACKS/SORTED-VALUE", value} as const
+}
 
 
 // Thunk
@@ -82,9 +88,9 @@ export const fetchPacksTC = () => (dispatch: Dispatch, getState: () => RootAppSt
     }
 
 
-    const {packName, min, max, page, pageCount} = state
+    const {packName, min, max, page, pageCount, sortedPackValue} = state
 
-    packsApi.getPacks(packName, min, max, "", page, pageCount, user_id).then(res => {
+    packsApi.getPacks(packName, min, max, sortedPackValue, page, pageCount, user_id).then(res => {
         dispatch(packsReducerAC(res.data))
         const st = getState().packs
         console.log("getPacks", st)
@@ -139,6 +145,7 @@ export type InitStateType = {
     max: number
     id: string
     name: string
+    sortedPackValue: string
 }
 export type cardPacksType = {
     cardsCount: number
@@ -160,9 +167,10 @@ export type cardPacksType = {
 }
 
 type packsReducerACType = ReturnType<typeof packsReducerAC>
+type changeSortedPackValueACType = ReturnType<typeof changeSortedPackValueAC>
 type deletePackACType = ReturnType<typeof changePackIdAC>
 type rangeValueACType = ReturnType<typeof rangeValueAC>
 type inputChangeHandlerACType = ReturnType<typeof inputChangeHandlerAC>
 type getPackNameAC = ReturnType<typeof changePackNameAC>
 export type sortedPackBtnACType = ReturnType<typeof sortedPackBtnAC>
-type ActionTypes = packsReducerACType | inputChangeHandlerACType | sortedPackBtnACType | rangeValueACType | deletePackACType | getPackNameAC
+type ActionTypes = packsReducerACType | inputChangeHandlerACType | sortedPackBtnACType | rangeValueACType | deletePackACType | getPackNameAC | changeSortedPackValueACType

@@ -4,6 +4,8 @@
     background-color: pink;
     height: 500px;
     width: 670px;
+    overflow: scroll;
+    position: relative;
 }
 
 .tableItem {
@@ -12,13 +14,19 @@
     width: 100%;
     grid-template-areas:
     "name cards lastUpdated createdBy actions";
-    grid-template-columns: 7rem 3rem 9rem 7rem;
+    grid-template-columns: 7rem 3rem 6rem 9rem 9rem;
     list-style: none;
     text-align: left;
     overflow-wrap: break-word;
     padding-left: 1rem;
-    height: 48px;
+    min-height: 48px;
     align-items: center;
+}
+.tableHeader {
+    position: sticky;
+    left: 0;
+    top: 0;
+    background-color: #2fff00;
 }
 .tableHeader li {
     cursor: pointer;

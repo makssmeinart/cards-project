@@ -9,6 +9,7 @@ import {userIdSelector} from "../../../../../m2-bll/selectors/selectAppStatus";
 
 export const TableItem = ({pack, deletePack, editPack}: TableItemType) => {
     const userId = useSelector(userIdSelector)
+    const updated = pack.updated.slice(0,10)
 
     return (
         <div className={tableS.tableItem} key={pack._id}>
@@ -19,7 +20,7 @@ export const TableItem = ({pack, deletePack, editPack}: TableItemType) => {
                 {pack.cardsCount}
             </div>
             <div>
-                {pack.updated}
+                {updated}
             </div>
             <div>
                 {pack.user_name}
