@@ -28,6 +28,8 @@
     padding-left: 1rem;
     min-height: 48px;
     align-items: center;
+    grid-template-areas: "1 2 3 4 5";
+    grid-template-columns: 20% 10% 25% 25% 20%;
 }
 .tableHeader {
     position: sticky;
