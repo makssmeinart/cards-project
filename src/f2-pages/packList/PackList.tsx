@@ -1,19 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import { routes } from "../../f1-main/m2-bll/routes/routes";
-import { Loading } from "../../f1-main/m1-ui/components/common/loading/Loading";
-import React, { useEffect, useState } from "react";
-import { Header } from "../../f1-main/m1-ui/components/common/header/Header";
+import {useDispatch, useSelector} from "react-redux";
+import {Navigate} from "react-router-dom";
+import {routes} from "../../f1-main/m2-bll/routes/routes";
+import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
+import React, {useEffect, useState} from "react";
+import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
 import {
-  deletePackAC, deletePacksTC,
   inputChangeHandlerAC,
-  packsReducerTC,
+  fetchPacksTC,
   sortedPackBtnAC,
+  deletePacksTC, editPackTC, addPackTC
 } from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
-import { SuperInputText } from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
-import { SuperButton } from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
+import {SuperInputText} from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
+import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import {
-  appStatusSelector,
+  appStatusSelector, currentPackIdSelector,
   isLoggedInSelector,
   maxRangeSelector,
   maxSelector,
@@ -21,14 +21,14 @@ import {
   minSelector,
   packNameSelector,
   packSelector,
+  userIdSelector
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
-import { DoubleRange } from "../../f1-main/m1-ui/components/common/doubleRange/DoubleRange";
-import { RootAppStateType } from "../../f1-main/m2-bll/store";
+import {DoubleRange} from "../../f1-main/m1-ui/components/common/doubleRange/DoubleRange";
 
 export const PackList = () => {
   const dispatch = useDispatch();
-  const [inputValue, setInputValue] = useState<string>("");
-  const [sortedPackBtn, setSortedPackBtn] = useState<boolean>(true);
+  const [inputValue, setInputValue] = useState("");
+  const [sortedPackBtn, setSortedPackBtn] = useState(true);
   const packName = useSelector(packNameSelector);
   const status = useSelector(appStatusSelector);
   const pack = useSelector(packSelector);
@@ -37,8 +37,8 @@ export const PackList = () => {
   const maxRange = useSelector(maxRangeSelector);
   const max = useSelector(maxSelector);
   const min = useSelector(minSelector);
-  const userId = useSelector<RootAppStateType>((state) => state.login._id);
-  const idDeletedPack = useSelector<RootAppStateType>(state=> state.packs.id)
+  const userId = useSelector(userIdSelector)
+  const currentPackId = useSelector(currentPackIdSelector)
 
   const sendInput = () => {
     dispatch(inputChangeHandlerAC(inputValue));
@@ -53,14 +53,19 @@ export const PackList = () => {
 
     dispatch(sortedPackBtnAC(sortedPackBtn));
   };
+  const addPackHandler = () => {
+    dispatch(addPackTC())
+  }
   const deletePackHandler = (idPack: string) => {
-
       dispatch(deletePacksTC(idPack))
+  }
+  const editPackHandler = (idPack: string, packName: string) => {
+    dispatch(editPackTC(idPack, packName))
   }
 
   useEffect(() => {
-    dispatch(packsReducerTC());
-  }, [packName, sortedPackBtn, min, max, idDeletedPack]);
+    dispatch(fetchPacksTC());
+  }, [packName, sortedPackBtn, min, max, currentPackId]);
 
   if (!isLoggedIn) {
     return <Navigate to={routes.login} />;
@@ -76,8 +81,10 @@ export const PackList = () => {
 
           <main style={{ backgroundColor: "black" }}>
             <aside style={{ backgroundColor: "green" }}>
+
               filtred:
               <div>
+                <SuperButton onClick={addPackHandler}>Add Pack</SuperButton>
                 <SuperButton onClick={setAllPacks}>My</SuperButton>
                 <SuperButton onClick={setMyPacks}>All</SuperButton>
               </div>
@@ -97,7 +104,10 @@ export const PackList = () => {
                   <div key={p._id}>
                     {p.name}
                     {userId === p.user_id ? (
+                        <>
                       <SuperButton onClick={()=>deletePackHandler(p._id)}>Delete</SuperButton>
+                          <SuperButton onClick={() => editPackHandler(p._id, "New name test")} >Edit</SuperButton>
+                        </>
                     ) : null}
                   </div>
                 );

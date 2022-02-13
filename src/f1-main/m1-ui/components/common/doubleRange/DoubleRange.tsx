@@ -6,7 +6,7 @@ import {rangeValueAC} from "../../../../m2-bll/reducers/packsReducer/packsReduce
 
 type IPriceRangeProps = {
     min: number,
-    max: number
+    max: number,
 }
 
 export const DoubleRange = (props: IPriceRangeProps) => {
