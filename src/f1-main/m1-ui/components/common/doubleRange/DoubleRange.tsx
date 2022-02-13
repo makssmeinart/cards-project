@@ -6,7 +6,7 @@ import {rangeValueAC} from "../../../../m2-bll/reducers/packsReducer/packsReduce
 
 type IPriceRangeProps = {
     min: number,
-    max: number
+    max: number,
 }
 
 export const DoubleRange = (props: IPriceRangeProps) => {
@@ -77,11 +77,6 @@ const dispatch = useDispatch()
                         {values[index].toFixed(0)}
                         {/*// 10.12345 => 10; (1) => 10.1; (2) > 10.12; ...*/}
                     </div>
-                    <div style={{
-                            height: '16px',
-                            width: '5px',
-                            backgroundColor: isDragged ? '#548BF4' : '#CCC'
-                        }}/>
                 </div>
             )}
         />

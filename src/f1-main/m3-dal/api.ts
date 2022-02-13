@@ -70,6 +70,14 @@ export const packsApi = {
                 type: "pack",
             }
         })
+    },
+    editPack: (_id: string, name?: string) => {
+        return instance.put("/cards/pack", {
+            cardsPack: {
+                _id,
+                name,
+            }
+        })
     }
 }
 export const cardsApi = {}

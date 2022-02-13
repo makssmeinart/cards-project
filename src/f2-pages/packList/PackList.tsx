@@ -1,30 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import { routes } from "../../f1-main/m2-bll/routes/routes";
-import { Loading } from "../../f1-main/m1-ui/components/common/loading/Loading";
-import React, { useEffect, useState } from "react";
-import { Header } from "../../f1-main/m1-ui/components/common/header/Header";
-import {
-  deletePackAC, deletePacksTC,
-  inputChangeHandlerAC,
-  packsReducerTC,
-  sortedPackBtnAC,
-} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
-import { SuperInputText } from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
-import { SuperButton } from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
-import {
-  appStatusSelector,
-  isLoggedInSelector,
-  maxRangeSelector,
-  maxSelector,
-  minRangeSelector,
-  minSelector,
-  packNameSelector,
-  packSelector,
-} from "../../f1-main/m2-bll/selectors/selectAppStatus";
-import { DoubleRange } from "../../f1-main/m1-ui/components/common/doubleRange/DoubleRange";
+import {useDispatch, useSelector} from "react-redux";
+import {Navigate} from "react-router-dom";
+import {routes} from "../../f1-main/m2-bll/routes/routes";
+import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
+import React, {useEffect, useState} from "react";
+import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
+import {inputChangeHandlerAC, packsReducerTC, sortedPackBtnAC} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
+import {SuperInputText} from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
+import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
+import {appStatusSelector, isLoggedInSelector, maxRangeSelector, maxSelector, minRangeSelector, minSelector, packNameSelector, packSelector} from "../../f1-main/m2-bll/selectors/selectAppStatus";
+import {DoubleRange} from "../../f1-main/m1-ui/components/common/doubleRange/DoubleRange";
 import { RootAppStateType } from "../../f1-main/m2-bll/store";
-
 export const PackList = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>("");
@@ -39,6 +24,7 @@ export const PackList = () => {
   const min = useSelector(minSelector);
   const userId = useSelector<RootAppStateType>((state) => state.login._id);
   const idDeletedPack = useSelector<RootAppStateType>(state=> state.packs.id)
+
 
   const sendInput = () => {
     dispatch(inputChangeHandlerAC(inputValue));

@@ -3,6 +3,7 @@ import {RootAppStateType} from "../../store";
 import {packsApi} from "../../../m3-dal/api";
 import {ThunkDispatch} from "redux-thunk";
 
+const img = "https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/37_0_1125_675/master/1125.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=d456a2af571d980d8b2985472c262b31"
 
 const initState: InitStateType = {
     cardPacks: [],
@@ -21,7 +22,7 @@ const initState: InitStateType = {
     min: 0,
     max: 10,
     //delete pack
-    id: ""
+    id: "",
 };
 
 export const packsReducer = (state = initState, action: ActionTypes): InitStateType => {
@@ -61,8 +62,7 @@ export const deletePackAC = (idPack: string) => {
 }
 
 // Thunk
-
-export const packsReducerTC = () => (dispatch: Dispatch, getState: () => RootAppStateType) => {
+export const fetchPacksTC = () => (dispatch: Dispatch, getState: () => RootAppStateType) => {
     const state = getState().packs
     const switcherBtn = getState().packs.sortedPackBtn
 
@@ -73,6 +73,7 @@ export const packsReducerTC = () => (dispatch: Dispatch, getState: () => RootApp
         user_id = getState().login._id
     }
 
+
     const {packName, min, max, page, pageCount} = state
 
     packsApi.getPacks(packName, min, max, "", page, pageCount, user_id).then(res => {
@@ -82,9 +83,28 @@ export const packsReducerTC = () => (dispatch: Dispatch, getState: () => RootApp
     })
 
 };
+export const addPackTC = () => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
+    const state = getState().packs
+
+    const {packName} = state
+
+    packsApi.addPack(packName, img, false)
+        .then(res => {
+            dispatch(fetchPacksTC())
+        })
+}
+export const editPackTC = () => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
+    const state = getState().packs
+
+    const {packName} = state
+
+    packsApi.editPack("12", packName)
+        .then(res => {
+            dispatch(fetchPacksTC())
+        })
+}
 
 // Types
-
 export type InitStateType = {
     cardPacks: cardPacksType[],
     cardPacksTotalCount: number,
@@ -97,9 +117,8 @@ export type InitStateType = {
     packName: string
     sortedPackBtn: boolean,
     min: number,
-    max: number,
+    max: number
     id: string
-
 };
 export type cardPacksType = {
     cardsCount: number
