@@ -60,7 +60,7 @@ export const PackList = () => {
 
   useEffect(() => {
     dispatch(packsReducerTC());
-  }, [packName, sortedPackBtn, idDeletedPack]);
+  }, [packName, sortedPackBtn, min, max, idDeletedPack]);
 
   if (!isLoggedIn) {
     return <Navigate to={routes.login} />;
