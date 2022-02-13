@@ -48,6 +48,28 @@ export const packsApi = {
                 packName, min, max, sortPacks, page, pageCount, user_id
             }
         })
+    },
+    addPack: (name: string, deckCover: string, packPrivate: boolean = false) => {
+        return instance.post("/cards/pack", {
+            cardsPack: {
+                name,
+                path: "/def",
+                grade: 0,
+                shots: 0,
+                rating: 0,
+                deckCover: "url or base64",
+                private: packPrivate,
+                type: "pack",
+            }
+        })
+    },
+    editPack: (_id: string, name?: string) => {
+        return instance.put("/cards/pack", {
+            cardsPack: {
+                _id,
+                name,
+            }
+        })
     }
 }
 export const cardsApi = {}

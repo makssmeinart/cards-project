@@ -1,6 +1,9 @@
 import {Dispatch} from "redux";
 import {RootAppStateType} from "../../store";
 import {packsApi} from "../../../m3-dal/api";
+import {ThunkDispatch} from "redux-thunk";
+
+const img = "https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/37_0_1125_675/master/1125.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=d456a2af571d980d8b2985472c262b31"
 
 const initState: InitStateType = {
     cardPacks: [],
@@ -14,7 +17,8 @@ const initState: InitStateType = {
     packName: '',
     sortedPackBtn: false,
     min: 0,
-    max: 10
+    max: 10,
+    _id: "",
 };
 
 export const packsReducer = (state = initState, action: ActionTypes): InitStateType => {
@@ -44,12 +48,11 @@ export const sortedPackBtnAC = (value: boolean) => {
     return {type: "CARDS/BTN-SORTED", value} as const
 }
 export const rangeValueAC = (min: number, max: number) => {
-    debugger
     return {type: "CARD/RANGE-VALUE", min, max} as const
 }
 
 // Thunk
-export const packsReducerTC = () => (dispatch: Dispatch, getState: ()=> RootAppStateType) => {
+export const fetchPacksTC = () => (dispatch: Dispatch, getState: () => RootAppStateType) => {
     const state = getState().packs
     const switcherBtn = getState().packs.sortedPackBtn
 
@@ -66,10 +69,30 @@ export const packsReducerTC = () => (dispatch: Dispatch, getState: ()=> RootAppS
     packsApi.getPacks(packName, min, max, "", page, pageCount, user_id).then(res => {
         dispatch(packsReducerAC(res.data))
         const st = getState().packs
-        console.log("getState()",st)
+        console.log("getState()", st)
     })
 
 };
+export const addPackTC = () => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
+    const state = getState().packs
+
+    const {packName} = state
+
+    packsApi.addPack(packName, img, false)
+        .then(res => {
+            dispatch(fetchPacksTC())
+        })
+}
+export const editPackTC = () => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
+    const state = getState().packs
+
+    const {packName, _id} = state
+
+    packsApi.editPack(_id, packName)
+        .then(res => {
+            dispatch(fetchPacksTC())
+        })
+}
 
 // Types
 export type InitStateType = {
@@ -85,7 +108,7 @@ export type InitStateType = {
     sortedPackBtn: boolean,
     min: number,
     max: number
-
+    _id: "",
 };
 export type cardPacksType = {
     cardsCount: number

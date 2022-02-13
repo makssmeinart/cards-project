@@ -11,13 +11,12 @@ type IPriceRangeProps = {
 
 export const DoubleRange = (props: IPriceRangeProps) => {
 
-const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const [values, setValues] = useState([props.min, props.max]);
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(rangeValueAC(values[0], values[1]))
     }, [values])
-
 
     return (
         <Range

@@ -4,7 +4,12 @@ import {routes} from "../../f1-main/m2-bll/routes/routes";
 import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
 import React, {useEffect, useState} from "react";
 import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
-import {inputChangeHandlerAC, packsReducerTC, sortedPackBtnAC} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
+import {
+    addPackTC,
+    inputChangeHandlerAC,
+    fetchPacksTC,
+    sortedPackBtnAC
+} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {SuperInputText} from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
 import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import {appStatusSelector, isLoggedInSelector, maxRangeSelector, maxSelector, minRangeSelector, minSelector, packNameSelector, packSelector} from "../../f1-main/m2-bll/selectors/selectAppStatus";
@@ -39,7 +44,7 @@ export const PackList = () => {
             dispatch(sortedPackBtnAC(sortedPackBtn))
         }
         useEffect(() => {
-            dispatch(packsReducerTC())
+            dispatch(fetchPacksTC())
         }, [packName, sortedPackBtn, min, max])
 
 
@@ -48,7 +53,9 @@ export const PackList = () => {
             return <Navigate to={routes.login}/>;
         }
 
-
+        const addPack = () => {
+            dispatch(addPackTC())
+        }
 
 
         return (
@@ -67,6 +74,7 @@ export const PackList = () => {
                                     <SuperButton onClick={setMyPacks}>All</SuperButton>
                                 </div>
                                 <div>
+                                    <SuperButton onClick={addPack}>Add Pack</SuperButton>
                                     <SuperInputText value={inputValue} onChange={(e) => setInputValue(e.currentTarget.value)}/>
                                     <SuperButton onClick={sendInput}>SEND</SuperButton>
                                 </div>
