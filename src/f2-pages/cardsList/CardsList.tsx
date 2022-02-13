@@ -1,7 +1,7 @@
 import {Navigate, useParams} from "react-router-dom";
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchCardsTC} from "../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
+import {addCardTC, fetchCardsTC} from "../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
 import tableS from "../../f1-main/m1-ui/components/common/table/table.module.css";
 import {
     appStatusSelector,
@@ -25,9 +25,13 @@ export const CardsList = () => {
     const myId = useSelector(userIdSelector)
     const currentUserId = useSelector(currentUserIdSelector)
 
+    const addCardHandler = () => {
+         packId && dispatch(addCardTC(packId))
+    }
+
     useEffect(() => {
         packId && dispatch(fetchCardsTC(packId))
-    }, [packId])
+    }, [packId, addCardTC])
 
     if (!isLoggedIn) {
         return <Navigate to={routes.login}/>;
@@ -43,7 +47,7 @@ export const CardsList = () => {
                     <main className={`${tableS.content} ${tableS.content_card}`}>
                         <div className={tableS.table}>
                             {currentUserId === myId &&
-                            <SuperButton onClick={() => alert("Sosatj")}>Add new item</SuperButton>}
+                            <SuperButton onClick={addCardHandler}>Add new item</SuperButton>}
 
                             <ul className={`${tableS.tableItem} ${tableS.tableHeader}`}>
                                 <li>Question</li>
@@ -54,7 +58,7 @@ export const CardsList = () => {
                             </ul>
                             <div style={{backgroundColor: "orange"}}>
                                 {cards.map((c) => {
-                                    return <TableItemCards card={c} />
+                                    return <TableItemCards key={c._id} card={c} />
                                 })}
                             </div>
                         </div>

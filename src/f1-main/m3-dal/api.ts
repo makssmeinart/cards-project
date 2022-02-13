@@ -48,15 +48,7 @@ export const authApi = {
   },
 };
 export const packsApi = {
-  getPacks: (
-    packName: string,
-    min: number,
-    max: number,
-    sortPacks: string,
-    page: number,
-    pageCount: number,
-    user_id?: string
-  ) => {
+  getPacks: (packName: string, min: number, max: number, sortPacks: string, page: number, pageCount: number, user_id?: string) => {
     return instance.get("/cards/pack", {
       params: {
         packName,
@@ -100,16 +92,7 @@ export const packsApi = {
   },
 };
 export const cardsApi = {
-  getCards: (
-    cardAnswer: string,
-    cardQuestion: string,
-    cardsPack_id: string,
-    min: number,
-    max: number,
-    sortCards: string,
-    page: number,
-    pageCount: number
-  ) => {
+  getCards: (cardAnswer: string, cardQuestion: string, cardsPack_id: string, min: number, max: number, sortCards: string, page: number, pageCount: number) => {
     return instance.get("/cards/card", {
       params: {
         cardAnswer,
@@ -123,6 +106,13 @@ export const cardsApi = {
       },
     });
   },
+  addCard: (cardsPack_id?: string, question?: string, answer?: string, grade?: number, shots?: number, answerImg?: string, questionImg?: string, questionVideo?: string, ) => {
+    return instance.post("cards/card", {
+      card: {
+        cardsPack_id, question, answer, grade,  shots, answerImg, questionImg, questionVideo
+      }
+    })
+  }
 };
 
 // Types

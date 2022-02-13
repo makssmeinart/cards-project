@@ -64,7 +64,6 @@ export const PackList = () => {
 
     }
 
-
     const [lastUpdatedValue, setLastUpdatedValue] = useState<"0updated" | "1updated">("0updated")
     const lastUpdatedHandler = () => {
         if (lastUpdatedValue === "1updated") {
@@ -123,7 +122,7 @@ export const PackList = () => {
             {status === "loading" ? (
                 <Loading/>
             ) : (
-                <section style={{backgroundColor: "yellow", height: "100vh"}}>
+                <section style={{height: "100vh"}}>
                     <Header/>
                     <main className={tableS.content} style={{backgroundColor: "black"}}>
                         <aside style={{backgroundColor: "green"}}>
