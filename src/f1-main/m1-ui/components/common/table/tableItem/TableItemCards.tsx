@@ -1,10 +1,14 @@
 import tableS from "../table.module.css";
 import React from "react";
 import {CardsType} from "../../../../../m2-bll/reducers/cardsReducer/cardsReducer";
+import {useSelector} from "react-redux";
+import {RootAppStateType} from "../../../../../m2-bll/store";
+import {SuperButton} from "../../superButton/SuperButton";
 
 export const TableItemCards = ({card}: TableItemType) => {
 
     const updatedDate = card.updated.slice(0, 10)
+    const userId = useSelector<RootAppStateType>(state => state.login._id)
 
     return (
         <div className={`${tableS.tableItem}`} key={card._id}>
@@ -20,17 +24,17 @@ export const TableItemCards = ({card}: TableItemType) => {
             <div>
                 {card.grade}
             </div>
-            {/*<div>*/}
-            {/*    {userId === card.user_id ? (*/}
-            {/*        <>*/}
-            {/*            <SuperButton*/}
-            {/*                onClick={() => deletePack(pack._id)}>Delete</SuperButton>*/}
-            {/*            <SuperButton*/}
-            {/*                onClick={() => editPack(pack._id, "New name test")}>Edit</SuperButton>*/}
-            {/*        </>*/}
-            {/*    ) : null}*/}
-            {/*    <SuperButton>Learn</SuperButton>*/}
-            {/*</div>*/}
+            <div>
+                {userId === card.user_id ? (
+                    <>
+                        <SuperButton
+                            onClick={() => alert("Deleted")}>Delete</SuperButton>
+                        <SuperButton
+                            onClick={() => alert("Edited")}>Edit</SuperButton>
+                    </>
+                ) : null}
+                <SuperButton onClick={() => alert("Learning naooi")}>Learn</SuperButton>
+            </div>
         </div>
     );
 }
