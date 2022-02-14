@@ -1,7 +1,6 @@
 import tableS from "../table.module.css"
 import {cardPacksType} from "../../../../../m2-bll/reducers/packsReducer/packsReducer";
-import {Link, NavLink} from "react-router-dom";
-import {routes} from "../../../../../m2-bll/routes/routes";
+import {NavLink} from "react-router-dom";
 import {SuperButton} from "../../superButton/SuperButton";
 import React from "react";
 import {useSelector} from "react-redux";

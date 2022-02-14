@@ -57,6 +57,7 @@
     height: 100%;
 }
 
+
 /* CardList */
 .content_card {
     flex-direction: column;
@@ -66,4 +67,5 @@
     grid-template-areas:
             "question answer lastUpdated grade actions";
     grid-template-columns: 25% 25% 20% 10% 10%;
+    margin-bottom: 1rem;
 }

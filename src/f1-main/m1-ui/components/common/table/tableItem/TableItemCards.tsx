@@ -4,6 +4,7 @@ import {CardsType} from "../../../../../m2-bll/reducers/cardsReducer/cardsReduce
 
 export const TableItemCards = ({card}: TableItemType) => {
 
+    const updatedDate = card.updated.slice(0, 10)
 
     return (
         <div className={`${tableS.tableItem}`} key={card._id}>
@@ -14,7 +15,7 @@ export const TableItemCards = ({card}: TableItemType) => {
                 {card.answer}
             </div>
             <div>
-                {card.updated}
+                {updatedDate}
             </div>
             <div>
                 {card.grade}
