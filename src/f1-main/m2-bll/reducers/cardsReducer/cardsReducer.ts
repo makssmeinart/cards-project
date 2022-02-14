@@ -2,9 +2,6 @@ import {Dispatch} from "redux";
 import {RootAppStateType} from "../../store";
 import {cardsApi} from "../../../m3-dal/api";
 
-
-
-
 export type CardsType = {
     answer: string,
     answerImg: string,
@@ -34,7 +31,8 @@ const initState: InitStateType = {
     page: 0,
     pageCount: 0,
     token: "",
-    tokenDeathTime: 0
+    tokenDeathTime: 0,
+    sortCardsValue: "",
 };
 
 
@@ -42,6 +40,9 @@ export const cardsReducer = (state = initState, action: ActionTypes): InitStateT
     switch (action.type) {
         case "CARDS/CARD":
             return {...state, ...action.data}
+        case "CARDS/CHANGE-CARDS-VALUE": {
+            return {...state, sortCardsValue: action.value}
+        }
         default:
             return state;
     }
@@ -51,12 +52,17 @@ export const cardsReducer = (state = initState, action: ActionTypes): InitStateT
 export const cardsReducerAC = (data: InitStateType) => {
     return {type: "CARDS/CARD", data} as const;
 };
+export const changeCardsValueAC = (value: string) => {
+    return {type: "CARDS/CHANGE-CARDS-VALUE", value} as const
+}
 
 // Thunk
 export const fetchCardsTC = (packId: string) => (dispatch: Dispatch, getState: () => RootAppStateType) => {
     const state = getState().cards
 
-    cardsApi.getCards("","", packId, 0, 0,"", 1, 10)
+    const {sortCardsValue} = state
+
+    cardsApi.getCards("","", packId, 0, 0,sortCardsValue, 1, 10)
         .then(res=> {
             dispatch(cardsReducerAC(res.data))
             const st = getState().cards
@@ -75,6 +81,8 @@ export type InitStateType = {
     pageCount: number,
     token: string,
     tokenDeathTime: number
+    sortCardsValue: string
 };
 type ActionTypes =
-    | ReturnType <typeof cardsReducerAC>;
+    | ReturnType<typeof cardsReducerAC>
+    | ReturnType<typeof changeCardsValueAC>

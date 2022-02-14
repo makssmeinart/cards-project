@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {Link, Navigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import {routes} from "../../f1-main/m2-bll/routes/routes";
 import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
 import React, {useEffect, useState} from "react";
