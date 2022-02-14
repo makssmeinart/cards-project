@@ -9,8 +9,6 @@ import {
     sortedPackBtnAC,
     deletePacksTC, editPackTC, addPackTC, changeSortedPackValueAC
 } from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
-import {SuperInputText} from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
-import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import {
     appStatusSelector, currentPackIdSelector,
     isLoggedInSelector,
@@ -21,11 +19,9 @@ import {
     packNameSelector,
     packSelector,
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
-import {DoubleRange} from "../../f1-main/m1-ui/components/common/doubleRange/DoubleRange";
 import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
-import tableS from "../../f1-main/m1-ui/components/common/table/table.module.css"
 import {RootAppStateType} from "../../f1-main/m2-bll/store";
-
+import packsS from "../../f1-main/m1-ui/components/common/table/packsListTable.module.css"
 
 export const PackList = () => {
     const dispatch = useDispatch();
@@ -123,7 +119,67 @@ export const PackList = () => {
             ) : (
                 <section style={{height: "100vh"}}>
                     <Header/>
-
+                    <main className={packsS.main}>
+                        <div className={packsS.wrapper}>
+                            {/* Sidebar */}
+                            <aside>
+                                <div>
+                                    <h2>Show pack cards</h2>
+                                    <div>
+                                        <button>My</button>
+                                        <button>All</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3>Show number of cards</h3>
+                                    <div>
+                                        <input type="text"/>
+                                    </div>
+                                </div>
+                            </aside>
+                            <div>
+                                {/* Content Header */}
+                                <div>
+                                    <h1>Title</h1>
+                                </div>
+                                <div>
+                                    <input type="text"/>
+                                    <button>Add new pack</button>
+                                </div>
+                                {/* Table */}
+                                <div>
+                                    table
+                                    <div>
+                                        tableHeader
+                                        <span>Name</span>
+                                        <span>Cards</span>
+                                        <span>Last Updated</span>
+                                        <span>Created By</span>
+                                        <span>Actions</span>
+                                    </div>
+                                    <div>
+                                        tableContent
+                                       <div>
+                                           tableItem
+                                           <span>Pack Name</span>
+                                           <span>5</span>
+                                           <span>2010-5-12</span>
+                                           <span>m.meinarts10@gmail.com</span>
+                                           <span>
+                                               <button>Delete</button>
+                                               <button>Edit</button>
+                                               <button>Learn</button>
+                                           </span>
+                                       </div>
+                                    </div>
+                                </div>
+                                {/* Pagination */}
+                                <div>
+                                    Pagination
+                                </div>
+                            </div>
+                        </div>
+                    </main>
                 </section>
             )}
         </>
