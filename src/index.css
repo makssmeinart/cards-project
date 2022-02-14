@@ -3,11 +3,13 @@
   background: transparent;  /* опционально */
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
+
 body {
+  box-sizing: inherit;
   min-height: 100vh;
   margin: 0;
   font-family: 'Roboto', sans-serif;
