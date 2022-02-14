@@ -20,7 +20,7 @@ export const Header = () => {
 
       <Link to={routes.profile}>Profile Page</Link>
 
-      <SuperButton onClick={logout}>Logout</SuperButton>
+      <SuperButton className={"border-button"} onClick={logout}>Logout</SuperButton>
     </header>
   );
 };

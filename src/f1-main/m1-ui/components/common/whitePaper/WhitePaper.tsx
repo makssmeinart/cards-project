@@ -6,7 +6,6 @@ import Tilt from 'react-tilt'
 
 
 export const WhitePaper = (props: WhitePaperPropsType) => {
-    // console.log
     return (
         <div className={s.container}>
         <Tilt className="Tilt" options={{max: 10, scale: 1.03}} style={{maxWidth: "400px", width: "100%",backdropFilter: "blur(5px)"}}>
