@@ -24,7 +24,6 @@ import {
 import {DoubleRange} from "../../f1-main/m1-ui/components/common/doubleRange/DoubleRange";
 import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
 import tableS from "../../f1-main/m1-ui/components/common/table/table.module.css"
-import {TableItem} from "../../f1-main/m1-ui/components/common/table/tableItem/TableItem";
 import {RootAppStateType} from "../../f1-main/m2-bll/store";
 
 
@@ -124,45 +123,7 @@ export const PackList = () => {
             ) : (
                 <section style={{height: "100vh"}}>
                     <Header/>
-                    <main className={tableS.content} style={{backgroundColor: "black"}}>
-                        <aside style={{backgroundColor: "green"}}>
 
-                            filtred:
-                            <div>
-                                <SuperButton onClick={addPackHandler}>Add Pack</SuperButton>
-                                <SuperButton onClick={setAllPacks}>My</SuperButton>
-                                <SuperButton onClick={setMyPacks}>All</SuperButton>
-                            </div>
-                            <div>
-                                <SuperInputText
-                                    value={inputValue}
-                                    onChange={(e) => setInputValue(e.currentTarget.value)}
-                                />
-                                <SuperButton onClick={sendInput}>SEND</SuperButton>
-                            </div>
-                            <DoubleRange min={minRange} max={maxRange}/>
-                        </aside>
-
-                        <div className={`${tableS.table}`}>
-                            <ul className={`${tableS.tableItem} ${tableS.tableHeader}`}>
-                                <li onClick={nameSortHandler}>Name</li>
-                                <li onClick={cardsSortHandler}>Cards</li>
-                                <li onClick={lastUpdatedHandler}>Last Updated</li>
-                                <li onClick={userIdSortHandler}>Created by</li>
-                                <li>Actions</li>
-                            </ul>
-                            <div style={{backgroundColor: "orange"}}>
-                                {pack.map((p) => {
-                                    return <TableItem
-                                        key={p._id}
-                                        pack={p}
-                                        deletePack={deletePackHandler}
-                                        editPack={editPackHandler}
-                                    />
-                                })}
-                            </div>
-                        </div>
-                    </main>
                 </section>
             )}
         </>

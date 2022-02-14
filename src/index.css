@@ -1,3 +1,8 @@
+::-webkit-scrollbar { /* chrome based */
+  width: 0px;  /* ширина scrollbar'a */
+  background: transparent;  /* опционально */
+}
+
 body {
   min-height: 100vh;
   margin: 0;

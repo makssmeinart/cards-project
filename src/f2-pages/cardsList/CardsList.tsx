@@ -6,7 +6,6 @@ import {
     fetchCardsTC,
     addCardTC,
 } from "../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
-import tableS from "../../f1-main/m1-ui/components/common/table/table.module.css";
 import {
     appStatusSelector,
     currentUserIdSelector,
@@ -19,7 +18,6 @@ import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
 import {routes} from "../../f1-main/m2-bll/routes/routes";
 import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
 import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
-import {TableItemCards} from "../../f1-main/m1-ui/components/common/table/tableItem/TableItemCards";
 
 export const CardsList = () => {
     const [gradeSortValue, setGradeSortValue] = useState<"0grade" | "1grade">("1grade")
@@ -92,21 +90,21 @@ export const CardsList = () => {
             ) : (
                 <section>
                     <Header/>
-                    <main className={`${tableS.content} ${tableS.content_card}`}>
-                        <div className={tableS.table}>
+                    <main >
+                        <div>
                             {currentUserId === myId &&
                             <SuperButton onClick={addCardHandler}>Add new item</SuperButton>}
 
-                            <ul className={`${tableS.tableItem} ${tableS.tableHeader}`}>
+                            <ul >
                                 <li onClick={questionSortHandler}>Question</li>
                                 <li onClick={answerSortHandler}>Answer</li>
                                 <li onClick={updatedSortHandler}>Last Updated</li>
                                 <li onClick={gradeSortHandler}>Grade</li>
                                 <li>Actions</li>
                             </ul>
-                            <div style={{backgroundColor: "orange"}}>
+                            <div>
                                 {cards.map((c) => {
-                                    return <TableItemCards key={c._id} card={c} />
+                                    return <div>Card List</div>
                                 })}
                             </div>
                         </div>
