@@ -1,0 +1,9 @@
+.main {
+    background-color: black;
+    margin: 24px 136px 71px;
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+}
