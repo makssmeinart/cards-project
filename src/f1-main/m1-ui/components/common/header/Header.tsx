@@ -14,7 +14,7 @@ export const Header = () => {
 
   return (
     <header className={headerS.header}>
-      <h1 className={headerS.title}>Header</h1>
+      <h1 className={headerS.title}>LearnBy-Cards</h1>
 
       <Link to={routes.packList}>packList</Link>
 

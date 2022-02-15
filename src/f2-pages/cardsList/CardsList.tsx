@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   changeCardsValueAC,
   fetchCardsTC,
-  addCardTC,
+  addCardTC, changeSearchByCardsQuestionValue, deleteCardTC,
 } from "../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
 import {
   appStatusSelector,
   currentUserIdSelector,
   getCardsSelector,
-  isLoggedInSelector,
+  isLoggedInSelector, searchByCardsQuestionSelector,
   sortCardsValueSelector,
   userIdSelector,
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
@@ -22,9 +22,23 @@ import s from "../../f1-main/m1-ui/components/common/table/cardsListTable.module
 import { SuperInputText } from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
 
 export const CardsList = () => {
+  // UseSelectros
+  const status = useSelector(appStatusSelector);
+  const isLoggedIn = useSelector(isLoggedInSelector);
+  const dispatch = useDispatch();
+  const cards = useSelector(getCardsSelector);
+  const { packId } = useParams();
+  const myId = useSelector(userIdSelector);
+  const currentUserId = useSelector(currentUserIdSelector);
+  const sortCardsValue = useSelector(sortCardsValueSelector);
+  const searchByCardsQuestion = useSelector(searchByCardsQuestionSelector)
+
+  const [searchCardsInput, setSearchCardsInput] = useState("")
+
   const [gradeSortValue, setGradeSortValue] = useState<"0grade" | "1grade">(
     "1grade"
   );
+  // Sort
   const gradeSortHandler = () => {
     if (gradeSortValue === "1grade") {
       setGradeSortValue(() => "0grade");
@@ -70,22 +84,21 @@ export const CardsList = () => {
     dispatch(changeCardsValueAC(updatedSortValue));
   };
 
-  const status = useSelector(appStatusSelector);
-  const isLoggedIn = useSelector(isLoggedInSelector);
-  const dispatch = useDispatch();
-  const cards = useSelector(getCardsSelector);
-  const { packId } = useParams();
-  const myId = useSelector(userIdSelector);
-  const currentUserId = useSelector(currentUserIdSelector);
-  const sortCardsValue = useSelector(sortCardsValueSelector);
+  const searchCardsByValue = () => {
+    dispatch(changeSearchByCardsQuestionValue(searchCardsInput))
+  }
 
   const addCardHandler = () => {
     packId && dispatch(addCardTC(packId));
   };
 
+  const deleteCardHandler = (cardId: string) => {
+    packId && dispatch(deleteCardTC(packId, cardId))
+  }
+
   useEffect(() => {
     packId && dispatch(fetchCardsTC(packId));
-  }, [packId, sortCardsValue]);
+  }, [packId, sortCardsValue, searchByCardsQuestion]);
 
   if (!isLoggedIn) {
     return <Navigate to={routes.login} />;
@@ -107,7 +120,7 @@ export const CardsList = () => {
               </div>
 
               <div className={s.search}>
-                <SuperInputText />
+                <SuperInputText onEnter={searchCardsByValue} onChange={(e) => setSearchCardsInput(e.currentTarget.value)} />
 
                 {currentUserId === myId && (
                   <div className={s.searchButtonWrapper}>
@@ -142,15 +155,16 @@ export const CardsList = () => {
                 </div>
 
                 {cards.map((c) => {
+                  const updateDate = c.updated.slice(0,10)
                   return (
                     <div className={s.items}>
                       <div className={s.item}>{c.question}</div>
                       <div className={s.item}>{c.answer}</div>
-                      <div className={s.item}>{c.updated}</div>
+                      <div className={s.item}>{updateDate}</div>
                       <div className={s.item}>{c.grade}</div>
                       <div className={s.item}>
                         <div className={s.buttonHolder}>
-                          <SuperButton className={"miniDeleteButton"}>
+                          <SuperButton onClick={() => deleteCardHandler(c._id)} className={"miniDeleteButton"}>
                             Delete
                           </SuperButton>
                           <SuperButton className={"miniCommonButton"}>

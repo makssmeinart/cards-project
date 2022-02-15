@@ -2,9 +2,14 @@
     margin: 0;
 }
 .header {
-    color: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: rgba(19, 32, 40, 0.99);
+    color: white;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
 }

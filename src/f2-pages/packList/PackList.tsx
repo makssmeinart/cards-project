@@ -7,7 +7,7 @@ import {
     inputChangeHandlerAC,
     fetchPacksTC,
     sortedPackBtnAC,
-    deletePacksTC, editPackTC, addPackTC, changeSortedPackValueAC
+    deletePacksTC, editPackTC, addPackTC, changeSortedPackValueAC, rangeValueAC
 } from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {
     appStatusSelector, currentPackIdSelector,
@@ -145,12 +145,13 @@ export const PackList = () => {
                                 {/* Content Header */}
                                 <div className={packsS.content}>
                                     <div className={s.nameAndBack}>
-                                        <div>Strelka</div>
-                                        <h1>PackNAME</h1>
+                                        <h1>
+                                            Pack List
+                                        </h1>
                                     </div>
 
                                     <div className={s.search}>
-                                        <SuperInputText/>
+                                        <SuperInputText onEnter={sendInput} onChange={(e) => setInputValue(e.currentTarget.value)} />
 
                                         <div className={s.searchButtonWrapper}>
                                             <SuperButton
@@ -185,11 +186,12 @@ export const PackList = () => {
                                         </div>
 
                                         {pack.map((p) => {
+                                            const updateDate = p.updated.slice(0,10)
                                             return (
                                                 <div className={packsS.items}>
                                                     <Link to={`/main/cards-list/${p._id}`} className={packsS.item}>{p.name}</Link>
                                                     <div className={packsS.item}>{p.cardsCount}</div>
-                                                    <div className={packsS.item}>{p.updated}</div>
+                                                    <div className={packsS.item}>{updateDate}</div>
                                                     <div className={packsS.item}>{p.user_name}</div>
                                                     <div className={packsS.item}>
                                                         <div className={s.buttonHolder}>

@@ -21,3 +21,4 @@ export const sortByPacksSortValueSelector = (state: RootAppStateType) => state.p
 export const getCardsSelector = (state: RootAppStateType) => state.cards.cards
 export const currentUserIdSelector = (state: RootAppStateType) => state.cards.packUserId
 export const sortCardsValueSelector = (state: RootAppStateType) => state.cards.sortCardsValue
+export const searchByCardsQuestionSelector = (state: RootAppStateType) => state.cards.searchByCardsQuestion
