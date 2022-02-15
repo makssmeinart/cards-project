@@ -1,9 +1,51 @@
 .main {
-    background-color: black;
     margin: 24px 136px 71px;
-    height: 100%;
+    height: 700px;
 }
 
 .wrapper {
     display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Sidebar */
+
+.sidebar {
+    height: 100%;
+    padding: 33px 24px;
+    background-color: rgba(225, 225, 225, 0.4);
+}
+
+.showPacksCard h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.sidebar .buttonHolder {
+    width: 100%;
+    display: flex;
+    gap: .1rem;
+    margin-bottom: 45px;
+}
+.sidebar .buttonHolder button {
+    width: 50%;
+    padding: 10px 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+}
+.sidebar .buttonHolder button:first-child {
+    color: white;
+    background-color: #17083b;
+}
+.sidebar .buttonHolder button:last-child {
+    color: #000;
+    background-color: white;
+}
+
+.showNumberOfCards {}
+.showNumberOfCards h3 {
+    margin-top: 0;
+    margin-bottom: 45px;
 }

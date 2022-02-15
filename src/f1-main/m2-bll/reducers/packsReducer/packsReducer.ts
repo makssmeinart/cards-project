@@ -40,6 +40,7 @@ export const packsReducer = (
     case "CARDS/PACKS/INPUT":
       return { ...state, packName: action.value };
     case "CARDS/PACKS/BTN-SORTED":
+      debugger
       return { ...state, sortedPackBtn: action.value };
     case "CARDS/PACKS/RANGE-VALUE":
       return { ...state, min: action.min, max: action.max };

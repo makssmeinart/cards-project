@@ -17,23 +17,23 @@ import {
     minRangeSelector,
     minSelector,
     packNameSelector,
-    packSelector,
+    packSelector, sortByPacksSortValueSelector, sortedPackValueSelector,
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
 import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
-import {RootAppStateType} from "../../f1-main/m2-bll/store";
 import packsS from "../../f1-main/m1-ui/components/common/table/packsListTable.module.css"
+import {DoubleRange} from "../../f1-main/m1-ui/components/common/doubleRange/DoubleRange";
 
 export const PackList = () => {
     const dispatch = useDispatch();
     const [inputValue, setInputValue] = useState("");
-    const [sortedPackBtn, setSortedPackBtn] = useState(true);
+    const [sortedPackBtn, setSortedPackBtn] = useState(false);
 
     const [nameSortValue, setNameSortValue] = useState<"0name" | "1name">("0name")
     const nameSortHandler = () => {
         if (nameSortValue === "1name") {
-            setNameSortValue(()=>"0name")
+            setNameSortValue(() => "0name")
         } else {
-            setNameSortValue(()=>"1name")
+            setNameSortValue(() => "1name")
         }
         dispatch(changeSortedPackValueAC(nameSortValue))
     }
@@ -41,9 +41,9 @@ export const PackList = () => {
     const [userIdValue, setUserIdValue] = useState<"0user_id" | "1user_id">("0user_id")
     const userIdSortHandler = () => {
         if (userIdValue === "1user_id") {
-            setUserIdValue(()=>"0user_id")
+            setUserIdValue(() => "0user_id")
         } else {
-            setUserIdValue(()=>"1user_id")
+            setUserIdValue(() => "1user_id")
         }
         dispatch(changeSortedPackValueAC(userIdValue))
     }
@@ -51,9 +51,9 @@ export const PackList = () => {
     const [cardsValue, setCardsValue] = useState<"0cardsCount" | "1cardsCount">("0cardsCount")
     const cardsSortHandler = () => {
         if (cardsValue === "1cardsCount") {
-            setCardsValue(()=>"0cardsCount")
+            setCardsValue(() => "0cardsCount")
         } else {
-            setCardsValue(()=>"1cardsCount")
+            setCardsValue(() => "1cardsCount")
         }
         dispatch(changeSortedPackValueAC(cardsValue))
 
@@ -62,9 +62,9 @@ export const PackList = () => {
     const [lastUpdatedValue, setLastUpdatedValue] = useState<"0updated" | "1updated">("0updated")
     const lastUpdatedHandler = () => {
         if (lastUpdatedValue === "1updated") {
-            setLastUpdatedValue(()=>"0updated")
+            setLastUpdatedValue(() => "0updated")
         } else {
-            setLastUpdatedValue(()=>"1updated")
+            setLastUpdatedValue(() => "1updated")
         }
         dispatch(changeSortedPackValueAC(lastUpdatedValue))
 
@@ -79,20 +79,17 @@ export const PackList = () => {
     const max = useSelector(maxSelector);
     const min = useSelector(minSelector);
     const currentPackId = useSelector(currentPackIdSelector);
-    const sortValue = useSelector<RootAppStateType>(state => state.packs.sortedPackValue)
+    const sortValue = useSelector(sortByPacksSortValueSelector)
+    const sortedPackValue = useSelector(sortedPackValueSelector)
 
     const sendInput = () => {
         dispatch(inputChangeHandlerAC(inputValue));
     };
     const setMyPacks = () => {
         setSortedPackBtn(true);
-
-        dispatch(sortedPackBtnAC(sortedPackBtn));
     };
     const setAllPacks = () => {
         setSortedPackBtn(false);
-
-        dispatch(sortedPackBtnAC(sortedPackBtn));
     };
     const addPackHandler = () => {
         dispatch(addPackTC())
@@ -106,7 +103,11 @@ export const PackList = () => {
 
     useEffect(() => {
         dispatch(fetchPacksTC());
-    }, [packName, sortedPackBtn, min, max, currentPackId, sortValue]);
+    }, [packName, sortedPackValue, min, max, currentPackId, sortValue]);
+
+    useEffect(() => {
+         dispatch(sortedPackBtnAC(sortedPackBtn))
+    }, [sortedPackBtn])
 
     if (!isLoggedIn) {
         return <Navigate to={routes.login}/>;
@@ -122,18 +123,18 @@ export const PackList = () => {
                     <main className={packsS.main}>
                         <div className={packsS.wrapper}>
                             {/* Sidebar */}
-                            <aside>
-                                <div>
+                            <aside className={packsS.sidebar}>
+                                <div className={packsS.showPacksCard}>
                                     <h2>Show pack cards</h2>
-                                    <div>
-                                        <button>My</button>
-                                        <button>All</button>
+                                    <div className={packsS.buttonHolder}>
+                                        <button onClick={setMyPacks}>My</button>
+                                        <button onClick={setAllPacks}>All</button>
                                     </div>
                                 </div>
-                                <div>
+                                <div className={packsS.showNumberOfCards}>
                                     <h3>Show number of cards</h3>
                                     <div>
-                                        <input type="text"/>
+                                        <DoubleRange min={minRange} max={maxRange}/>
                                     </div>
                                 </div>
                             </aside>
@@ -159,18 +160,24 @@ export const PackList = () => {
                                     </div>
                                     <div>
                                         tableContent
-                                       <div>
-                                           tableItem
-                                           <span>Pack Name</span>
-                                           <span>5</span>
-                                           <span>2010-5-12</span>
-                                           <span>m.meinarts10@gmail.com</span>
-                                           <span>
-                                               <button>Delete</button>
-                                               <button>Edit</button>
-                                               <button>Learn</button>
-                                           </span>
-                                       </div>
+                                        <div>
+                                            {
+                                                pack.map(p => {
+                                                    return (
+                                                        <li>
+                                                            <span>{p.name}</span>
+                                                            <span>{p.cardsCount}</span>
+                                                            <span>{p.updated}</span>
+                                                            <span>{p.user_name}</span>
+                                                            <span><button>Delete</button>
+                                                            <button>Edit</button>
+                                                                <button>Learn</button>
+                                                            </span>
+                                                        </li>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                                 {/* Pagination */}

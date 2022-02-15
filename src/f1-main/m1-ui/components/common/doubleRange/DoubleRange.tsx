@@ -31,8 +31,6 @@ const dispatch = useDispatch()
                     ...props.style,
                     height: '36px',
                     display: 'flex',
-                    width: '50%',
-                    margin: '30px',
                 }}>
                     <div ref={props.ref} style={{
                         height: '5px',
