@@ -112,6 +112,13 @@ export const cardsApi = {
         cardsPack_id, question, answer, grade,  shots, answerImg, questionImg, questionVideo
       }
     })
+  },
+  editCard: (_id: string, question: string)=> {
+    return instance.put("cards/card", {
+      card: {
+        _id, question,
+      }
+    })
   }
 };
 

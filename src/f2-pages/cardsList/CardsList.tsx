@@ -1,16 +1,18 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeCardsValueAC,
   fetchCardsTC,
   addCardTC,
+  editCardTC,
 } from "../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
 import {
   appStatusSelector,
   currentUserIdSelector,
   getCardsSelector,
   isLoggedInSelector,
+  packSelector,
   sortCardsValueSelector,
   userIdSelector,
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
@@ -74,13 +76,21 @@ export const CardsList = () => {
   const isLoggedIn = useSelector(isLoggedInSelector);
   const dispatch = useDispatch();
   const cards = useSelector(getCardsSelector);
+  const pack = useSelector(packSelector);
   const { packId } = useParams();
   const myId = useSelector(userIdSelector);
   const currentUserId = useSelector(currentUserIdSelector);
   const sortCardsValue = useSelector(sortCardsValueSelector);
+  const navigate = useNavigate();
 
   const addCardHandler = () => {
     packId && dispatch(addCardTC(packId));
+  };
+
+  const currentPackName = pack.find((p) => p._id === packId);
+
+  const editCardHandler = (idCard: string, newQuestion: string) => {
+    packId && dispatch(editCardTC(idCard, newQuestion, packId));
   };
 
   useEffect(() => {
@@ -102,8 +112,15 @@ export const CardsList = () => {
           <main className={s.content}>
             <div className={s.wrapper}>
               <div className={s.nameAndBack}>
-                <div>Strelka</div>
-                <h1>PackNAME</h1>
+                <img
+                  src={
+                    "https://cdn-icons.flaticon.com/png/512/3007/premium/3007810.png?token=exp=1644936622~hmac=621bb502bc72f803f9764630c78b2c07"
+                  }
+                  onClick={() => navigate(-1)}
+                  alt={"back"}
+                  style={{ width: "20px", marginRight: "15px" }}
+                />
+                <h1>{currentPackName && currentPackName.name}</h1>
               </div>
 
               <div className={s.search}>
@@ -150,12 +167,22 @@ export const CardsList = () => {
                       <div className={s.item}>{c.grade}</div>
                       <div className={s.item}>
                         <div className={s.buttonHolder}>
-                          <SuperButton className={"miniDeleteButton"}>
-                            Delete
-                          </SuperButton>
-                          <SuperButton className={"miniCommonButton"}>
-                            Edit
-                          </SuperButton>
+                          {currentUserId === myId && (
+                            <>
+                              <SuperButton className={"miniDeleteButton"}>
+                                Delete
+                              </SuperButton>
+                              <SuperButton
+                                className={"miniCommonButton"}
+                                onClick={() =>
+                                  editCardHandler(c._id, "editCARD")
+                                }
+                              >
+                                Edit
+                              </SuperButton>
+                            </>
+                          )}
+
                           <SuperButton className={"miniCommonButton"}>
                             Learn
                           </SuperButton>

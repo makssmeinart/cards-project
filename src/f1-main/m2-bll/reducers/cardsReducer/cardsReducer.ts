@@ -1,7 +1,8 @@
 import { Dispatch } from "redux";
 import { RootAppStateType } from "../../store";
-import { cardsApi } from "../../../m3-dal/api";
+import {cardsApi, packsApi} from "../../../m3-dal/api";
 import { ThunkDispatch } from "redux-thunk";
+import {changePackIdAC, changePackNameAC, fetchPacksTC} from "../packsReducer/packsReducer";
 
 export type CardsType = {
     answer: string,
@@ -60,9 +61,7 @@ export const changeCardsValueAC = (value: string) => {
 // Thunk
 export const fetchCardsTC = (packId: string) => (dispatch: Dispatch, getState: () => RootAppStateType) => {
     const state = getState().cards
-
     const {sortCardsValue} = state
-
     cardsApi.getCards("","", packId, 0, 0,sortCardsValue, 1, 10)
         .then(res=> {
             dispatch(cardsReducerAC(res.data))
@@ -76,6 +75,11 @@ export const addCardTC = (packId: string) => (dispatch: ThunkDispatch<RootAppSta
       dispatch(fetchCardsTC(packId));
     });
   };
+export const editCardTC = (idCard: string, newQuestion: string, packId: string) => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
+    cardsApi.editCard(idCard, newQuestion).then(() => {
+        dispatch(fetchCardsTC(packId));
+    });
+};
 
 // Types
 export type InitStateType = {
