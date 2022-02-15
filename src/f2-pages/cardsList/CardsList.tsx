@@ -19,11 +19,9 @@ import { routes } from "../../f1-main/m2-bll/routes/routes";
 import { Loading } from "../../f1-main/m1-ui/components/common/loading/Loading";
 import { SuperButton } from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import s from "../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
-// import btnS from "../../f1-main/m1-ui/components/common/superButton/superButton.module.css"
 import { SuperInputText } from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
 
 export const CardsList = () => {
-  // http://localhost:3000/cards-project#/main/cards-list/6208ed6a677f2635d8950510
   const [gradeSortValue, setGradeSortValue] = useState<"0grade" | "1grade">(
     "1grade"
   );
