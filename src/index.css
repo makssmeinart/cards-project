@@ -3,20 +3,20 @@
   background: transparent;  /* опционально */
 }
 
-*,*:before,*:after {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
-  height: 100vh !important;
+  box-sizing: inherit;
+  min-height: 100vh;
   margin: 0;
   font-family: 'Roboto', sans-serif;
   background: url(./f3-assets/images/paper.webp);
   background-size: cover;
   background-position: center top;
-  box-sizing: inherit;
 }
 
 
