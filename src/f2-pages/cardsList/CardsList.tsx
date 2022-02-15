@@ -1,16 +1,21 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeCardsValueAC,
   fetchCardsTC,
-  addCardTC, changeSearchByCardsQuestionValue, deleteCardTC,
+  addCardTC,
+  editCardTC,
+  changeSearchByCardsQuestionValue,
+  deleteCardTC,
 } from "../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
 import {
   appStatusSelector,
   currentUserIdSelector,
   getCardsSelector,
-  isLoggedInSelector, searchByCardsQuestionSelector,
+  packSelector,
+  isLoggedInSelector,
+  searchByCardsQuestionSelector,
   sortCardsValueSelector,
   userIdSelector,
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
@@ -24,6 +29,7 @@ import { SuperInputText } from "../../f1-main/m1-ui/components/common/superInput
 export const CardsList = () => {
   // UseSelectros
   const status = useSelector(appStatusSelector);
+  const pack = useSelector(packSelector);
   const isLoggedIn = useSelector(isLoggedInSelector);
   const dispatch = useDispatch();
   const cards = useSelector(getCardsSelector);
@@ -32,6 +38,7 @@ export const CardsList = () => {
   const currentUserId = useSelector(currentUserIdSelector);
   const sortCardsValue = useSelector(sortCardsValueSelector);
   const searchByCardsQuestion = useSelector(searchByCardsQuestionSelector)
+  const navigate = useNavigate();
 
   const [searchCardsInput, setSearchCardsInput] = useState("")
 
@@ -96,6 +103,12 @@ export const CardsList = () => {
     packId && dispatch(deleteCardTC(packId, cardId))
   }
 
+  const currentPackName = pack.find((p) => p._id === packId);
+
+  const editCardHandler = (idCard: string, newQuestion: string) => {
+    packId && dispatch(editCardTC(idCard, newQuestion, packId));
+  };
+
   useEffect(() => {
     packId && dispatch(fetchCardsTC(packId));
   }, [packId, sortCardsValue, searchByCardsQuestion]);
@@ -115,8 +128,15 @@ export const CardsList = () => {
           <main className={s.content}>
             <div className={s.wrapper}>
               <div className={s.nameAndBack}>
-                <div>Strelka</div>
-                <h1>PackNAME</h1>
+                <img
+                  src={
+                    "https://cdn-icons-png.flaticon.com/512/507/507257.png"
+                  }
+                  onClick={() => navigate(-1)}
+                  alt={"back"}
+                  style={{ width: "20px", marginRight: "15px", cursor: "pointer"}}
+                />
+                <h1>{currentPackName && currentPackName.name}</h1>
               </div>
 
               <div className={s.search}>
@@ -164,13 +184,22 @@ export const CardsList = () => {
                       <div className={s.item}>{c.grade}</div>
                       <div className={s.item}>
                         <div className={s.buttonHolder}>
-                          <SuperButton onClick={() => deleteCardHandler(c._id)} className={"miniDeleteButton"}>
-                            Delete
-                          </SuperButton>
-                          <SuperButton className={"miniCommonButton"}>
-                            Edit
-                          </SuperButton>
-                          <SuperButton className={"miniCommonButton"}>
+                          {currentUserId === myId && (
+                            <>
+                              <SuperButton onClick={() => deleteCardHandler(c._id)} className={"miniDeleteButton"}>
+                                Delete
+                              </SuperButton>
+                              <SuperButton
+                                className={"miniCommonButton"}
+                                onClick={() =>
+                                  editCardHandler(c._id, "editCARD")
+                                }
+                              >
+                                Edit
+                              </SuperButton>
+                            </>
+                          )}
+                          <SuperButton onClick={() => alert(" Zdarova Ignat naoj")} className={"miniCommonButton"}>
                             Learn
                           </SuperButton>
                         </div>

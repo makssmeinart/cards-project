@@ -1,7 +1,8 @@
-import {Action, Dispatch} from "redux";
-import {RootAppStateType} from "../../store";
-import {cardsApi} from "../../../m3-dal/api";
-import {ThunkDispatch} from "redux-thunk";
+import { Dispatch } from "redux";
+import { RootAppStateType } from "../../store";
+import {cardsApi, packsApi} from "../../../m3-dal/api";
+import { ThunkDispatch } from "redux-thunk";
+import {fetchPacksTC, packsReducerAC} from "../packsReducer/packsReducer";
 
 export type CardsType = {
     answer: string,
@@ -69,6 +70,8 @@ export const changeSearchByCardsQuestionValue = (value: string) => {
 export const fetchCardsTC = (packId: string) => (dispatch: Dispatch, getState: () => RootAppStateType) => {
     const state = getState().cards
 
+    const {packUserId} = state
+
     const {sortCardsValue, searchByCardsQuestion} = state
 
     cardsApi.getCards("", searchByCardsQuestion, packId, 0, 0, sortCardsValue, 1, 10)
@@ -76,11 +79,16 @@ export const fetchCardsTC = (packId: string) => (dispatch: Dispatch, getState: (
             dispatch(cardsReducerAC(res.data))
             const st = getState().cards
             console.log("getCards", st)
-        })
+    })
 };
 export const addCardTC = (packId: string) => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
     const grade = Math.floor(Math.random() * 5);
     cardsApi.addCard(packId, "123", "456", grade, 0, "", "", "").then(() => {
+        dispatch(fetchCardsTC(packId));
+    });
+  };
+export const editCardTC = (idCard: string, newQuestion: string, packId: string) => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
+    cardsApi.editCard(idCard, newQuestion).then(() => {
         dispatch(fetchCardsTC(packId));
     });
 };

@@ -113,6 +113,13 @@ export const cardsApi = {
       }
     })
   },
+  editCard: (_id: string, question: string)=> {
+    return instance.put("cards/card", {
+      card: {
+        _id, question,
+      }
+    })
+  },
   deleteCard: (cardId: string) => {
     return instance.delete("cards/card", {params: {id:cardId}})
   }

@@ -40,7 +40,6 @@ export const packsReducer = (
     case "CARDS/PACKS/INPUT":
       return { ...state, packName: action.value };
     case "CARDS/PACKS/BTN-SORTED":
-      debugger
       return { ...state, sortedPackBtn: action.value };
     case "CARDS/PACKS/RANGE-VALUE":
       return { ...state, min: action.min, max: action.max };
@@ -115,12 +114,7 @@ export const addPackTC =
       dispatch(fetchPacksTC());
     });
   };
-export const editPackTC =
-  (idPack: string, packName: string) =>
-  (
-    dispatch: ThunkDispatch<RootAppStateType, void, any>,
-    getState: () => RootAppStateType
-  ) => {
+export const editPackTC = (idPack: string, packName: string) => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
     // ChangeID
     dispatch(changePackIdAC(idPack));
     dispatch(changePackNameAC(packName));

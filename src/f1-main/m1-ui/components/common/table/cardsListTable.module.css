@@ -7,7 +7,8 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  margin: 19px 24px 19px 24px;
+  /*margin: 19px 24px 19px 24px;*/
+  padding: 19px 24px;
   flex-shrink: 0;
 }
 
@@ -46,7 +47,7 @@
 
 .tableHeaderWrapper {
   color: white;
-  background-color: rgba(57, 57, 57, 0.97);
+  background-color: rgba(19, 32, 40, 0.95);
   height: 48px;
   line-height: 2;
   top: 0;
@@ -63,6 +64,12 @@
   height: 48px;
 }
 
+.tableHeader div:not(:last-child) {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
 .tableLine {
 }
 
@@ -70,10 +77,10 @@
   display: grid;
   grid-template-areas: "1 2 3 4 5";
   grid-template-columns: 25% 25% 19% 9% 18%;
-  align-items: center;
+  align-items: start;
   color: black;
   background-color: #ffffff;
-  padding: 0.5em;
+  padding: 0.9em;
   margin: 0.5em 0;
   gap: 1%;
 }
