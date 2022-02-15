@@ -1,35 +1,4 @@
 .wrapper {
-    /*overflow: hidden;*/
-    /*position: relative;*/
-    /*background-image: url("./src/f3-assets/images/paper.jpg")*/
+    overflow: hidden;
+
 }
-/*.circle {*/
-/*    z-index: -1;*/
-/*    width: 370px;*/
-/*    height: 370px;*/
-/*    border-radius: 50%;*/
-/*    position: absolute;*/
-/*}*/
-
-/*.circle1 {*/
-/*    top: -11%;*/
-/*    left: -11%;*/
-/*    background: rgb(34, 193, 195);*/
-/*    background: linear-gradient(196deg, rgb(93 244 230) 0%, rgb(165 96 161) 100%);*/
-/*}*/
-
-/*.circle2 {*/
-/*    top: 30%;*/
-/*    right: 18%;*/
-/*    opacity: 0.9;*/
-/*    background: rgb(150, 174, 177);*/
-/*    background: linear-gradient(321deg, rgb(166 95 161) 0%, rgb(151 126 175) 100%);*/
-/*}*/
-
-/*.circle3 {*/
-/*    bottom: -10%;*/
-/*    right: 68%;*/
-/*    opacity: 0.8;*/
-/*    background: rgb(150, 174, 177);*/
-/*    background: linear-gradient(342deg, rgb(171 84 156) 0%, rgb(91 248 232) 100%);*/
-/*}*/

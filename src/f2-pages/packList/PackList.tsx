@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {Navigate} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import {routes} from "../../f1-main/m2-bll/routes/routes";
 import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
 import React, {useEffect, useState} from "react";
@@ -22,6 +22,9 @@ import {
 import {Header} from "../../f1-main/m1-ui/components/common/header/Header";
 import packsS from "../../f1-main/m1-ui/components/common/table/packsListTable.module.css"
 import {DoubleRange} from "../../f1-main/m1-ui/components/common/doubleRange/DoubleRange";
+import s from "../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
+import {SuperInputText} from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
+import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
 
 export const PackList = () => {
     const dispatch = useDispatch();
@@ -106,7 +109,7 @@ export const PackList = () => {
     }, [packName, sortedPackValue, min, max, currentPackId, sortValue]);
 
     useEffect(() => {
-         dispatch(sortedPackBtnAC(sortedPackBtn))
+        dispatch(sortedPackBtnAC(sortedPackBtn))
     }, [sortedPackBtn])
 
     if (!isLoggedIn) {
@@ -140,49 +143,72 @@ export const PackList = () => {
                             </aside>
                             <div>
                                 {/* Content Header */}
-                                <div>
-                                    <h1>Title</h1>
-                                </div>
-                                <div>
-                                    <input type="text"/>
-                                    <button>Add new pack</button>
-                                </div>
-                                {/* Table */}
-                                <div>
-                                    table
-                                    <div>
-                                        tableHeader
-                                        <span>Name</span>
-                                        <span>Cards</span>
-                                        <span>Last Updated</span>
-                                        <span>Created By</span>
-                                        <span>Actions</span>
+                                <div className={packsS.content}>
+                                    <div className={s.nameAndBack}>
+                                        <div>Strelka</div>
+                                        <h1>PackNAME</h1>
                                     </div>
-                                    <div>
-                                        tableContent
-                                        <div>
-                                            {
-                                                pack.map(p => {
-                                                    return (
-                                                        <li>
-                                                            <span>{p.name}</span>
-                                                            <span>{p.cardsCount}</span>
-                                                            <span>{p.updated}</span>
-                                                            <span>{p.user_name}</span>
-                                                            <span><button>Delete</button>
-                                                            <button>Edit</button>
-                                                                <button>Learn</button>
-                                                            </span>
-                                                        </li>
-                                                    )
-                                                })
-                                            }
+
+                                    <div className={s.search}>
+                                        <SuperInputText/>
+
+                                        <div className={s.searchButtonWrapper}>
+                                            <SuperButton
+                                                className={"primaryButton"}
+                                                style={{width: "250px"}}
+                                                onClick={addPackHandler}
+                                            >
+                                                Add new pack
+                                            </SuperButton>
                                         </div>
                                     </div>
-                                </div>
-                                {/* Pagination */}
-                                <div>
-                                    Pagination
+
+                                    <div className={s.tableContainer}>
+                                        <div className={packsS.tableHeaderWrapper}>
+                                            <div className={packsS.tableHeader}>
+                                                <div onClick={nameSortHandler} className={s.tableLine}>
+                                                    Name
+                                                </div>
+                                                <div onClick={cardsSortHandler} className={s.tableLine}>
+                                                    Cards
+                                                </div>
+                                                <div onClick={lastUpdatedHandler} className={s.tableLine}>
+                                                    Last Updated
+                                                </div>
+                                                <div onClick={userIdSortHandler} className={s.tableLine}>
+                                                    Created By
+                                                </div>
+                                                <div className={s.tableLine}>
+                                                    Actions
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {pack.map((p) => {
+                                            return (
+                                                <div className={packsS.items}>
+                                                    <Link to={`/main/cards-list/${p._id}`} className={packsS.item}>{p.name}</Link>
+                                                    <div className={packsS.item}>{p.cardsCount}</div>
+                                                    <div className={packsS.item}>{p.updated}</div>
+                                                    <div className={packsS.item}>{p.user_name}</div>
+                                                    <div className={packsS.item}>
+                                                        <div className={s.buttonHolder}>
+                                                            <SuperButton onClick={() => deletePackHandler(p._id)} className={"miniDeleteButton"}>
+                                                                Delete
+                                                            </SuperButton>
+                                                            <SuperButton onClick={() => editPackHandler(p._id, "New packaritooo")} className={"miniCommonButton"}>
+                                                                Edit
+                                                            </SuperButton>
+                                                            <SuperButton onClick={() => alert("Learning the lot")} className={"miniCommonButton"}>
+                                                                Learn
+                                                            </SuperButton>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                    <div className={s.pagination}>PAGINATION</div>
                                 </div>
                             </div>
                         </div>
