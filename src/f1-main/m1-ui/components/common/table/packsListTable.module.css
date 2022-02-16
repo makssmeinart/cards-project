@@ -94,10 +94,10 @@
     display: grid;
     grid-template-areas: "1 2 3 4 5";
     grid-template-columns: 25% 10% 20% 20%;
-    align-items: center;
+    align-items: start;
     color: black;
     background-color: #ffffff;
-    padding: 0.5em;
+    padding: .9em;
     margin: 0.5em 0;
     gap: 1%;
     word-break: break-all;

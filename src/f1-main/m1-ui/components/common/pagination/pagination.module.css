@@ -13,7 +13,7 @@
 /* Select */
 .selectWrapper {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
     align-items: center;
 }
 .select {

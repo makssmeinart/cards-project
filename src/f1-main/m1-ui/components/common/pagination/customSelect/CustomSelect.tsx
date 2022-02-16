@@ -24,15 +24,26 @@ export const CustomSelect = () => {
     }, [currentPageSize])
 
     return (
-        <select className={paginationS.select}
-                onChange={(e) =>
-                    changePageSize(e.currentTarget.value)}
-        >
-            <option className={paginationS.selectOption} value={10}>10</option>
-            <option className={paginationS.selectOption} value={20}>20</option>
-            <option className={paginationS.selectOption} value={50}>50</option>
-            <option className={paginationS.selectOption} value={100}>100
-            </option>
-        </select>
+        <div className={paginationS.selectWrapper}>
+            <div>
+                Show
+            </div>
+            <select className={paginationS.select}
+                    onChange={(e) =>
+                        changePageSize(e.currentTarget.value)}
+            >
+                <option className={paginationS.selectOption} value={10}>10
+                </option>
+                <option className={paginationS.selectOption} value={20}>20
+                </option>
+                <option className={paginationS.selectOption} value={50}>50
+                </option>
+                <option className={paginationS.selectOption} value={100}>100
+                </option>
+            </select>
+            <div>
+                Cards per Page
+            </div>
+        </div>
     )
 }

@@ -28,8 +28,7 @@ export const CustomPagination = () => {
                 total={totalPacks}
                 pageSize={pageSize}
                 onChange={changePage}
-                hideOnSinglePage
-                pageSizeOptions={[10, 20, 30, 40, 50]}
+                hideOnSinglePage={true}
                 style={{display: "flex", gap: "10px", listStyle: "none"}}
                 className={paginationS.pagination}
                 selectComponentClass={CustomSelect}

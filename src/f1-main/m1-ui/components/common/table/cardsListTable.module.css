@@ -80,7 +80,8 @@
   align-items: start;
   color: black;
   background-color: #ffffff;
-  padding: 0.9em;
+  word-break: break-all;
+  padding: .9em;
   margin: 0.5em 0;
   gap: 1%;
 }
