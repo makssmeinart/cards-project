@@ -38,6 +38,7 @@ export const packsReducer = (
     case "CARDS/PACKS":
       return { ...state , ...action.data};
     case "CARDS/PACKS/INPUT":
+      debugger
       return { ...state, packName: action.value };
     case "CARDS/PACKS/BTN-SORTED":
       return { ...state, sortedPackBtn: action.value };

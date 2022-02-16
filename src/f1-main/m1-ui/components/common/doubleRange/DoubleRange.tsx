@@ -20,7 +20,7 @@ const dispatch = useDispatch()
 
   useEffect(() => {
         setValues([props.min, props.max])
-    }, [props.min, props.max])
+  }, [props.min, props.max])
 
   return (
     <Range
