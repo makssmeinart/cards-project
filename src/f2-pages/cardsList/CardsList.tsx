@@ -25,6 +25,7 @@ import { Loading } from "../../f1-main/m1-ui/components/common/loading/Loading";
 import { SuperButton } from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import s from "../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
 import { SuperInputText } from "../../f1-main/m1-ui/components/common/superInput/SuperInput";
+import {fetchPacksTC} from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 
 export const CardsList = () => {
   // UseSelectros
@@ -60,7 +61,7 @@ export const CardsList = () => {
   >("0question");
   const questionSortHandler = () => {
     if (questionSortValue === "0question") {
-      setQuestionSortValue(() => "1question");
+        setQuestionSortValue(() => "1question");
     } else {
       setQuestionSortValue(() => "0question");
     }
@@ -103,11 +104,15 @@ export const CardsList = () => {
     packId && dispatch(deleteCardTC(packId, cardId))
   }
 
-  const currentPackName = pack.find((p) => p._id === packId);
-
   const editCardHandler = (idCard: string, newQuestion: string) => {
     packId && dispatch(editCardTC(idCard, newQuestion, packId));
   };
+
+  const currentPackName = pack.find((p) => p._id === packId);
+
+  useEffect(() => {
+    dispatch(fetchPacksTC())
+  }, [])
 
   useEffect(() => {
     packId && dispatch(fetchCardsTC(packId));

@@ -77,6 +77,7 @@ export const changeSortedPackValueAC = (value: string) => {
   return { type: "CARDS/PACKS/SORTED-VALUE", value } as const;
 };
 
+
 // Thunk
 export const fetchPacksTC =
   () => (dispatch: Dispatch, getState: () => RootAppStateType) => {
