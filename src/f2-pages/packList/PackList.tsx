@@ -14,7 +14,7 @@ import {
     maxSelector,
     minRangeSelector,
     minSelector,
-    packNameSelector,
+    packNameSelector, selectCurrentPage, selectPageSize,
     sortByPacksSortValueSelector,
     sortedPackValueSelector,
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
@@ -27,6 +27,9 @@ import s
 import {Sidebar} from "../../f1-main/m1-ui/components/common/sidebar/Sidebar";
 import {PacksSearch} from "../../f1-main/m1-ui/components/common/packsSearch/PacksSearch";
 import {PacksTable} from "../../f1-main/m1-ui/components/common/packsTable/PacksTable";
+import {
+    CustomPagination,
+} from "../../f1-main/m1-ui/components/common/pagination/Pagination";
 
 export const PackList = React.memo(() => {
     const dispatch = useDispatch();
@@ -36,6 +39,8 @@ export const PackList = React.memo(() => {
     const isLoggedIn = useSelector(isLoggedInSelector);
     const minRange = useSelector(minRangeSelector);
     const maxRange = useSelector(maxRangeSelector);
+    const page = useSelector(selectCurrentPage)
+    const pageSize = useSelector(selectPageSize)
 
     const max = useSelector(maxSelector);
     const min = useSelector(minSelector);
@@ -55,6 +60,8 @@ export const PackList = React.memo(() => {
         sortValue,
         maxRange,
         minRange,
+        page,
+        pageSize,
     ]);
 
     if (!isLoggedIn) {
@@ -81,8 +88,7 @@ export const PackList = React.memo(() => {
                                     </div>
                                     <PacksSearch/>
                                     <PacksTable/>
-                                    <div className={s.pagination}>PAGINATION
-                                    </div>
+                                    <CustomPagination/>
                                 </div>
                             </div>
                         </div>

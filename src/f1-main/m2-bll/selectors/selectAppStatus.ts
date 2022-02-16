@@ -22,3 +22,9 @@ export const getCardsSelector = (state: RootAppStateType) => state.cards.cards
 export const currentUserIdSelector = (state: RootAppStateType) => state.cards.packUserId
 export const sortCardsValueSelector = (state: RootAppStateType) => state.cards.sortCardsValue
 export const searchByCardsQuestionSelector = (state: RootAppStateType) => state.cards.searchByCardsQuestion
+
+// Pagination
+
+export const selectCurrentPage = (state: RootAppStateType) => state.packs.page
+export const selectTotalPacksCount = (state: RootAppStateType) => state.packs.cardPacksTotalCount
+export const selectPageSize = (state: RootAppStateType) => state.packs.pageCount

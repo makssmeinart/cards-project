@@ -41,7 +41,7 @@
   /*position: relative;*/
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 500px;
+  max-height: 480px;
   border-radius: 10px;
 }
 

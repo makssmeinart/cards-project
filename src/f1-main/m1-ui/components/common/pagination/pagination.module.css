@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    gap: 1rem;
+    margin-top: 30px;
+}
+.pagination {}
+
+.pagination li {
+    padding: 2px 7px;
+    cursor: pointer;
+}
+
+/* Select */
+.selectWrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.select {
+
+}
+.selectItem {
+
+}
+
+.icon {
+    width: 35px;
+}
