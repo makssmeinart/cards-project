@@ -36,7 +36,7 @@ export const packsReducer = (
 ): InitStateType => {
   switch (action.type) {
     case "CARDS/PACKS":
-      return { ...state , ...action.data , maxCardsCount: 200};
+      return { ...state , ...action.data};
     case "CARDS/PACKS/INPUT":
       return { ...state, packName: action.value };
     case "CARDS/PACKS/BTN-SORTED":

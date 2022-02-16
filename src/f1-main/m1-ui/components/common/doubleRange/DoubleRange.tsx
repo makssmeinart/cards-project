@@ -18,12 +18,16 @@ const dispatch = useDispatch()
     dispatch(rangeValueAC(values[0], values[1]));
   }, [values]);
 
+  useEffect(() => {
+        setValues([props.min, props.max])
+    }, [props.min, props.max])
+
   return (
     <Range
       values={values}
       step={5}
-      min={0}
-      max={200}
+      min={props.min}
+      max={props.max}
       onChange={(values) => setValues(values)}
       renderTrack={({ props, children }) => (
         <div
