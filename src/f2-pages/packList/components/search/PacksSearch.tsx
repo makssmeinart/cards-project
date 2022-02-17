@@ -1,11 +1,11 @@
-import s from "../table/cardsListTable.module.css";
-import {SuperInputText} from "../superInput/SuperInput";
-import {SuperButton} from "../superButton/SuperButton";
+import s from "../../../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
+import {SuperInputText} from "../../../../f1-main/m1-ui/components/common/superInput/SuperInput";
+import {SuperButton} from "../../../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import React, {useCallback, useState} from "react";
 import {
     addPackTC,
     inputChangeHandlerAC
-} from "../../../../m2-bll/reducers/packsReducer/packsReducer";
+} from "../../../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {useDispatch} from "react-redux";
 
 export const PacksSearch = React.memo(() => {

@@ -1,7 +1,7 @@
-import packsS from "../../table/packsListTable.module.css";
-import s from "../../table/cardsListTable.module.css";
+import packsS from "../../../../../f1-main/m1-ui/components/common/table/packsListTable.module.css";
+import s from "../../../../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
 import React, {useCallback, useState} from "react";
-import {changeSortedPackValueAC} from "../../../../../m2-bll/reducers/packsReducer/packsReducer";
+import {changeSortedPackValueAC} from "../../../../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {useDispatch} from "react-redux";
 
 export const PacksTableHeader = () => {

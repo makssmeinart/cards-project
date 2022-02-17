@@ -25,8 +25,8 @@ import s
     from "../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
 
 import {Sidebar} from "../../f1-main/m1-ui/components/common/sidebar/Sidebar";
-import {PacksSearch} from "../../f1-main/m1-ui/components/common/packsSearch/PacksSearch";
-import {PacksTable} from "../../f1-main/m1-ui/components/common/packsTable/PacksTable";
+import {PacksSearch} from "./components/search/PacksSearch";
+import {PacksTable} from "./components/table/PacksTable";
 import {
     CustomPagination,
 } from "../../f1-main/m1-ui/components/common/pagination/Pagination";

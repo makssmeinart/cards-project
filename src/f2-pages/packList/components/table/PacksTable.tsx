@@ -1,10 +1,10 @@
-import s from "../table/cardsListTable.module.css";
+import s from "../../../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
 import React from "react";
 import {PacksTableHeader} from "./header/PacksTableHeader";
 import {useSelector} from "react-redux";
 import {
     packSelector,
-} from "../../../../m2-bll/selectors/selectAppStatus";
+} from "../../../../f1-main/m2-bll/selectors/selectAppStatus";
 import {TableItem} from "./tableItem/TableItem";
 
 export const PacksTable = React.memo(() => {

@@ -1,14 +1,14 @@
-import packsS from "../../table/packsListTable.module.css";
+import packsS from "../../../../../f1-main/m1-ui/components/common/table/packsListTable.module.css";
 import {Link} from "react-router-dom";
-import s from "../../table/cardsListTable.module.css";
-import {SuperButton} from "../../superButton/SuperButton";
+import s from "../../../../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
+import {SuperButton} from "../../../../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import React, {useCallback} from "react";
 import {
     cardPacksType,
     deletePacksTC, editPackTC
-} from "../../../../../m2-bll/reducers/packsReducer/packsReducer";
+} from "../../../../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {userIdSelector} from "../../../../../m2-bll/selectors/selectAppStatus";
+import {userIdSelector} from "../../../../../f1-main/m2-bll/selectors/selectAppStatus";
 
 export const TableItem = ({pack}: TableItemPropsType) => {
 
