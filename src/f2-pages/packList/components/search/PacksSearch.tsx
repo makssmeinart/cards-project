@@ -26,6 +26,7 @@ export const PacksSearch = React.memo(() => {
         <div className={s.search}>
             <SuperInputText
                 onChange={e => setInputValue(e.currentTarget.value)}
+                placeholder={"Search pack by name"}
             />
 
             <div className={s.searchButtonWrapper}>

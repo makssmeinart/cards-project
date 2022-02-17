@@ -7,7 +7,6 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  /*margin: 19px 24px 19px 24px;*/
   padding: 19px 24px;
   flex-shrink: 0;
 }
@@ -16,8 +15,6 @@
   display: grid;
   grid-template-areas: "1 2";
   grid-template-columns: 1fr auto;
-  /*justify-items: stretch;*/
-  /*justify-content: stretch;*/
   align-items: center;
   margin-bottom: 24px;
 }
@@ -36,9 +33,6 @@
 }
 
 .tableContainer {
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  /*position: relative;*/
   overflow-x: hidden;
   overflow-y: scroll;
   max-height: 480px;
@@ -78,7 +72,7 @@
   grid-template-areas: "1 2 3 4 5";
   grid-template-columns: 25% 25% 19% 9% 18%;
   align-items: start;
-  color: black;
+  color: rgba(17, 30, 39, 1);
   background-color: #ffffff;
   word-break: break-all;
   padding: .9em;
@@ -104,3 +98,6 @@
   flex-wrap: wrap;
 }
 
+.search div:first-child {
+  padding: 15px 15px 0 0;
+}

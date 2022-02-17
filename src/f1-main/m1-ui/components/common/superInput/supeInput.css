@@ -24,6 +24,10 @@
     border-bottom: 2px solid rgba(17, 30, 39, 0.2);
     padding: .2em 0;
 }
+.searchformfld input::placeholder {
+    color: rgba(17, 30, 39, .5);
+    font-weight: 600;
+}
 
 .searchformfld input:focus + label,.searchformfld input:not(:placeholder-shown) + label{
     opacity:1;
@@ -41,8 +45,8 @@
     border-bottom: 2px solid rgba(255, 255, 255, 0.7);
 }
 
-.searchformfld{
-    padding: 15px;
+.searchformfld {
+    padding: 15px 15px 15px 15px;
     padding-bottom: 0;
 }
 .searchformfld input{
