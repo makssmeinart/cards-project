@@ -4,7 +4,9 @@ import {packsApi} from "../../../m3-dal/api";
 import {ThunkDispatch} from "redux-thunk";
 
 const img =
-    "https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/37_0_1125_675/master/1125.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=d456a2af571d980d8b2985472c262b31";
+    "https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/" +
+    "37_0_1125_675/master/1125.jpg?width=1200&height=1200&quality=85&auto=fo" +
+    "rmat&fit=crop&s=d456a2af571d980d8b2985472c262b31";
 
 const initState: InitStateType = {
     cardPacks: [],
@@ -38,7 +40,6 @@ export const packsReducer = (
         case "CARDS/PACKS":
             return {...state, ...action.data};
         case "CARDS/PACKS/INPUT":
-            debugger
             return {...state, packName: action.value};
         case "CARDS/PACKS/BTN-SORTED":
             return {...state, sortedPackBtn: action.value};
@@ -105,7 +106,8 @@ export const fetchPacksTC =
         const {packName, min, max, page, pageCount, sortedPackValue} = state;
 
         packsApi
-            .getPacks(packName, min, max, sortedPackValue, page, pageCount, user_id)
+            .getPacks(packName, min, max, sortedPackValue, page,
+                pageCount, user_id)
             .then((res) => {
                 dispatch(packsReducerAC(res.data));
                 const st = getState().packs;
@@ -126,18 +128,20 @@ export const addPackTC =
                 dispatch(fetchPacksTC());
             });
         };
-export const editPackTC = (idPack: string, packName: string) => (dispatch: ThunkDispatch<RootAppStateType, void, any>, getState: () => RootAppStateType) => {
-    // ChangeID
-    dispatch(changePackIdAC(idPack));
-    dispatch(changePackNameAC(packName));
+export const editPackTC = (idPack: string, packName: string) =>
+    (dispatch: ThunkDispatch<RootAppStateType, void, any>,
+     getState: () => RootAppStateType) => {
+        // ChangeID
+        dispatch(changePackIdAC(idPack));
+        dispatch(changePackNameAC(packName));
 
-    const state = getState().packs;
-    const {name, id} = state;
+        const state = getState().packs;
+        const {name, id} = state;
 
-    packsApi.editPack(id, name).then(() => {
-        dispatch(fetchPacksTC());
-    });
-};
+        packsApi.editPack(id, name).then(() => {
+            dispatch(fetchPacksTC());
+        });
+    };
 export const deletePacksTC =
     (idPack: string) =>
         (
