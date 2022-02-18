@@ -1,7 +1,7 @@
 import {Action, Dispatch} from "redux";
-import { RootAppStateType } from "../../store";
+import {RootAppStateType} from "../../store";
 import {cardsApi, packsApi} from "../../../m3-dal/api";
-import { ThunkDispatch } from "redux-thunk";
+import {ThunkDispatch} from "redux-thunk";
 import {fetchPacksTC, packsReducerAC} from "../packsReducer/packsReducer";
 import {changeStatus, changeStatusACTypes} from "../appReducer/appReducer";
 
@@ -68,39 +68,51 @@ export const changeSearchByCardsQuestionValue = (value: string) => {
 
 
 // Thunk
-export const fetchCardsTC = (packId: string) => (dispatch: Dispatch, getState: () => RootAppStateType) => {
-    dispatch(changeStatus("loading"))
+export const fetchCardsTC = (packId: string) =>
+    (dispatch: Dispatch, getState: () => RootAppStateType) => {
+        dispatch(changeStatus("loading"))
 
-    const state = getState().cards
-    const {packUserId} = state
+        const state = getState().cards
+        const {packUserId} = state
 
-    const {sortCardsValue, searchByCardsQuestion} = state
+        const {sortCardsValue, searchByCardsQuestion} = state
 
-    cardsApi.getCards("", searchByCardsQuestion, packId, 0, 0, sortCardsValue, 1, 10)
-        .then(res => {
+        cardsApi.getCards("", searchByCardsQuestion, packId, 0, 0, sortCardsValue, 1, 10)
+            .then(res => {
+                dispatch(changeStatus("completed"))
+                dispatch(cardsReducerAC(res.data))
+                const st = getState().cards
+                console.log("getCards", st)
+            })
+    };
+export const addCardTC = (packId: string) =>
+    (dispatch: ThunkDispatch<RootAppStateType,
+         void, ActionTypes>,
+     getState: () => RootAppStateType) => {
+
+        dispatch(changeStatus("loading"))
+        const grade = Math.floor(Math.random() * 5);
+
+        cardsApi.addCard(packId,
+            "123", "456",
+            grade, 0, "",
+            "", "").then(() => {
             dispatch(changeStatus("completed"))
-            dispatch(cardsReducerAC(res.data))
-            const st = getState().cards
-            console.log("getCards", st)
-    })
-};
-export const addCardTC = (packId: string) => (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>, getState: () => RootAppStateType) => {
-    dispatch(changeStatus("loading"))
-    const grade = Math.floor(Math.random() * 5);
+            dispatch(fetchCardsTC(packId));
+        });
+    };
+export const editCardTC = (idCard: string,
+                           newQuestion: string, packId: string) =>
+    (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>,
+     getState: () => RootAppStateType) => {
 
-    cardsApi.addCard(packId, "123", "456", grade, 0, "", "", "").then(() => {
-        dispatch(changeStatus("completed"))
-        dispatch(fetchCardsTC(packId));
-    });
-  };
-export const editCardTC = (idCard: string, newQuestion: string, packId: string) => (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>, getState: () => RootAppStateType) => {
-    dispatch(changeStatus("loading"))
+        dispatch(changeStatus("loading"))
 
-    cardsApi.editCard(idCard, newQuestion).then(() => {
-        dispatch(changeStatus("completed"))
-        dispatch(fetchCardsTC(packId));
-    });
-};
+        cardsApi.editCard(idCard, newQuestion).then(() => {
+            dispatch(changeStatus("completed"))
+            dispatch(fetchCardsTC(packId));
+        });
+    };
 export const deleteCardTC = (packId: string, cardId: string) => (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>) => {
     dispatch(changeStatus("loading"))
 
