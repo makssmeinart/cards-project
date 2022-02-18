@@ -94,7 +94,6 @@ export const changePaginationValue = (page: number, pageSize: number) => {
 // Thunk
 export const fetchPacksTC =
     () => (dispatch: Dispatch, getState: () => RootAppStateType) => {
-        dispatch(changeStatus("loading"))
         const state = getState().packs;
         const switcherBtn = getState().packs.sortedPackBtn;
 
@@ -111,7 +110,6 @@ export const fetchPacksTC =
             .getPacks(packName, min, max, sortedPackValue, page,
                 pageCount, user_id)
             .then((res) => {
-                dispatch(changeStatus("completed"))
                 dispatch(packsReducerAC(res.data));
                 const st = getState().packs;
                 console.log("getPacks", st);
