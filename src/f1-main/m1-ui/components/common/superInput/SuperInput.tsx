@@ -38,13 +38,14 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
             onEnter && e.key === "Enter" && onEnter();
         };
 
-        const customStyles = isPassword ? "45px" : "0"
+        const customMargin = isPassword ? "45px" : "0"
 
         return (
             <>
-                <div className="searchformfld">
+                <div
+                    className="searchformfld">
                     <input
-                        style={{paddingRight: customStyles}}
+                        style={{paddingRight: customMargin}}
                         type="text"
                         className="candidateName"
                         id="candidateName"
