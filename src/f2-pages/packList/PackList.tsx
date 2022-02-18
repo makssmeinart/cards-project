@@ -51,18 +51,7 @@ export const PackList = React.memo(() => {
 
     useEffect(() => {
         dispatch(fetchPacksTC());
-    }, [
-        packName,
-        sortedPackValue,
-        min,
-        max,
-        currentPackId,
-        sortValue,
-        maxRange,
-        minRange,
-        page,
-        pageSize,
-    ]);
+    }, [packName, sortedPackValue, min, max, currentPackId, sortValue, maxRange, minRange, page, pageSize,]);
 
     if (!isLoggedIn) {
         return <Navigate to={routes.login}/>;
