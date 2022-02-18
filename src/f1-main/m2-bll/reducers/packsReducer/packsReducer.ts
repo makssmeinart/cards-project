@@ -2,6 +2,7 @@ import {Dispatch} from "redux";
 import {RootAppStateType} from "../../store";
 import {packsApi} from "../../../m3-dal/api";
 import {ThunkDispatch} from "redux-thunk";
+import {changeStatus} from "../appReducer/appReducer";
 
 const img =
     "https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/" +
@@ -93,6 +94,7 @@ export const changePaginationValue = (page: number, pageSize: number) => {
 // Thunk
 export const fetchPacksTC =
     () => (dispatch: Dispatch, getState: () => RootAppStateType) => {
+        dispatch(changeStatus("loading"))
         const state = getState().packs;
         const switcherBtn = getState().packs.sortedPackBtn;
 
@@ -109,6 +111,7 @@ export const fetchPacksTC =
             .getPacks(packName, min, max, sortedPackValue, page,
                 pageCount, user_id)
             .then((res) => {
+                dispatch(changeStatus("completed"))
                 dispatch(packsReducerAC(res.data));
                 const st = getState().packs;
                 console.log("getPacks", st);
@@ -120,17 +123,20 @@ export const addPackTC =
             dispatch: ThunkDispatch<RootAppStateType, void, any>,
             getState: () => RootAppStateType
         ) => {
+            dispatch(changeStatus("loading"))
             const state = getState().packs;
 
             const {packName} = state;
 
             packsApi.addPack(packName, img, false).then(() => {
+                dispatch(changeStatus("completed"))
                 dispatch(fetchPacksTC());
             });
         };
 export const editPackTC = (idPack: string, packName: string) =>
     (dispatch: ThunkDispatch<RootAppStateType, void, any>,
      getState: () => RootAppStateType) => {
+        dispatch(changeStatus("loading"))
         // ChangeID
         dispatch(changePackIdAC(idPack));
         dispatch(changePackNameAC(packName));
@@ -139,6 +145,7 @@ export const editPackTC = (idPack: string, packName: string) =>
         const {name, id} = state;
 
         packsApi.editPack(id, name).then(() => {
+            dispatch(changeStatus("completed"))
             dispatch(fetchPacksTC());
         });
     };
@@ -148,11 +155,12 @@ export const deletePacksTC =
             dispatch: ThunkDispatch<RootAppStateType, any, any>,
             getState: () => RootAppStateType
         ) => {
+            dispatch(changeStatus("loading"))
             dispatch(changePackIdAC(idPack));
             const state = getState().packs;
             const {id} = state;
             packsApi.deletePacks(id).then((res) => {
-                console.log(res);
+                dispatch(changeStatus("completed"))
                 dispatch(fetchPacksTC());
             });
         };
