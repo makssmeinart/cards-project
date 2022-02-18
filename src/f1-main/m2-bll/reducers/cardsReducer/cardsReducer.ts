@@ -114,10 +114,8 @@ export const editCardTC = (idCard: string,
         });
     };
 export const deleteCardTC = (packId: string, cardId: string) => (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>) => {
-    dispatch(changeStatus("loading"))
 
     cardsApi.deleteCard(cardId).then(() => {
-        dispatch(changeStatus("completed"))
         dispatch(fetchCardsTC(packId))
     })
 }
