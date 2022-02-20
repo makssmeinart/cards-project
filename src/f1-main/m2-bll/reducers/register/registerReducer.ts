@@ -23,29 +23,23 @@ export const RegisterAC = (data: RegisterACDataType) => {
 
 // Thunk
 
-export const RegisterTC = (data: RegisterDataType, setIsSuccessRegister: (isSuccessRegister: boolean) => void) => (dispatch: Dispatch) => {
+export const RegisterTC = (data: RegisterDataType, setIsSuccessRegister:
+    (isSuccessRegister: boolean) => void) => (dispatch: Dispatch) => {
     dispatch(changeStatus("loading"))
-    authApi.register(data).then((res) => {
-        dispatch(changeStatus("completed"))
-        dispatch(setIsLoggedInAC(false))
-        setIsSuccessRegister(true)
-    }).catch((e) => {
-        dispatch(changeStatus('failed'))
-        serverErrorHandling(e, dispatch)
-    }).finally(() => {
-        dispatch(changeStatus("idle"))
-    })
+
+    authApi.register(data)
+        .then(() => {
+            dispatch(changeStatus("completed"))
+            dispatch(setIsLoggedInAC(false))
+            setIsSuccessRegister(true)
+        })
+        .catch((err) => {
+            serverErrorHandling(err, dispatch)
+        })
 }
 
 // Types
-type InitStateType = {
-
-}
-
+type InitStateType = {}
 type ActionType = RegisterACTypes
-
 type RegisterACTypes = ReturnType<typeof RegisterAC>;
-
-type RegisterACDataType = {
-
-}
+type RegisterACDataType = {}

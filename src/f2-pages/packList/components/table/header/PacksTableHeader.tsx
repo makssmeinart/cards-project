@@ -19,7 +19,7 @@ export const PacksTableHeader = () => {
             setNameSortValue(() => "1name");
         }
         dispatch(changeSortedPackValueAC(nameSortValue));
-    }, [dispatch])
+    }, [dispatch, nameSortValue])
     const userIdSortHandler = useCallback(() => {
         if (userIdValue === "1user_id") {
             setUserIdValue(() => "0user_id");
@@ -27,7 +27,7 @@ export const PacksTableHeader = () => {
             setUserIdValue(() => "1user_id");
         }
         dispatch(changeSortedPackValueAC(userIdValue));
-    }, [dispatch])
+    }, [dispatch, userIdValue])
     const cardsSortHandler = useCallback(() => {
         if (cardsValue === "1cardsCount") {
             setCardsValue(() => "0cardsCount");
@@ -35,7 +35,7 @@ export const PacksTableHeader = () => {
             setCardsValue(() => "1cardsCount");
         }
         dispatch(changeSortedPackValueAC(cardsValue));
-    }, [dispatch])
+    }, [dispatch, cardsValue])
     const lastUpdatedHandler = useCallback(() => {
         if (lastUpdatedValue === "1updated") {
             setLastUpdatedValue(() => "0updated");
@@ -43,7 +43,7 @@ export const PacksTableHeader = () => {
             setLastUpdatedValue(() => "1updated");
         }
         dispatch(changeSortedPackValueAC(lastUpdatedValue));
-    }, [dispatch])
+    }, [dispatch, lastUpdatedValue])
 
     return (
         <div

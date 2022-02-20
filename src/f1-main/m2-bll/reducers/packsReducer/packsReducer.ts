@@ -1,8 +1,9 @@
 import {Dispatch} from "redux";
 import {RootAppStateType} from "../../store";
-import {packsApi} from "../../../m3-dal/api";
+import {DeletePackPayload, packsApi} from "../../../m3-dal/api";
 import {ThunkDispatch} from "redux-thunk";
 import {changeStatus} from "../appReducer/appReducer";
+import {serverErrorHandling} from "../../../m4-utility/serverErrorHandling";
 
 const img =
     "https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/" +
@@ -106,61 +107,87 @@ export const fetchPacksTC =
 
         const {packName, min, max, page, pageCount, sortedPackValue} = state;
 
+        const payload = {
+            packName: packName,
+            min: min,
+            max: max,
+            sortPacks: sortedPackValue,
+            page: page,
+            pageCount: pageCount,
+            user_id: user_id,
+        }
+
         packsApi
-            .getPacks(packName, min, max, sortedPackValue, page,
-                pageCount, user_id)
+            .getPacks(payload)
             .then((res) => {
                 dispatch(packsReducerAC(res.data));
-                const st = getState().packs;
-                console.log("getPacks", st);
-            });
+            })
+            .catch(err => {
+                serverErrorHandling(err, dispatch)
+            })
     };
 export const addPackTC =
-    () =>
+    (packName: string) =>
         (
             dispatch: ThunkDispatch<RootAppStateType, void, any>,
-            getState: () => RootAppStateType
         ) => {
             dispatch(changeStatus("loading"))
-            const state = getState().packs;
 
-            const {packName} = state;
+            const payload = {
+                name: packName,
+                path: "/def",
+                grade: 0,
+                shots: 0,
+                rating: 0,
+                deckCover: img,
+                private: false,
+                type: "pack",
+            }
 
-            packsApi.addPack(packName, img, false).then(() => {
-                dispatch(changeStatus("completed"))
-                dispatch(fetchPacksTC());
-            });
+            packsApi.addPack(payload)
+                .then(() => {
+                    dispatch(changeStatus("completed"))
+                    dispatch(fetchPacksTC());
+                })
+                .catch(err => {
+                    serverErrorHandling(err, dispatch)
+                })
         };
 export const editPackTC = (idPack: string, packName: string) =>
-    (dispatch: ThunkDispatch<RootAppStateType, void, any>,
-     getState: () => RootAppStateType) => {
+    (dispatch: ThunkDispatch<RootAppStateType, void, any>) => {
         dispatch(changeStatus("loading"))
-        // ChangeID
-        dispatch(changePackIdAC(idPack));
-        dispatch(changePackNameAC(packName));
 
-        const state = getState().packs;
-        const {name, id} = state;
+        const payload = {
+            _id: idPack,
+            name: packName,
+        }
 
-        packsApi.editPack(id, name).then(() => {
-            dispatch(changeStatus("completed"))
-            dispatch(fetchPacksTC());
-        });
+        packsApi.editPack(payload)
+            .then(() => {
+                dispatch(changeStatus("completed"))
+                dispatch(fetchPacksTC());
+            })
+            .catch(err => {
+                serverErrorHandling(err, dispatch)
+            })
     };
 export const deletePacksTC =
     (idPack: string) =>
-        (
-            dispatch: ThunkDispatch<RootAppStateType, any, any>,
-            getState: () => RootAppStateType
-        ) => {
+        (dispatch: ThunkDispatch<RootAppStateType, any, any>,) => {
             dispatch(changeStatus("loading"))
-            dispatch(changePackIdAC(idPack));
-            const state = getState().packs;
-            const {id} = state;
-            packsApi.deletePacks(id).then((res) => {
-                dispatch(changeStatus("completed"))
-                dispatch(fetchPacksTC());
-            });
+
+            const payload: DeletePackPayload = {
+                id: idPack
+            }
+
+            packsApi.deletePacks(payload)
+                .then(() => {
+                    dispatch(changeStatus("completed"))
+                    dispatch(fetchPacksTC());
+                })
+                .catch(err => {
+                    serverErrorHandling(err, dispatch)
+                })
         };
 // Types
 export type InitStateType = {

@@ -13,7 +13,7 @@ export const CardslistTable = () => {
         <div className={s.tableContainer}>
             <CardslistTableHeader />
             {cards.map((c) => {
-                return <TableItem card={c} />
+                return <TableItem key={c._id} card={c} />
             })}
         </div>
     )

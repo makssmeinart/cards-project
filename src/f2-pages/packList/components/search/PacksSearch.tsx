@@ -19,7 +19,7 @@ export const PacksSearch = React.memo(() => {
     }, [inputValueDebounced])
 
     const addPackHandler = useCallback(() => {
-        dispatch(addPackTC());
+        dispatch(addPackTC("New Packaritooo"));
     }, [dispatch])
 
     return (

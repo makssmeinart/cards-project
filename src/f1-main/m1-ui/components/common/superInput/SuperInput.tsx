@@ -48,7 +48,6 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
                         style={{paddingRight: customMargin}}
                         type="text"
                         className="candidateName"
-                        id="candidateName"
                         name={restProps.name}
                         placeholder=" "
                         onChange={onChangeCallback}

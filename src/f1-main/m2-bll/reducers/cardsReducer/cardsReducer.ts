@@ -1,9 +1,14 @@
-import {Action, Dispatch} from "redux";
+import {Dispatch} from "redux";
 import {RootAppStateType} from "../../store";
-import {cardsApi, packsApi} from "../../../m3-dal/api";
+import {
+    AddCardPayload,
+    cardsApi,
+    EditCardsPayload,
+    GetCardsPayload
+} from "../../../m3-dal/api";
 import {ThunkDispatch} from "redux-thunk";
-import {fetchPacksTC, packsReducerAC} from "../packsReducer/packsReducer";
 import {changeStatus, changeStatusACTypes} from "../appReducer/appReducer";
+import {serverErrorHandling} from "../../../m4-utility/serverErrorHandling";
 
 export type CardsType = {
     answer: string,
@@ -37,10 +42,10 @@ const initState: InitStateType = {
     tokenDeathTime: 0,
     sortCardsValue: "",
     searchByCardsQuestion: "",
-};
+}
 
-
-export const cardsReducer = (state = initState, action: ActionTypes): InitStateType => {
+export const cardsReducer = (state = initState, action: ActionTypes):
+    InitStateType => {
     switch (action.type) {
         case "CARDS/CARD":
             return {...state, ...action.data}
@@ -73,53 +78,88 @@ export const fetchCardsTC = (packId: string) =>
         dispatch(changeStatus("loading"))
 
         const state = getState().cards
-        const {packUserId} = state
-
         const {sortCardsValue, searchByCardsQuestion} = state
 
-        cardsApi.getCards("", searchByCardsQuestion, packId, 0, 0, sortCardsValue, 1, 10)
+        const payload: GetCardsPayload = {
+            cardAnswer: "",
+            cardQuestion: searchByCardsQuestion,
+            cardsPack_id: packId,
+            min: 0,
+            max: 0,
+            sortCards: sortCardsValue,
+            page: 1,
+            pageCount:  10,
+        }
+
+        cardsApi.getCards(payload)
             .then(res => {
                 dispatch(changeStatus("completed"))
                 dispatch(cardsReducerAC(res.data))
-                const st = getState().cards
-                console.log("getCards", st)
+            })
+            .catch(err => {
+                serverErrorHandling(err, dispatch)
             })
     };
 export const addCardTC = (packId: string) =>
-    (dispatch: ThunkDispatch<RootAppStateType,
-         void, ActionTypes>,
-     getState: () => RootAppStateType) => {
-
+    (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>) => {
         dispatch(changeStatus("loading"))
+
         const grade = Math.floor(Math.random() * 5);
 
-        cardsApi.addCard(packId,
-            "123", "456",
-            grade, 0, "",
-            "", "").then(() => {
-            dispatch(changeStatus("completed"))
-            dispatch(fetchCardsTC(packId));
-        });
+        const payload: AddCardPayload = {
+            cardsPack_id: packId,
+            question: "123",
+            answer: "456",
+            grade: grade,
+            shots: 0,
+            answerImg: "",
+            questionImg: "",
+            questionVideo:  "",
+        }
+
+        cardsApi.addCard(payload)
+            .then(() => {
+                dispatch(changeStatus("completed"))
+                dispatch(fetchCardsTC(packId));
+            })
+            .catch(err => {
+                serverErrorHandling(err, dispatch)
+            })
     };
 export const editCardTC = (idCard: string,
                            newQuestion: string, packId: string) =>
-    (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>,
-     getState: () => RootAppStateType) => {
-
+    (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>,) => {
         dispatch(changeStatus("loading"))
 
-        cardsApi.editCard(idCard, newQuestion).then(() => {
-            dispatch(changeStatus("completed"))
-            dispatch(fetchCardsTC(packId));
-        });
+        const payload: EditCardsPayload = {
+            _id: idCard,
+            question: newQuestion,
+        }
+
+        cardsApi.editCard(payload)
+            .then(() => {
+                dispatch(changeStatus("completed"))
+                dispatch(fetchCardsTC(packId));
+            })
+            .catch(err => {
+                serverErrorHandling(err, dispatch)
+            })
     };
-export const deleteCardTC = (packId: string, cardId: string) => (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>) => {
+export const deleteCardTC = (packId: string, cardId: string) =>
+    (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>) => {
+        dispatch(changeStatus("loading"))
 
-    cardsApi.deleteCard(cardId).then(() => {
-        dispatch(fetchCardsTC(packId))
-    })
-}
+        const payload: string = cardId
 
+        cardsApi.deleteCard(payload)
+            .then(() => {
+                dispatch(changeStatus("completed"))
+                dispatch(fetchCardsTC(packId))
+            })
+            .catch(err => {
+                serverErrorHandling(err, dispatch)
+            })
+    }
 
 // Types
 export type InitStateType = {

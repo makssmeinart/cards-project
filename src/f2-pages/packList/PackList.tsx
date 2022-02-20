@@ -10,9 +10,7 @@ import {
     appStatusSelector,
     currentPackIdSelector,
     isLoggedInSelector,
-    maxRangeSelector,
     maxSelector,
-    minRangeSelector,
     minSelector,
     packNameSelector, selectCurrentPage, selectPageSize,
     sortByPacksSortValueSelector,
@@ -37,8 +35,6 @@ export const PackList = React.memo(() => {
     const packName = useSelector(packNameSelector);
     const status = useSelector(appStatusSelector);
     const isLoggedIn = useSelector(isLoggedInSelector);
-    const minRange = useSelector(minRangeSelector);
-    const maxRange = useSelector(maxRangeSelector);
     const page = useSelector(selectCurrentPage)
     const pageSize = useSelector(selectPageSize)
 
@@ -56,10 +52,8 @@ export const PackList = React.memo(() => {
         sortedPackValue,
         min,
         max,
-        currentPackId,
+        // currentPackId,
         sortValue,
-        maxRange,
-        minRange,
         page,
         pageSize,
     ]);
@@ -77,10 +71,7 @@ export const PackList = React.memo(() => {
                     <Header/>
                     <main className={packsS.main}>
                         <div className={packsS.wrapper}>
-                            <Sidebar
-                                minRange={minRange}
-                                maxRange={maxRange}
-                            />
+                            <Sidebar/>
                             <div>
                                 <div className={packsS.content}>
                                     <div className={s.nameAndBack}>
