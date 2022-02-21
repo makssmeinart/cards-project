@@ -1,75 +1,87 @@
-import Pagination from 'rc-pagination';
-import {useDispatch, useSelector} from "react-redux";
-import {
-    selectCurrentPage, selectPageSize,
-    selectTotalPacksCount
-} from "../../../../m2-bll/selectors/selectAppStatus";
-import {changePaginationValue} from "../../../../m2-bll/reducers/packsReducer/packsReducer";
-import paginationS from "./pagination.module.css"
-import prevPageIcon from "../../../../../f3-assets/images/icons/prevPageIcon.png"
-import nextPageIcon from "../../../../../f3-assets/images/icons/nextPageIcon.png"
+import Pagination from "rc-pagination";
+import {useDispatch} from "react-redux";
+import paginationS from "./pagination.module.css";
+import prevPageIcon from "../../../../../f3-assets/images/icons/prevPageIcon.png";
+import nextPageIcon from "../../../../../f3-assets/images/icons/nextPageIcon.png";
 import React from "react";
 import {CustomSelect} from "./customSelect/CustomSelect";
 
-export const CustomPagination = () => {
-    const dispatch = useDispatch()
-    const currentPage = useSelector(selectCurrentPage)
-    const totalPacks = useSelector(selectTotalPacksCount)
-    const pageSize = useSelector(selectPageSize)
-
-    const changePage = (page: number, pageSize: number) => {
-        dispatch(changePaginationValue(page, pageSize))
-        console.log(page, pageSize)
-    }
-
-    return (
-        <div className={paginationS.wrapper}>
-            <Pagination
-                current={currentPage}
-                total={totalPacks}
-                pageSize={pageSize}
-                onChange={changePage}
-                hideOnSinglePage={true}
-                prevIcon={PrevIcon}
-                nextIcon={NextIcon}
-                jumpNextIcon={JumpNextIcon}
-                jumpPrevIcon={JumpPrevIcon}
-                style={{display: "flex", gap: "10px", listStyle: "none"}}
-                className={paginationS.pagination}
-            />
-            <CustomSelect />
-        </div>
-    )
+type PropsType = {
+    currentPage: any
+    totalPacks: any
+    pageSize: any
+    changePaginationValue: any
 }
+
+export const CustomPagination = (props: PropsType) => {
+  const dispatch = useDispatch();
+
+
+  const changePage = (page: number, pageSize: number) => {
+    dispatch(props.changePaginationValue(page, pageSize));
+    console.log(page, pageSize);
+  };
+
+
+  return (
+    <div className={paginationS.wrapper}>
+      <Pagination
+        current={props.currentPage}
+        total={props.totalPacks}
+        pageSize={props.pageSize}
+        onChange={changePage}
+        hideOnSinglePage={true}
+        prevIcon={PrevIcon}
+        nextIcon={NextIcon}
+        locale={{
+          items_per_page: "/ page",
+          jump_to: "Go to",
+          jump_to_confirm: "confirm",
+          page: "Page",
+
+          prev_page: "Previous Page",
+          next_page: "Next Page",
+          prev_5: "Previous 5 Pages",
+          next_5: "Next 5 Pages",
+          prev_3: "Previous 3 Pages",
+          next_3: "Next 3 Pages",
+        }}
+        jumpNextIcon={JumpNextIcon}
+        jumpPrevIcon={JumpPrevIcon}
+        style={{ display: "flex", gap: "10px", listStyle: "none" }}
+        className={paginationS.pagination}
+      />
+        <CustomSelect currentPage={props.currentPage} totalPacks={props.totalPacks} changePaginationValue={props.changePaginationValue}/>
+    </div>
+  );
+};
 
 export const PrevIcon = () => {
-return (
+  return (
     <div className={paginationS.icon}>
-        <img src={prevPageIcon} alt="Prev page"/>
+      <img src={prevPageIcon} alt="Prev page" />
     </div>
-)
-}
+  );
+};
 export const NextIcon = () => {
-    return (
-        <div className={paginationS.icon}>
-            <img src={nextPageIcon} alt="Next page"/>
-        </div>
-
-    )
-}
+  return (
+    <div className={paginationS.icon}>
+      <img src={nextPageIcon} alt="Next page" />
+    </div>
+  );
+};
 export const JumpNextIcon = () => {
-    return (
-        <div className={paginationS.icon}>
-            <img src={nextPageIcon} alt="Jump to next page"/>
-        </div>
-
-    )
-}
+  return (
+    <div className={paginationS.icon}>
+      <img src={nextPageIcon} alt="Jump to next page" />
+    </div>
+  );
+};
 export const JumpPrevIcon = () => {
-    return (
-        <div className={paginationS.icon}>
-            <img src={prevPageIcon} alt="Jump to next page"/>
-        </div>
+  return (
+    <div className={paginationS.icon}>
+      <img src={prevPageIcon} alt="Jump to next page" />
+    </div>
+  );
+};
 
-    )
-}
