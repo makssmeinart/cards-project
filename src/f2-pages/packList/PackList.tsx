@@ -4,6 +4,7 @@ import {routes} from "../../f1-main/m2-bll/routes/routes";
 import {Loading} from "../../f1-main/m1-ui/components/common/loading/Loading";
 import React, {useEffect} from "react";
 import {
+    changePaginationValue,
     fetchPacksTC,
 } from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {
@@ -12,7 +13,7 @@ import {
     isLoggedInSelector,
     maxSelector,
     minSelector,
-    packNameSelector, selectCurrentPage, selectPageSize,
+    packNameSelector, selectCurrentPage, selectPageSize, selectTotalPacksCount,
     sortByPacksSortValueSelector,
     sortedPackValueSelector,
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
@@ -36,7 +37,7 @@ export const PackList = React.memo(() => {
     const status = useSelector(appStatusSelector);
     const isLoggedIn = useSelector(isLoggedInSelector);
     const page = useSelector(selectCurrentPage)
-    const pageSize = useSelector(selectPageSize)
+
 
     const max = useSelector(maxSelector);
     const min = useSelector(minSelector);
@@ -44,6 +45,12 @@ export const PackList = React.memo(() => {
     const currentPackId = useSelector(currentPackIdSelector);
     const sortValue = useSelector(sortByPacksSortValueSelector);
     const sortedPackValue = useSelector(sortedPackValueSelector);
+
+    const pageSize = useSelector(selectPageSize)
+    const currentPage = useSelector(selectCurrentPage);
+    const totalPacks = useSelector(selectTotalPacksCount);
+
+
 
     useEffect(() => {
         dispatch(fetchPacksTC());
@@ -79,7 +86,7 @@ export const PackList = React.memo(() => {
                                     </div>
                                     <PacksSearch/>
                                     <PacksTable/>
-                                    <CustomPagination/>
+                                    <CustomPagination pageSize={pageSize} currentPage={currentPage} totalPacks={totalPacks} changePaginationValue={changePaginationValue}/>
                                 </div>
                             </div>
                         </div>

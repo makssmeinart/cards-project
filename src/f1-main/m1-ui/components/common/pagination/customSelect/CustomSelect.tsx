@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {selectCurrentPage, selectTotalPacksCount} from
-        "../../../../../m2-bll/selectors/selectAppStatus";
-import {changePaginationValue} from
-        "../../../../../m2-bll/reducers/packsReducer/packsReducer";
+import {useDispatch} from "react-redux";
 import paginationS from "../pagination.module.css";
 
-export const CustomSelect = () => {
-    const [currentPageSize, setCurrentPageSize] = useState(10)
-    const currentPage = useSelector(selectCurrentPage)
-    const totalPacks = useSelector(selectTotalPacksCount)
+type PropsType = {
+    currentPage: any
+    currentPageSize: any
+    totalPacks: any
+    changePaginationValue: any
+}
+export const CustomSelect = (props: PropsType) => {
+    const [currentPageSize, setCurrentPageSize] = useState(props.currentPageSize)
     const dispatch = useDispatch()
 
     const changePageSize = (value: string) => {
@@ -17,14 +17,14 @@ export const CustomSelect = () => {
     }
 
     const changePage = (page: number, pageSize: number) => {
-        dispatch(changePaginationValue(page, pageSize))
+        dispatch(props.changePaginationValue(page, pageSize))
     }
 
     useEffect(() => {
-        changePage(currentPage, currentPageSize)
+        changePage(props.currentPage, currentPageSize)
     }, [currentPageSize])
 
-    if(totalPacks <= currentPageSize) {
+    if(props.totalPacks <= currentPageSize) {
         return null
     }
 

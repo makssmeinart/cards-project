@@ -1,17 +1,10 @@
 import s
     from "../../../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
 import React from "react";
-import {useNavigate, useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {packSelector} from "../../../../f1-main/m2-bll/selectors/selectAppStatus";
+import {useNavigate} from "react-router-dom";
 
 export const CardslistHeader = () => {
     const navigate = useNavigate();
-    const pack = useSelector(packSelector);
-    const {packId} = useParams();
-
-    const currentPackName = pack.find((p) => p._id === packId);
-
 
     return (
         <div className={s.nameAndBack}>
@@ -27,7 +20,7 @@ export const CardslistHeader = () => {
                     cursor: "pointer"
                 }}
             />
-            <h1>{currentPackName && currentPackName.name}</h1>
+            <h1>Cards List</h1>
         </div>
     )
 }

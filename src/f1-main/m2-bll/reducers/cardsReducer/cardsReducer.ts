@@ -36,8 +36,8 @@ const initState: InitStateType = {
     maxGrade: 0,
     minGrade: 0,
     packUserId: "",
-    page: 0,
-    pageCount: 0,
+    page: 1,
+    pageCount: 10,
     token: "",
     tokenDeathTime: 0,
     sortCardsValue: "",
@@ -55,6 +55,9 @@ export const cardsReducer = (state = initState, action: ActionTypes):
         case "CARDS/CHANGE-SEARCH-BY-CARDS-QUESTION-VALUE": {
             return {...state, searchByCardsQuestion: action.value}
         }
+        case "CARDS/CARDS/CHANGE-PAGINATION-VALUE": {
+            return {...state, page: action.page, pageCount: action.pageSize}
+        }
         default:
             return state;
     }
@@ -70,15 +73,21 @@ export const changeCardsValueAC = (value: string) => {
 export const changeSearchByCardsQuestionValue = (value: string) => {
     return {type: "CARDS/CHANGE-SEARCH-BY-CARDS-QUESTION-VALUE", value} as const
 }
+export const changePaginationValueCard = (page: number, pageSize: number) => {
+    return {
+        type: "CARDS/CARDS/CHANGE-PAGINATION-VALUE",
+        page,
+        pageSize
+    } as const
+}
 
 
 // Thunk
 export const fetchCardsTC = (packId: string) =>
     (dispatch: Dispatch, getState: () => RootAppStateType) => {
-        dispatch(changeStatus("loading"))
 
         const state = getState().cards
-        const {sortCardsValue, searchByCardsQuestion} = state
+        const {sortCardsValue, searchByCardsQuestion, page, pageCount} = state
 
         const payload: GetCardsPayload = {
             cardAnswer: "",
@@ -87,13 +96,12 @@ export const fetchCardsTC = (packId: string) =>
             min: 0,
             max: 0,
             sortCards: sortCardsValue,
-            page: 1,
-            pageCount:  10,
+            page: page,
+            pageCount,
         }
 
         cardsApi.getCards(payload)
             .then(res => {
-                dispatch(changeStatus("completed"))
                 dispatch(cardsReducerAC(res.data))
             })
             .catch(err => {
@@ -161,6 +169,8 @@ export const deleteCardTC = (packId: string, cardId: string) =>
             })
     }
 
+
+
 // Types
 export type InitStateType = {
     cards: CardsType[],
@@ -180,3 +190,4 @@ type ActionTypes =
     | ReturnType<typeof changeCardsValueAC>
     | ReturnType<typeof changeSearchByCardsQuestionValue>
     | changeStatusACTypes
+    | ReturnType<typeof changePaginationValueCard>

@@ -7,6 +7,10 @@ import {
 } from "../../../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {useDispatch} from "react-redux";
 import {useDebounced} from "../../../../f1-main/m4-utility/debouncingHook";
+import QuestionModalContainer
+    from "../../../../f1-main/m1-ui/components/common/questionModal/QuestionModalContainer";
+import InputModalContainer
+    from "../../../../f1-main/m1-ui/components/common/inputModal/InputModalContainer";
 
 export const PacksSearch = React.memo(() => {
 
@@ -30,13 +34,7 @@ export const PacksSearch = React.memo(() => {
             />
 
             <div className={s.searchButtonWrapper}>
-                <SuperButton
-                    className={"primaryButton"}
-                    style={{width: "250px"}}
-                    onClick={addPackHandler}
-                >
-                    Add new pack
-                </SuperButton>
+                <InputModalContainer />
             </div>
         </div>
     )
