@@ -6,8 +6,10 @@ import {
 } from "../../../../m2-bll/selectors/selectAppStatus";
 import {changePaginationValue} from "../../../../m2-bll/reducers/packsReducer/packsReducer";
 import paginationS from "./pagination.module.css"
-import prevPageIcon from "../../../../../f3-assets/images/icons/prevPageIcon.png"
-import nextPageIcon from "../../../../../f3-assets/images/icons/nextPageIcon.png"
+import prevPageIcon
+    from "../../../../../f3-assets/images/icons/prevPageIcon.png"
+import nextPageIcon
+    from "../../../../../f3-assets/images/icons/nextPageIcon.png"
 import React from "react";
 import {CustomSelect} from "./customSelect/CustomSelect";
 
@@ -31,23 +33,36 @@ export const CustomPagination = () => {
                 onChange={changePage}
                 hideOnSinglePage={true}
                 prevIcon={PrevIcon}
+                locale={{
+                    items_per_page: '/ page',
+                    jump_to: 'Go to',
+                    jump_to_confirm: 'confirm',
+                    page: 'Page',
+                    // Pagination.jsx
+                    prev_page: 'Previous Page',
+                    next_page: 'Next Page',
+                    prev_5: 'Previous 5 Pages',
+                    next_5: 'Next 5 Pages',
+                    prev_3: 'Previous 3 Pages',
+                    next_3: 'Next 3 Pages',
+                }}
                 nextIcon={NextIcon}
                 jumpNextIcon={JumpNextIcon}
                 jumpPrevIcon={JumpPrevIcon}
                 style={{display: "flex", gap: "10px", listStyle: "none"}}
                 className={paginationS.pagination}
             />
-            <CustomSelect />
+            <CustomSelect/>
         </div>
     )
 }
 
 export const PrevIcon = () => {
-return (
-    <div className={paginationS.icon}>
-        <img src={prevPageIcon} alt="Prev page"/>
-    </div>
-)
+    return (
+        <div className={paginationS.icon}>
+            <img src={prevPageIcon} alt="Prev page"/>
+        </div>
+    )
 }
 export const NextIcon = () => {
     return (
