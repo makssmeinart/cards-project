@@ -1,6 +1,6 @@
 import s
     from "../../../../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {changeCardsValueAC} from "../../../../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
 import {useDispatch} from "react-redux";
 
@@ -26,32 +26,32 @@ export const CardslistTableHeader = () => {
         dispatch(changeCardsValueAC(gradeSortValue));
     };
 
-    const questionSortHandler = () => {
+    const questionSortHandler = useCallback(() => {
         if (questionSortValue === "0question") {
             setQuestionSortValue(() => "1question");
         } else {
             setQuestionSortValue(() => "0question");
         }
         dispatch(changeCardsValueAC(questionSortValue));
-    };
+    },[dispatch, questionSortValue])
 
-    const answerSortHandler = () => {
+    const answerSortHandler = useCallback(() => {
         if (answerSortValue === "0answer") {
             setAnswerSortValue(() => "1answer");
         } else {
             setAnswerSortValue(() => "0answer");
         }
         dispatch(changeCardsValueAC(answerSortValue));
-    };
+    }, [dispatch, answerSortValue])
 
-    const updatedSortHandler = () => {
+    const updatedSortHandler = useCallback(() => {
         if (updatedSortValue === "0updated") {
             setUpdatedSortValue(() => "1updated");
         } else {
             setUpdatedSortValue(() => "0updated");
         }
         dispatch(changeCardsValueAC(updatedSortValue));
-    }
+    }, [dispatch, updatedSortValue])
 
     return (
         <div className={s.tableHeaderWrapper}>

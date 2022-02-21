@@ -7,7 +7,8 @@ export const routes = {
     login: "/login",
     register: "/register",
     recoverPassword: "/recover-password",
-    newPassword: "/new-password/:token*",
+    newPassword: "/new-password/:token/*",
+
     testPage: "/test",
     pageNotFound: "404"
 }

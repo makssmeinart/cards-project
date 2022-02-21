@@ -54,9 +54,6 @@ export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
             dispatch(changeStatus("failed"));
             serverErrorHandling(e, dispatch);
         })
-        .finally(() => {
-            dispatch(changeStatus("idle"));
-        });
 };
 export const LogoutTC = () => (dispatch: Dispatch) => {
     dispatch(changeStatus("loading"));
@@ -83,12 +80,9 @@ export const LogoutTC = () => (dispatch: Dispatch) => {
             dispatch(setIsLoggedInAC(false));
             dispatch(LoginAC(logoutData));
         })
-        .catch(() => {
-            dispatch(changeStatus("failed"));
+        .catch((err) => {
+            serverErrorHandling(err, dispatch)
         })
-        .finally(() => {
-            dispatch(changeStatus("idle"));
-        });
 };
 
 // Types

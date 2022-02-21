@@ -6,9 +6,10 @@ import {
 } from "../../../../m2-bll/selectors/selectAppStatus";
 import {changePaginationValue} from "../../../../m2-bll/reducers/packsReducer/packsReducer";
 import paginationS from "./pagination.module.css"
-import {CustomSelect} from "./customSelect/CustomSelect";
 import prevPageIcon from "../../../../../f3-assets/images/icons/prevPageIcon.png"
 import nextPageIcon from "../../../../../f3-assets/images/icons/nextPageIcon.png"
+import React from "react";
+import {CustomSelect} from "./customSelect/CustomSelect";
 
 export const CustomPagination = () => {
     const dispatch = useDispatch()
@@ -29,24 +30,24 @@ export const CustomPagination = () => {
                 pageSize={pageSize}
                 onChange={changePage}
                 hideOnSinglePage={true}
-                style={{display: "flex", gap: "10px", listStyle: "none"}}
-                className={paginationS.pagination}
-                selectComponentClass={CustomSelect}
                 prevIcon={PrevIcon}
                 nextIcon={NextIcon}
                 jumpNextIcon={JumpNextIcon}
                 jumpPrevIcon={JumpPrevIcon}
+                style={{display: "flex", gap: "10px", listStyle: "none"}}
+                className={paginationS.pagination}
             />
+            <CustomSelect />
         </div>
     )
 }
 
 export const PrevIcon = () => {
-    return (
-        <div className={paginationS.icon}>
-            <img src={prevPageIcon} alt="Prev page"/>
-        </div>
-    )
+return (
+    <div className={paginationS.icon}>
+        <img src={prevPageIcon} alt="Prev page"/>
+    </div>
+)
 }
 export const NextIcon = () => {
     return (

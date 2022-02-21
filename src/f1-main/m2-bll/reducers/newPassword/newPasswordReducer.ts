@@ -34,11 +34,7 @@ export const setNewPasswordTC = (newPassword: string, token: string, setNav: (na
         })
         .catch(e=> {
             serverErrorHandling(e, dispatch);
-            dispatch(changeStatus('failed'))
         })
-        .finally(() => {
-            dispatch(changeStatus("idle"));
-        });
 }
 
 

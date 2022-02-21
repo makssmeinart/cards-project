@@ -15,7 +15,7 @@ export const PacksTable = React.memo(() => {
         <div className={s.tableContainer}>
             <PacksTableHeader />
             {pack.map((p) => {
-                return <TableItem pack={p} />
+                return <TableItem key={p._id} pack={p} />
             })}
         </div>
     )

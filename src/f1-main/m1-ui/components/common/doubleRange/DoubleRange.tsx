@@ -1,34 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Range, getTrackBackground } from "react-range";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { rangeValueAC } from "../../../../m2-bll/reducers/packsReducer/packsReducer";
+import {
+    maxRangeSelector,
+    minRangeSelector
+} from "../../../../m2-bll/selectors/selectAppStatus";
 
-
-type IPriceRangeProps = {
-  min: number;
-  max: number;
-};
-
-export const DoubleRange = (props: IPriceRangeProps) => {
+export const DoubleRange = () => {
 
 const dispatch = useDispatch()
-    const [values, setValues] = useState([props.min, props.max]);
+    const min = useSelector(minRangeSelector);
+    const max = useSelector(maxRangeSelector);
+    const [values, setValues] = useState([min, max]);
+
+    const sendInputValue = (value: number[]) => {
+      dispatch(rangeValueAC(value[0], value[1]))
+    }
 
   useEffect(() => {
-    dispatch(rangeValueAC(values[0], values[1]));
-  }, [values]);
-
-  useEffect(() => {
-        setValues([props.min, props.max])
-  }, [props.min, props.max])
+        setValues([min, max])
+  }, [min, max])
 
   return (
     <Range
       values={values}
       step={5}
-      min={props.min}
-      max={props.max}
+      min={min}
+      max={max}
       onChange={(values) => setValues(values)}
+      onFinalChange={sendInputValue}
       renderTrack={({ props, children }) => (
         <div
           onMouseDown={props.onMouseDown}
