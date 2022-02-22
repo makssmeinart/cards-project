@@ -24,10 +24,6 @@ export const CustomSelect = (props: PropsType) => {
         changePage(props.currentPage, currentPageSize)
     }, [currentPageSize])
 
-    if(props.totalPacks <= currentPageSize) {
-        return null
-    }
-
     return (
         <div className={paginationS.selectWrapper}>
             <div>
