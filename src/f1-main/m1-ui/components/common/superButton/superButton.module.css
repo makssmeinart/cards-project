@@ -1,7 +1,7 @@
 .primaryButton {
-    background: #132028;
+    background: #292929;
     box-shadow: rgba(243, 243, 243, 0.25) 0px 6px 12px -2px, rgba(146, 146, 146, 0.3) 0px 3px 7px -3px;
-    border-radius: 30px;
+    border-radius: 10px;
     color: #e3e3e3;
     font-weight: 600;
     font-size: 16px;
@@ -14,7 +14,7 @@
     transition: .3s linear background-color;
 }
 .primaryButton:hover {
-    background: #152f3b;
+    background: 	#1b1b1b;
     box-shadow: rgba(243, 243, 243, 0.25) 0px 6px 12px -2px, rgba(146, 146, 146, 0.5) 0px 3px 7px -3px;
 }
 
@@ -37,13 +37,24 @@
     background: #F1453D;
     border-radius: 2px;
     border: 0;
+    cursor: pointer;
+    transition: .3s linear all;
 }
+.miniDeleteButton:hover {
+    background: #e04039;
+}
+
 .miniCommonButton {
-    color: #21268F;
+    color: white;
     padding: 6px;
-    background: #D7D8EF;
+    background: rgba(41, 41, 41, 0.9);
     border-radius: 2px;
     border: 0;
+    cursor: pointer;
+    transition: .3s linear all;
+}
+.miniCommonButton:hover {
+    background: rgba(41, 41, 41, 1);
 }
 
 /**/
@@ -52,51 +63,23 @@
 .border-button {
     text-decoration: none;
     display: inline-block;
-    padding: 15px 20px;
+    padding: .7em 1.5em;
     margin: 10px 20px;
     position: relative;
     color: white;
-    border: 1px solid rgba(255, 255, 255, .4);
     background: none;
     font-weight: 700;
-    /*font-family: 'Montserrat', sans-serif;*/
-    /*text-transform: uppercase;*/
     letter-spacing: 2px;
-}
-.border-button:before, .border-button:after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0;
-    box-sizing: border-box;
-}
-.border-button:before {
-    bottom: 0;
-    left: 0;
-    border-left: 1px solid white;
-    border-top: 1px solid white;
-    transition: 0s ease opacity .8s, .2s ease width .4s, .2s ease height .6s;
-}
-.border-button:after {
-    top: 0;
-    right: 0;
-    border-right: 1px solid white;
-    border-bottom: 1px solid white;
-    transition: 0s ease opacity .4s, .2s ease width, .2s ease height .2s;
-}
-.border-button:hover:before,
-.border-button:hover:after {
+    cursor: pointer;
+    border: none;
     height: 100%;
-    width: 100%;
-    opacity: 1;
+    font-family: Roboto, sans-serif;
+    font-size: .9rem;
+    border-bottom: 3px solid transparent;
+    transition: .15s linear all;
 }
-.border-button:hover:before {
-    transition: 0s ease opacity 0s, .2s ease height, .2s ease width .2s;
-}
-.border-button:hover:after {
-    transition: 0s ease opacity .4s, .2s ease height .4s, .2s ease width .6s;
-}
+
 .border-button:hover {
-    background: rgba(255, 255, 255, .2);
+    background: rgba(255, 255, 255, .05);
+    border-bottom: 3px solid #ffa31a;
 }

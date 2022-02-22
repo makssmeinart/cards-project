@@ -108,16 +108,15 @@ export const fetchCardsTC = (packId: string) =>
                 serverErrorHandling(err, dispatch)
             })
     };
-export const addCardTC = (packId: string) =>
+export const addCardTC = (packId: string, question: string, answer: string) =>
     (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>) => {
-        dispatch(changeStatus("loading"))
 
         const grade = Math.floor(Math.random() * 5);
 
         const payload: AddCardPayload = {
             cardsPack_id: packId,
-            question: "123",
-            answer: "456",
+            question,
+            answer,
             grade: grade,
             shots: 0,
             answerImg: "",
@@ -127,26 +126,24 @@ export const addCardTC = (packId: string) =>
 
         cardsApi.addCard(payload)
             .then(() => {
-                dispatch(changeStatus("completed"))
                 dispatch(fetchCardsTC(packId));
             })
             .catch(err => {
                 serverErrorHandling(err, dispatch)
             })
     };
-export const editCardTC = (idCard: string,
-                           newQuestion: string, packId: string) =>
+export const editCardTC = (
+    idCard: string,question: string,answer: string, packId: string) =>
     (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>,) => {
-        dispatch(changeStatus("loading"))
 
         const payload: EditCardsPayload = {
             _id: idCard,
-            question: newQuestion,
+            question,
+            answer,
         }
 
         cardsApi.editCard(payload)
             .then(() => {
-                dispatch(changeStatus("completed"))
                 dispatch(fetchCardsTC(packId));
             })
             .catch(err => {
@@ -155,13 +152,11 @@ export const editCardTC = (idCard: string,
     };
 export const deleteCardTC = (packId: string, cardId: string) =>
     (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>) => {
-        dispatch(changeStatus("loading"))
 
         const payload: string = cardId
 
         cardsApi.deleteCard(payload)
             .then(() => {
-                dispatch(changeStatus("completed"))
                 dispatch(fetchCardsTC(packId))
             })
             .catch(err => {

@@ -189,4 +189,5 @@ export type AddCardPayload = {
 export type EditCardsPayload = {
     _id: string
     question: string
+    answer: string
 }

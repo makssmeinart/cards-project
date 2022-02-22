@@ -12,6 +12,10 @@ import {
     userIdSelector
 } from "../../../../../f1-main/m2-bll/selectors/selectAppStatus";
 import {useParams} from "react-router-dom";
+import {
+    fireDeleteCardModal,
+    fireEditCardModal
+} from "../../../../../f1-main/m4-utility/modal";
 
 export const TableItem = ({card}: TableItemPropsType) => {
     const dispatch = useDispatch()
@@ -19,14 +23,7 @@ export const TableItem = ({card}: TableItemPropsType) => {
     const myId = useSelector(userIdSelector);
     const updateDate = card.updated.slice(0, 10)
     const {packId} = useParams();
-
-    const deleteCardHandler = (cardId: string) => {
-        packId && dispatch(deleteCardTC(packId, cardId))
-    }
-
-    const editCardHandler = (idCard: string, newQuestion: string) => {
-        packId && dispatch(editCardTC(idCard, newQuestion, packId));
-    }
+    const currentPackId = packId ? packId : ""
 
     return (
         <div className={s.items}>
@@ -43,14 +40,14 @@ export const TableItem = ({card}: TableItemPropsType) => {
                     {currentUserId === myId && (
                         <>
                             <SuperButton
-                                onClick={() => deleteCardHandler(card._id)}
+                                onClick={() => fireDeleteCardModal(currentPackId, card._id, dispatch)}
                                 className={"miniDeleteButton"}>
                                 Delete
                             </SuperButton>
                             <SuperButton
                                 className={"miniCommonButton"}
                                 onClick={() =>
-                                    editCardHandler(card._id, "editCARD")
+                                    fireEditCardModal(card._id,currentPackId, dispatch )
                                 }
                             >
                                 Edit

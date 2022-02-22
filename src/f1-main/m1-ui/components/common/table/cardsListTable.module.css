@@ -1,13 +1,20 @@
 .content {
-  margin: 24px 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 70px auto;
+  /*height: 700px;*/
+  max-width: 1300px;
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: white;
   height: 700px;
+  overflow: hidden;
+  border-radius: 50px;
+  padding: 24px 34px;
 }
 .wrapper {
   display: flex;
   flex-direction: column;
-  padding: 19px 24px;
   flex-shrink: 0;
 }
 
@@ -35,13 +42,13 @@
 .tableContainer {
   overflow-x: hidden;
   overflow-y: scroll;
-  max-height: 480px;
+  height: 450px;
   border-radius: 10px;
 }
 
 .tableHeaderWrapper {
   color: white;
-  background-color: rgba(19, 32, 40, 0.95);
+  background-color: #292929;
   height: 48px;
   line-height: 2;
   top: 0;
@@ -72,7 +79,7 @@
   grid-template-areas: "1 2 3 4 5";
   grid-template-columns: 25% 25% 19% 9% 18%;
   align-items: start;
-  color: rgba(17, 30, 39, 1);
+  color:#1b1b1b;
   background-color: #ffffff;
   word-break: break-all;
   padding: .9em;
@@ -85,7 +92,7 @@
 }
 
 .items:nth-child(2n) {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(128, 128, 128, 0.1);
 }
 
 .pagination {

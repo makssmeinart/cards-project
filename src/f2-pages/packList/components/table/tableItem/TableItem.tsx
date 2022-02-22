@@ -2,27 +2,21 @@ import packsS from "../../../../../f1-main/m1-ui/components/common/table/packsLi
 import {Link} from "react-router-dom";
 import s from "../../../../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
 import {SuperButton} from "../../../../../f1-main/m1-ui/components/common/superButton/SuperButton";
-import React, {useCallback} from "react";
+import React from "react";
 import {
     cardPacksType,
-    deletePacksTC, editPackTC
 } from "../../../../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {userIdSelector} from "../../../../../f1-main/m2-bll/selectors/selectAppStatus";
+import {
+    fireDeleteModal,
+    fireEditPackModal
+} from "../../../../../f1-main/m4-utility/modal";
 
 export const TableItem = ({pack}: TableItemPropsType) => {
-
     const dispatch = useDispatch()
     const updateDate = pack.updated.slice(0, 10)
     const myId = useSelector(userIdSelector);
-
-    const deletePackHandler = useCallback((idPack: string) => {
-        dispatch(deletePacksTC(idPack));
-    }, [dispatch])
-
-    const editPackHandler = useCallback((idPack: string, packName: string) => {
-        dispatch(editPackTC(idPack, packName));
-    }, [dispatch])
 
     return (
         <div className={packsS.items}>
@@ -45,14 +39,14 @@ export const TableItem = ({pack}: TableItemPropsType) => {
                     {myId === pack.user_id && (
                         <>
                             <SuperButton
-                                onClick={() => deletePackHandler(pack._id)}
+                                onClick={() => fireDeleteModal(pack._id, pack.name, dispatch)}
                                 className={"miniDeleteButton"}
                             >
                                 Delete
                             </SuperButton>
                             <SuperButton
-                                onClick={() =>
-                                    editPackHandler(pack._id, "New packaritooo")
+                                onClick={
+                                    () => fireEditPackModal(pack._id, pack.name, dispatch)
                                 }
                                 className={"miniCommonButton"}
                             >

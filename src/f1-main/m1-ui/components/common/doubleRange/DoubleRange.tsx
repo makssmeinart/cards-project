@@ -84,7 +84,7 @@ const dispatch = useDispatch()
               fontFamily: "Arial,Helvetica Neue,Helvetica,sans-serif",
               padding: "4px",
               borderRadius: "4px",
-              backgroundColor: "#350e47",
+              backgroundColor: "#1b1b1b",
             }}
           >
             {values[index].toFixed(0)}

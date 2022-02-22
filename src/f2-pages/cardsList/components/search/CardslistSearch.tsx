@@ -14,6 +14,7 @@ import {
 } from "../../../../f1-main/m2-bll/selectors/selectAppStatus";
 import {useParams} from "react-router-dom";
 import {useDebounced} from "../../../../f1-main/m4-utility/debouncingHook";
+import {fireAddCardModal} from "../../../../f1-main/m4-utility/modal";
 
 export const CardslistSearch = () => {
     const dispatch = useDispatch()
@@ -22,10 +23,7 @@ export const CardslistSearch = () => {
     const currentUserId = useSelector(currentUserIdSelector);
     const myId = useSelector(userIdSelector);
     const {packId} = useParams();
-
-    const addCardHandler = () => {
-        packId && dispatch(addCardTC(packId));
-    }
+    const currentPackId = packId !== undefined ? packId : ""
 
     useEffect(() => {
         dispatch(changeSearchByCardsQuestionValue(searchCardsInputDebounced))
@@ -41,7 +39,7 @@ export const CardslistSearch = () => {
                     <SuperButton
                         className={"primaryButton"}
                         style={{width: "250px"}}
-                        onClick={addCardHandler}
+                        onClick={() => fireAddCardModal(currentPackId, dispatch)}
                     >
                         Add new pack
                     </SuperButton>

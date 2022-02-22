@@ -2,33 +2,23 @@ import packsS from "../table/packsListTable.module.css";
 import {DoubleRange} from "../doubleRange/DoubleRange";
 import React from "react";
 import {sortedPackBtnAC} from "../../../../m2-bll/reducers/packsReducer/packsReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {sortedPackValueSelector} from "../../../../m2-bll/selectors/selectAppStatus";
 
 export const Sidebar = React.memo(() => {
     const dispatch = useDispatch()
-    // const [sortedPackBtn, setSortedPackBtn] = useState(false);
+    const sortedPackButtonValue = useSelector(sortedPackValueSelector)
 
-    // useEffect(() => {
-    // }, [sortedPackBtn]);
-
-
-    // const setMyPacks = useCallback(() => {
-    //     debugger
-    //     setSortedPackBtn(true);
-    // }, [setSortedPackBtn])
-    //
-    // const setAllPacks = useCallback(() => {
-    //     debugger
-    //     setSortedPackBtn(false);
-    // }, [sortedPackBtn])
-
+    const customStyle = sortedPackButtonValue ? {backgroundColor: "#1b1b1b", color: "white"} : {backgroundColor: "white", color: "#1b1b1b"}
+    const customStyle2 = sortedPackButtonValue ? {backgroundColor: "white", color: "#1b1b1b"} :  {backgroundColor: "#1b1b1b", color: "white"}
+    ;
     return (
         <aside className={packsS.sidebar}>
             <div className={packsS.showPacksCard}>
                 <h2>Show pack cards</h2>
                 <div className={packsS.buttonHolder}>
-                    <button onClick={() => dispatch(sortedPackBtnAC(true))}>My</button>
-                    <button onClick={() => dispatch(sortedPackBtnAC(false))}>All
+                    <button style={customStyle} onClick={() => dispatch(sortedPackBtnAC(true))}>My</button>
+                    <button style={customStyle2} onClick={() => dispatch(sortedPackBtnAC(false))}>All
                     </button>
                 </div>
             </div>
