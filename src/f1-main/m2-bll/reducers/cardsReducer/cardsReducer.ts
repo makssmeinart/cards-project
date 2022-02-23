@@ -4,7 +4,7 @@ import {
     AddCardPayload,
     cardsApi,
     EditCardsPayload,
-    GetCardsPayload
+    GetCardsPayload, GradeCardPayload
 } from "../../../m3-dal/api";
 import {ThunkDispatch} from "redux-thunk";
 import {changeStatus, changeStatusACTypes} from "../appReducer/appReducer";
@@ -188,7 +188,23 @@ export const deleteCardTC = (packId: string, cardId: string) =>
             })
     }
 
+export const gradeCardTC = (grade: number, cardId: string) =>
+    (dispatch: Dispatch) => {
+        dispatch(changeStatus("loading"))
 
+        const payload: GradeCardPayload = {
+            grade,
+            card_id: cardId,
+        }
+
+        cardsApi.gradeCard(payload)
+            .then(() => {
+                dispatch(changeStatus("completed"))
+            })
+            .catch(err => {
+                serverErrorHandling(err, dispatch)
+            })
+    }
 
 // Types
 export type InitStateType = {

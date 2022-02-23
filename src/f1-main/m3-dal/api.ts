@@ -49,7 +49,7 @@ export const packsApi = {
     getPacks: (payload: FetchPacksPayload) => {
         return instance.get("/cards/pack", {
             params: {
-               ...payload
+                ...payload
             },
         });
     },
@@ -99,7 +99,7 @@ export const cardsApi = {
         return instance.delete("cards/card", {params: {id: cardId}})
     },
     gradeCard: (payload: GradeCardPayload) => {
-        return instance.put("cards/grade", {params: {...payload}})
+        return instance.put("cards/grade", {...payload}, {})
     }
 };
 
@@ -142,14 +142,14 @@ export type FetchPacksPayload = {
 }
 
 export type AddPackPayload = {
-        name: string,
-        path: string,
-        grade: number,
-        shots: number,
-        rating: number,
-        deckCover: string,
-        private: boolean,
-        type: string,
+    name: string,
+    path: string,
+    grade: number,
+    shots: number,
+    rating: number,
+    deckCover: string,
+    private: boolean,
+    type: string,
 }
 
 export type EditPackPayload = {
@@ -158,7 +158,7 @@ export type EditPackPayload = {
 }
 
 export type DeletePackPayload = {
-   id: string
+    id: string
 }
 
 // Cards
@@ -198,5 +198,5 @@ export type EditCardsPayload = {
 
 export type GradeCardPayload = {
     grade: number
-    cardId: string
+    card_id: string
 }

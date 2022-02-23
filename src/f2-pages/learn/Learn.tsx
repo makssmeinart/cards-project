@@ -2,33 +2,17 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  CardsType, fetchAllCardsTC,
+  CardsType, fetchAllCardsTC, gradeCardTC,
 } from "../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
 import { getCardsSelector } from "../../f1-main/m2-bll/selectors/selectAppStatus";
 import {SuperButton} from "../../f1-main/m1-ui/components/common/superButton/SuperButton";
+import {getRandomCard} from "../../f1-main/m4-utility/getRandomCard";
 
 export const Learn = () => {
   const { packId } = useParams();
   const dispatch = useDispatch();
   const cards = useSelector(getCardsSelector);
-
-  const getCardRandom = (cards: CardsType[]) => {
-    const sum = cards.reduce(
-      (acc, card) => acc + (6 - card.grade) * (6 - card.grade),
-      0
-    );
-    const rand = Math.random() * sum;
-    const res = cards.reduce(
-      (acc: { sum: number; id: number }, card, i) => {
-        const newSum = acc.sum + (6 - card.grade) * (6 - card.grade);
-        return { sum: newSum, id: newSum < rand ? i : acc.id };
-      },
-      { sum: 0, id: -1 }
-    );
-
-    return cards[res.id + 1];
-  };
-
+  const [first, setFirst] = useState(true)
 
   const [currentCard, setCurrentCard] = useState<Partial<CardsType>>({
     answer: "",
@@ -39,17 +23,23 @@ export const Learn = () => {
     rating: 0,
     shots: 0,
     user_id: "",
-    _id: "",
+    _id: "617ff573d7b1030004090a20",
   })
 
   const onClickHandler  = () => {
-    setCurrentCard(getCardRandom(cards))
+    setCurrentCard(getRandomCard(cards))
   }
-
+  // dispatch(gradeCardTC(1,currentCard._id ? currentCard._id : "123"))
 
   useEffect(() => {
-    packId && dispatch(fetchAllCardsTC(packId));
-  }, []);
+    if(first) {
+      packId && dispatch(fetchAllCardsTC(packId))
+      setFirst(false)
+    }
+    // if(cards.length > 0) {
+    //   setCurrentCard(getRandomCard(cards))
+    // }
+  }, [])
 
   return (
     <>
@@ -58,6 +48,7 @@ export const Learn = () => {
     </>
   );
 };
+
 
 
 
