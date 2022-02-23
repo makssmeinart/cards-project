@@ -49,6 +49,7 @@ export const fireAddPackModal = async (dispatch: any) => {
         input: 'text',
         inputPlaceholder: 'Enter new pack name',
         confirmButtonText: "Create",
+        confirmButtonColor: '#3085d6',
     })
 
     if (value) {
@@ -68,6 +69,7 @@ export const fireAddCardModal = async (packId: string, dispatch: any) => {
             '<input placeholder="Enter new answer"' +
             ' id="swal-input2" class="swal2-input">',
         focusConfirm: false,
+        confirmButtonColor: '#3085d6',
         confirmButtonText: "Create",
         preConfirm: () => {
             return [

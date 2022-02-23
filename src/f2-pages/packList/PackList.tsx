@@ -36,7 +36,8 @@ export const PackList = React.memo(() => {
     const packName = useSelector(packNameSelector);
     const status = useSelector(appStatusSelector);
     const isLoggedIn = useSelector(isLoggedInSelector);
-    const page = useSelector(selectCurrentPage)
+    const page = useSelector(selectCurrentPage);
+
 
 
     const max = useSelector(maxSelector);
@@ -63,6 +64,7 @@ export const PackList = React.memo(() => {
         sortValue,
         page,
         pageSize,
+
     ]);
 
     if (!isLoggedIn) {

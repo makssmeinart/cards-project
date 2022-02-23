@@ -1,33 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { Range, getTrackBackground } from "react-range";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { rangeValueAC } from "../../../../m2-bll/reducers/packsReducer/packsReducer";
 import {
-    maxRangeSelector,
-    minRangeSelector
+  maxRangeSelector,
+  minRangeSelector,
 } from "../../../../m2-bll/selectors/selectAppStatus";
+import { RootAppStateType } from "../../../../m2-bll/store";
 
 export const DoubleRange = () => {
+  const dispatch = useDispatch();
+  const minRange = useSelector(minRangeSelector);
+  const maxRange = useSelector(maxRangeSelector);
 
-const dispatch = useDispatch()
-    const min = useSelector(minRangeSelector);
-    const max = useSelector(maxRangeSelector);
-    const [values, setValues] = useState([min, max]);
+  const min = useSelector<RootAppStateType>(state=> state.packs.min)
+  const max = useSelector<RootAppStateType>(state=> state.packs.max)
 
-    const sendInputValue = (value: number[]) => {
-      dispatch(rangeValueAC(value[0], value[1]))
-    }
+  const [values, setValues] = useState([min, max]);
+
+  const sendInputValue = (value: number[]) => {
+    dispatch(rangeValueAC(value[0], value[1]));
+  };
 
   useEffect(() => {
-        setValues([min, max])
-  }, [min, max])
+    setValues([min, max]);
+  }, [min, max]);
 
   return (
     <Range
+       //@ts-ignore
       values={values}
       step={5}
-      min={min}
-      max={max}
+        //@ts-ignore
+      min={0}
+      max={200}
       onChange={(values) => setValues(values)}
       onFinalChange={sendInputValue}
       renderTrack={({ props, children }) => (
@@ -47,6 +53,7 @@ const dispatch = useDispatch()
               width: "100%",
               borderRadius: "4px",
               background: getTrackBackground({
+                  //@ts-ignore
                 values: values,
                 colors: ["#ccc", "#323232", "#ccc"],
                 min: 3000,
@@ -87,6 +94,7 @@ const dispatch = useDispatch()
               backgroundColor: "#1b1b1b",
             }}
           >
+              {/*//@ts-ignore*/}
             {values[index].toFixed(0)}
             {/*// 10.12345 => 10; (1) => 10.1; (2) > 10.12; ...*/}
           </div>
@@ -94,5 +102,5 @@ const dispatch = useDispatch()
       )}
     />
   );
-};
 
+};

@@ -25,7 +25,7 @@ const initState: InitStateType = {
     sortedPackBtn: false,
     //range
     min: 0,
-    max: 10,
+    max: 200,
     // currentPackId
     id: "",
     // currentPackName
@@ -40,7 +40,7 @@ export const packsReducer = (
 ): InitStateType => {
     switch (action.type) {
         case "CARDS/PACKS":
-            return {...state, ...action.data};
+            return {...state, ...action.data, maxCardsCount:200, minCardsCount: 60};
         case "CARDS/PACKS/INPUT":
             return {...state, packName: action.value};
         case "CARDS/PACKS/BTN-SORTED":
@@ -95,6 +95,7 @@ export const changePaginationValue = (page: number, pageSize: number) => {
 // Thunk
 export const fetchPacksTC =
     () => (dispatch: Dispatch, getState: () => RootAppStateType) => {
+
         const state = getState().packs;
         const switcherBtn = getState().packs.sortedPackBtn;
 
@@ -106,7 +107,6 @@ export const fetchPacksTC =
         }
 
         const {packName, min, max, page, pageCount, sortedPackValue} = state;
-
         const payload = {
             packName: packName,
             min: min,

@@ -17,6 +17,7 @@ import {Loading} from "./components/common/loading/Loading";
 import "./App.css"
 import {PackList} from "../../f2-pages/packList/PackList";
 import {CardsList} from "../../f2-pages/cardsList/CardsList";
+import {Learn} from "../../f2-pages/learn/Learn";
 
 export const App = () => {
 
@@ -47,6 +48,7 @@ export const App = () => {
                 <Route path={routes.packList} element={<PackList/>}/>
                 <Route path={routes.cardsList} element={<CardsList/>} />
                 <Route path={routes.profile} element={<Profile/>}/>
+                <Route path={routes.packListLearn} element={<Learn/>} />
                 <Route path={"/*"} element={<Navigate to={"/404"}/>}/>
             </Routes>
         </section>

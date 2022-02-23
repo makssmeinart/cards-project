@@ -9,16 +9,12 @@ import {
   appStatusSelector,
   isLoggedInSelector,
   searchByCardsQuestionSelector,
-  selectCurrentPage,
-  selectPageSize,
-  selectTotalPacksCount,
   sortCardsValueSelector,
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
 import { Header } from "../../f1-main/m1-ui/components/common/header/Header";
 import { routes } from "../../f1-main/m2-bll/routes/routes";
 import { Loading } from "../../f1-main/m1-ui/components/common/loading/Loading";
 import s from "../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
-import { fetchPacksTC } from "../../f1-main/m2-bll/reducers/packsReducer/packsReducer";
 import { CardslistHeader } from "./components/header/CardslistHeader";
 import { CardslistSearch } from "./components/search/CardslistSearch";
 import { CardslistTable } from "./components/table/CardslistTable";
@@ -45,8 +41,6 @@ export const CardsList = () => {
 
   useEffect(() => {
     packId && dispatch(fetchCardsTC(packId));
-    console.log("currentPage",currentPage,
-        "pageSize",pageSize)
   }, [
     packId,
     sortCardsValue,

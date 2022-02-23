@@ -1,5 +1,5 @@
 import packsS from "../../../../../f1-main/m1-ui/components/common/table/packsListTable.module.css";
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import s from "../../../../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
 import {SuperButton} from "../../../../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import React from "react";
@@ -54,12 +54,20 @@ export const TableItem = ({pack}: TableItemPropsType) => {
                             </SuperButton>
                         </>
                     )}
-                    <SuperButton
-                        onClick={() => alert("Learning the lot")}
-                        className={"miniCommonButton"}
+
+                    <Link
+                        to={`/main/pack-list-learn/${pack._id}`}
+                        className={packsS.item}
                     >
-                        Learn
-                    </SuperButton>
+                        LEARN
+                    </Link>
+
+                    {/*<SuperButton*/}
+                    {/*    onClick={() => <Navigate to={'asdasd'}/>}*/}
+                    {/*    className={"miniCommonButton"}*/}
+                    {/*>*/}
+                    {/*    Learn*/}
+                    {/*</SuperButton>*/}
                 </div>
             </div>
         </div>

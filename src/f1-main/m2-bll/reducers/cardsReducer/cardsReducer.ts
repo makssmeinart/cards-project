@@ -85,10 +85,8 @@ export const changePaginationValueCard = (page: number, pageSize: number) => {
 // Thunk
 export const fetchCardsTC = (packId: string) =>
     (dispatch: Dispatch, getState: () => RootAppStateType) => {
-
         const state = getState().cards
         const {sortCardsValue, searchByCardsQuestion, page, pageCount} = state
-
         const payload: GetCardsPayload = {
             cardAnswer: "",
             cardQuestion: searchByCardsQuestion,
@@ -96,8 +94,8 @@ export const fetchCardsTC = (packId: string) =>
             min: 0,
             max: 0,
             sortCards: sortCardsValue,
-            page: page,
-            pageCount,
+            page,
+            pageCount: pageCount === 1000 ? 10 : pageCount,
         }
 
         cardsApi.getCards(payload)
@@ -108,6 +106,32 @@ export const fetchCardsTC = (packId: string) =>
                 serverErrorHandling(err, dispatch)
             })
     };
+
+export const fetchAllCardsTC = (packId: string) =>
+    (dispatch: Dispatch, getState: () => RootAppStateType) => {
+
+
+
+        const payload: GetCardsPayload = {
+            cardAnswer: "",
+            cardQuestion: "",
+            cardsPack_id: packId,
+            min: 0,
+            max: 0,
+            sortCards: "",
+            page: 1,
+            pageCount: 1000,
+        }
+
+        cardsApi.getCards(payload)
+            .then(res => {
+                dispatch(cardsReducerAC(res.data))
+            })
+            .catch(err => {
+                serverErrorHandling(err, dispatch)
+            })
+    };
+
 export const addCardTC = (packId: string, question: string, answer: string) =>
     (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>) => {
 

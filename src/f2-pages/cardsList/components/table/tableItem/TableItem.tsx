@@ -11,11 +11,13 @@ import {
     currentUserIdSelector,
     userIdSelector
 } from "../../../../../f1-main/m2-bll/selectors/selectAppStatus";
-import {useParams} from "react-router-dom";
+import {Link, Navigate, NavLink, Route, Routes, useParams} from "react-router-dom";
 import {
     fireDeleteCardModal,
     fireEditCardModal
 } from "../../../../../f1-main/m4-utility/modal";
+import {routes} from "../../../../../f1-main/m2-bll/routes/routes";
+import {CardsList} from "../../../CardsList";
 
 export const TableItem = ({card}: TableItemPropsType) => {
     const dispatch = useDispatch()
@@ -54,8 +56,9 @@ export const TableItem = ({card}: TableItemPropsType) => {
                             </SuperButton>
                         </>
                     )}
+
                     <SuperButton
-                        onClick={() => alert(" Zdarova Ignat naoj")}
+                        onClick={()=> {}}
                         className={"miniCommonButton"}>
                         Learn
                     </SuperButton>

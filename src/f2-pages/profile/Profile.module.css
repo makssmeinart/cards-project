@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 400px;
+  height: 400px;
+  background-color: white;
+  border-radius: 50px;
+  gap: 1.3em;
+}
+.title {
+  margin-top: 20px;
+}
