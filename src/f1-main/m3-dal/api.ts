@@ -97,8 +97,12 @@ export const cardsApi = {
     },
     deleteCard: (cardId: string) => {
         return instance.delete("cards/card", {params: {id: cardId}})
+    },
+    gradeCard: (payload: GradeCardPayload) => {
+        return instance.put("cards/grade", {params: {...payload}})
     }
 };
+
 
 // Types
 type CommonRecoveryResponse = {
@@ -190,4 +194,9 @@ export type EditCardsPayload = {
     _id: string
     question: string
     answer: string
+}
+
+export type GradeCardPayload = {
+    grade: number
+    cardId: string
 }
