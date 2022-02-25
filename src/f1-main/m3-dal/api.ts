@@ -4,8 +4,8 @@ import {InitStateType} from "../m2-bll/reducers/login/loginReducer";
 
 // Axios Instance
 const instance = axios.create({
-    // baseURL: "https://neko-back.herokuapp.com/2.0",
-    baseURL: "http://localhost:7542/2.0/",
+    baseURL: "https://neko-back.herokuapp.com/2.0",
+    // baseURL: "http://localhost:7542/2.0/",
     withCredentials: true,
 });
 
@@ -18,7 +18,7 @@ export const authApi = {
                 email: values.email,
                 from: `test-front-admin <${values.email}>`,
                 message: `<div > password recovery link: 
-                            <a href='http://localhost:3000/cards-project#/new-password/$token$'>link</a></div>`,
+                            <a href='https://neko-back.herokuapp.com/2.0/cards-project#/new-password/$token$'>link</a></div>`,
             },
             {
                 baseURL: "https://neko-back.herokuapp.com/2.0",

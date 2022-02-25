@@ -54,7 +54,7 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = ({
                         onKeyPress={onKeyPressCallback}
                         {...restProps}
                     />
-                    <label htmlFor={restProps.name} style={{color: "white"}}>{labelValue}</label>
+                    <label htmlFor={restProps.name} style={{ color: "#1b1b1b"}}>{labelValue}</label>
                 </div>
 
             </>

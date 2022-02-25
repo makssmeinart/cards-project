@@ -32,7 +32,9 @@ export const CardslistSearch = () => {
     return (
         <div className={s.search}>
             <SuperInputText
-                            onChange={(e) => setSearchCardsInput(e.currentTarget.value)}/>
+                onChange={(e) => setSearchCardsInput(e.currentTarget.value)}
+                placeholder={"Search by card question"}
+            />
 
             {currentUserId === myId && (
                 <div className={s.searchButtonWrapper}>

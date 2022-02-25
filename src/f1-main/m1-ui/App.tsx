@@ -37,7 +37,7 @@ export const App = () => {
     return (
         <section className="wrapper">
             <Routes>
-                <Route path={routes.home} element={<Home/>}/>
+                <Route path={routes.home} element={<Navigate to={routes.profile} />}/>
                 <Route path={routes.profile} element={<Profile/>}/>
                 <Route path={routes.login} element={<Login/>}/>
                 <Route path={routes.register} element={<Register/>}/>

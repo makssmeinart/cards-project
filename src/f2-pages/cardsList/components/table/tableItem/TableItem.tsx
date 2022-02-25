@@ -18,6 +18,8 @@ import {
 } from "../../../../../f1-main/m4-utility/modal";
 import {routes} from "../../../../../f1-main/m2-bll/routes/routes";
 import {CardsList} from "../../../CardsList";
+import packsS
+    from "../../../../../f1-main/m1-ui/components/common/table/packsListTable.module.css";
 
 export const TableItem = ({card}: TableItemPropsType) => {
     const dispatch = useDispatch()
@@ -56,12 +58,12 @@ export const TableItem = ({card}: TableItemPropsType) => {
                             </SuperButton>
                         </>
                     )}
-
-                    <SuperButton
-                        onClick={()=> {}}
-                        className={"miniCommonButton"}>
+                    <Link
+                        to={`/main/pack-list-learn/${card._id}`}
+                        className={`${packsS.item} ${packsS.itemButton}`}
+                    >
                         Learn
-                    </SuperButton>
+                    </Link>
                 </div>
             </div>
         </div>

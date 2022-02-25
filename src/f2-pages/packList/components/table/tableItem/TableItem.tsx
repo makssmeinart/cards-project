@@ -54,20 +54,12 @@ export const TableItem = ({pack}: TableItemPropsType) => {
                             </SuperButton>
                         </>
                     )}
-
                     <Link
                         to={`/main/pack-list-learn/${pack._id}`}
-                        className={packsS.item}
+                        className={`${packsS.item} ${packsS.itemButton}`}
                     >
-                        LEARN
+                        Learn
                     </Link>
-
-                    {/*<SuperButton*/}
-                    {/*    onClick={() => <Navigate to={'asdasd'}/>}*/}
-                    {/*    className={"miniCommonButton"}*/}
-                    {/*>*/}
-                    {/*    Learn*/}
-                    {/*</SuperButton>*/}
                 </div>
             </div>
         </div>
