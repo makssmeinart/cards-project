@@ -1,13 +1,13 @@
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { LoginParamsType } from "../../../f1-main/m3-dal/api";
-import { LoginTC } from "../../../f1-main/m2-bll/reducers/login/loginReducer";
+import { LoginParamsType } from "f1-main/m3-dal/api";
+import { LoginTC } from "f1-main/m2-bll/reducers/login/loginReducer";
 import { Link, Navigate } from "react-router-dom";
 import React from "react";
-import { RootAppStateType } from "../../../f1-main/m2-bll/store";
-import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
-import { routes } from "../../../f1-main/m2-bll/routes/routes";
-import wpS from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css";
+import { RootAppStateType } from "f1-main/m2-bll/store";
+import { PendingStatusType } from "f1-main/m2-bll/reducers/appReducer/appReducer";
+import { routes } from "f1-main/m2-bll/routes/routes";
+import wpS from "f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css";
 import {
   ErrorInput,
   ErrorSnackbar,

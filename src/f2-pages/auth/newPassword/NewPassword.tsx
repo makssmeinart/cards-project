@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { LoginParamsType } from "../../../f1-main/m3-dal/api";
+import { LoginParamsType } from "f1-main/m3-dal/api";
 import { useParams } from "react-router-dom";
-import { setNewPasswordTC } from "../../../f1-main/m2-bll/reducers/newPassword/newPasswordReducer";
+import { setNewPasswordTC } from "f1-main/m2-bll/reducers/newPassword/newPasswordReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootAppStateType } from "../../../f1-main/m2-bll/store";
-import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
+import { RootAppStateType } from "f1-main/m2-bll/store";
+import { PendingStatusType } from "f1-main/m2-bll/reducers/appReducer/appReducer";
 import {
   ErrorInput,
   ErrorSnackbar,
@@ -14,7 +14,7 @@ import {
   SuperButton,
   SuperPasswordInput,
   WhitePaper,
-} from "../../../f1-main/m1-ui/components/common";
+} from "f1-main/m1-ui/components/common";
 
 export const NewPassword = () => {
   const dispatch = useDispatch();

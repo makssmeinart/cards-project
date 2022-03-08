@@ -4,24 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   changePaginationValueCard,
   fetchCardsTC,
-} from "../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
+} from "f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
 import {
   appStatusSelector,
   isLoggedInSelector,
   searchByCardsQuestionSelector,
   sortCardsValueSelector,
-} from "../../f1-main/m2-bll/selectors/selectAppStatus";
-import { routes } from "../../f1-main/m2-bll/routes/routes";
-import s from "../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
+} from "f1-main/m2-bll/selectors/selectAppStatus";
+import { routes } from "f1-main/m2-bll/routes/routes";
+import s from "f1-main/m1-ui/components/common/table/cardsListTable.module.css";
 import { CardslistHeader } from "./components/header/CardslistHeader";
 import { CardslistSearch } from "./components/search/CardslistSearch";
 import { CardslistTable } from "./components/table/CardslistTable";
-import { RootAppStateType } from "../../f1-main/m2-bll/store";
+import { RootAppStateType } from "f1-main/m2-bll/store";
 import {
   CustomPagination,
   Header,
   Loading,
-} from "../../f1-main/m1-ui/components/common";
+} from "f1-main/m1-ui/components/common";
 
 export const CardsList = () => {
   const status = useSelector(appStatusSelector);

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { routes } from "../../f1-main/m2-bll/routes/routes";
+import { routes } from "f1-main/m2-bll/routes/routes";
 import React, { useEffect } from "react";
 import {
   changePaginationValue,
@@ -18,8 +18,8 @@ import {
   sortByPacksSortValueSelector,
   sortedPackValueSelector,
 } from "f1-main/m2-bll/selectors/selectAppStatus";
-import packsS from "../../f1-main/m1-ui/components/common/table/packsListTable.module.css";
-import s from "../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
+import packsS from "f1-main/m1-ui/components/common/table/packsListTable.module.css";
+import s from "f1-main/m1-ui/components/common/table/cardsListTable.module.css";
 
 import { PacksSearch } from "./components/search/PacksSearch";
 import { PacksTable } from "./components/table/PacksTable";
@@ -28,7 +28,7 @@ import {
   Header,
   Loading,
   Sidebar,
-} from "../../f1-main/m1-ui/components/common";
+} from "f1-main/m1-ui/components/common";
 
 export const PackList = React.memo(() => {
   const dispatch = useDispatch();

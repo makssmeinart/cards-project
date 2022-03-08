@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { RootAppStateType } from "../../f1-main/m2-bll/store";
+import { RootAppStateType } from "f1-main/m2-bll/store";
 import { Navigate } from "react-router-dom";
-import { routes } from "../../f1-main/m2-bll/routes/routes";
-import { PendingStatusType } from "../../f1-main/m2-bll/reducers/appReducer/appReducer";
+import { routes } from "f1-main/m2-bll/routes/routes";
+import { PendingStatusType } from "f1-main/m2-bll/reducers/appReducer/appReducer";
 import React from "react";
 import s from "./Profile.module.css";
 import { Header, Loading } from "f1-main/m1-ui/components/common";

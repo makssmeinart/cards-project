@@ -1,21 +1,21 @@
 import { Link } from "react-router-dom";
-import { routes } from "../../../f1-main/m2-bll/routes/routes";
+import { routes } from "f1-main/m2-bll/routes/routes";
 import { useDispatch, useSelector } from "react-redux";
-import { recoverPassword } from "../../../f1-main/m2-bll/reducers/recoverPassword/recoverPassword";
+import { recoverPassword } from "f1-main/m2-bll/reducers/recoverPassword/recoverPassword";
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { RootAppStateType } from "../../../f1-main/m2-bll/store";
-import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
+import { RootAppStateType } from "f1-main/m2-bll/store";
+import { PendingStatusType } from "f1-main/m2-bll/reducers/appReducer/appReducer";
 import { Loading } from "f1-main/m1-ui/components/common";
-import wpS from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css";
-import sendMessageIcon from "../../../f3-assets/images/icons/sentMessageIcon.png";
+import wpS from "f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css";
+import sendMessageIcon from "f3-assets/images/icons/sentMessageIcon.png";
 import {
   ErrorInput,
   ErrorSnackbar,
   SuperButton,
   SuperInputText,
   WhitePaper,
-} from "../../../f1-main/m1-ui/components/common";
+} from "f1-main/m1-ui/components/common";
 
 export const RecoverPassword = () => {
   const status = useSelector<RootAppStateType, PendingStatusType>(

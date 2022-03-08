@@ -1,11 +1,11 @@
-import wpStyle from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css";
+import wpStyle from "f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css";
 import { useDispatch } from "react-redux";
-import { RegisterTC } from "../../../f1-main/m2-bll/reducers/register/registerReducer";
+import { RegisterTC } from "f1-main/m2-bll/reducers/register/registerReducer";
 import { Link, Navigate } from "react-router-dom";
-import { routes } from "../../../f1-main/m2-bll/routes/routes";
+import { routes } from "f1-main/m2-bll/routes/routes";
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import wpS from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css";
+import wpS from "f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css";
 import {
   ErrorInput,
   ErrorSnackbar,
@@ -13,7 +13,7 @@ import {
   SuperInputText,
   SuperPasswordInput,
   WhitePaper,
-} from "../../../f1-main/m1-ui/components/common";
+} from "f1-main/m1-ui/components/common";
 
 export const Register = () => {
   const [isSuccessRegister, setIsSuccessRegister] = useState<boolean>(false);
