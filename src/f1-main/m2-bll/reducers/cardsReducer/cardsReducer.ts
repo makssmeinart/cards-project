@@ -9,7 +9,6 @@ import {
 } from "../../../m3-dal/api";
 import { ThunkDispatch } from "redux-thunk";
 import {
-  changeInitialized,
   changeStatus,
   changeStatusACTypes,
 } from "../appReducer/appReducer";
