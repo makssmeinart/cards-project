@@ -14,6 +14,7 @@ import { getRandomCard } from "../../f1-main/m4-utility/getRandomCard";
 import { Card } from "./components/card/Card";
 import s from "./Learn.module.css";
 import { Header, Loading } from "../../f1-main/m1-ui/components/common";
+import { NoCard } from "./components/noCard/NoCard";
 
 export const Learn = () => {
   const { packId } = useParams();
@@ -56,7 +57,7 @@ export const Learn = () => {
       <Header />
       <section className={s.wrapper}>
         {!cards.length ? (
-          <div>No cards found</div>
+          <NoCard navigateBack={navigateBack} />
         ) : (
           <Card
             currentCard={currentCard}
