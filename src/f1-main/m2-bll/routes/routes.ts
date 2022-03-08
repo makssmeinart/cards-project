@@ -9,7 +9,5 @@ export const routes = {
     register: "/register",
     recoverPassword: "/recover-password",
     newPassword: "/new-password/:token/*",
-
-    testPage: "/test",
     pageNotFound: "404"
 }

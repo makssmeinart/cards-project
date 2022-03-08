@@ -40,7 +40,8 @@ export const packsReducer = (
 ): InitStateType => {
     switch (action.type) {
         case "CARDS/PACKS":
-            return {...state, ...action.data, maxCardsCount:200, minCardsCount: 60};
+            return {...state, ...action.data, maxCardsCount:200,
+                minCardsCount: 60};
         case "CARDS/PACKS/INPUT":
             return {...state, packName: action.value};
         case "CARDS/PACKS/BTN-SORTED":
@@ -91,7 +92,6 @@ export const changePaginationValue = (page: number, pageSize: number) => {
     } as const
 }
 
-
 // Thunk
 export const fetchPacksTC =
     () => (dispatch: Dispatch, getState: () => RootAppStateType) => {
@@ -131,7 +131,6 @@ export const addPackTC =
         (
             dispatch: ThunkDispatch<RootAppStateType, void, any>,
         ) => {
-            dispatch(changeStatus("loading"))
 
             const payload = {
                 name: packName,
@@ -146,7 +145,6 @@ export const addPackTC =
 
             packsApi.addPack(payload)
                 .then(() => {
-                    dispatch(changeStatus("completed"))
                     dispatch(fetchPacksTC());
                 })
                 .catch(err => {
@@ -155,7 +153,6 @@ export const addPackTC =
         };
 export const editPackTC = (idPack: string, packName: string) =>
     (dispatch: ThunkDispatch<RootAppStateType, void, any>) => {
-        dispatch(changeStatus("loading"))
 
         const payload = {
             _id: idPack,
@@ -164,7 +161,6 @@ export const editPackTC = (idPack: string, packName: string) =>
 
         packsApi.editPack(payload)
             .then(() => {
-                dispatch(changeStatus("completed"))
                 dispatch(fetchPacksTC());
             })
             .catch(err => {
@@ -174,15 +170,12 @@ export const editPackTC = (idPack: string, packName: string) =>
 export const deletePacksTC =
     (idPack: string) =>
         (dispatch: ThunkDispatch<RootAppStateType, any, any>,) => {
-            dispatch(changeStatus("loading"))
-
             const payload: DeletePackPayload = {
                 id: idPack
             }
 
             packsApi.deletePacks(payload)
                 .then(() => {
-                    dispatch(changeStatus("completed"))
                     dispatch(fetchPacksTC());
                 })
                 .catch(err => {

@@ -7,17 +7,15 @@ import {Register} from "../../f2-pages/auth/register/Register";
 import {NewPassword} from "../../f2-pages/auth/newPassword/NewPassword";
 import {RecoverPassword} from "../../f2-pages/auth/recoverPassword/RecoverPassword";
 import {Profile} from "../../f2-pages/profile/Profile";
-import {Test} from "../../f2-pages/test/Test";
 import {PageNotFound} from "../../f2-pages/error/pageNotFound/PageNotFound";
-import {Home} from "../../f2-pages/home/Home";
 import {useDispatch, useSelector} from "react-redux";
 import {authMeTC} from "../m2-bll/reducers/appReducer/appReducer";
 import {RootAppStateType} from "../m2-bll/store";
-import {Loading} from "./components/common/loading/Loading";
 import "./App.css"
 import {PackList} from "../../f2-pages/packList/PackList";
 import {CardsList} from "../../f2-pages/cardsList/CardsList";
 import {Learn} from "../../f2-pages/learn/Learn";
+import {Loading} from "./components/common";
 
 export const App = () => {
 
@@ -43,7 +41,6 @@ export const App = () => {
                 <Route path={routes.register} element={<Register/>}/>
                 <Route path={routes.newPassword} element={<NewPassword/>}/>
                 <Route path={routes.recoverPassword} element={<RecoverPassword/>}/>
-                <Route path={routes.testPage} element={<Test/>}/>
                 <Route path={routes.pageNotFound} element={<PageNotFound/>}/>
                 <Route path={routes.packList} element={<PackList/>}/>
                 <Route path={routes.cardsList} element={<CardsList/>} />

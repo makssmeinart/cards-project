@@ -54,7 +54,7 @@ export const fireAddPackModal = async (dispatch: any) => {
 
     if (value) {
         dispatch(addPackTC(value));
-        Swal.fire(`Pack name changed successfully`)
+        Swal.fire(`Pack created successfully`)
     }
 }
 
@@ -83,7 +83,7 @@ export const fireAddCardModal = async (packId: string, dispatch: any) => {
 
     if (formValues) {
         dispatch(addCardTC(packId, formValues[0], formValues[1]))
-        Swal.fire(`New card has been created`)
+        Swal.fire(`Card has been created`)
     }
 }
 
