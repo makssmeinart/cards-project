@@ -8,18 +8,17 @@ import {
 } from "../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
 import {
   appStatusSelector,
-  getCardsSelector
+  getCardsSelector,
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
 import { getRandomCard } from "../../f1-main/m4-utility/getRandomCard";
 import { Card } from "./components/card/Card";
 import s from "./Learn.module.css";
-import { Header } from "../../f1-main/m1-ui/components/common/header/Header";
-import {Loading} from "../../f1-main/m1-ui/components/common";
+import { Header, Loading } from "../../f1-main/m1-ui/components/common";
 
 export const Learn = () => {
   const { packId } = useParams();
   const dispatch = useDispatch();
-  const status = useSelector(appStatusSelector)
+  const status = useSelector(appStatusSelector);
   const cards = useSelector(getCardsSelector);
   const [first, setFirst] = useState(true);
   const [isChecked, setIsChecked] = useState(false);
@@ -48,9 +47,8 @@ export const Learn = () => {
     }
   }, [cards, dispatch]);
 
-
-  if(status === "loading") {
-    return <Loading />
+  if (status === "loading") {
+    return <Loading />;
   }
 
   return (

@@ -5,15 +5,17 @@ import { recoverPassword } from "../../../f1-main/m2-bll/reducers/recoverPasswor
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import { RootAppStateType } from "../../../f1-main/m2-bll/store";
-import { SuperInputText } from "../../../f1-main/m1-ui/components/common/superInput/SuperInput";
-import { SuperButton } from "../../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import { PendingStatusType } from "../../../f1-main/m2-bll/reducers/appReducer/appReducer";
-import { ErrorSnackbar } from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
 import { Loading } from "f1-main/m1-ui/components/common";
-import { WhitePaper } from "../../../f1-main/m1-ui/components/common/whitePaper/WhitePaper";
 import wpS from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css";
-import { ErrorInput } from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
 import sendMessageIcon from "../../../f3-assets/images/icons/sentMessageIcon.png";
+import {
+  ErrorInput,
+  ErrorSnackbar,
+  SuperButton,
+  SuperInputText,
+  WhitePaper,
+} from "../../../f1-main/m1-ui/components/common";
 
 export const RecoverPassword = () => {
   const status = useSelector<RootAppStateType, PendingStatusType>(

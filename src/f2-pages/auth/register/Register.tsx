@@ -1,17 +1,19 @@
-import { WhitePaper } from "../../../f1-main/m1-ui/components/common/whitePaper/WhitePaper";
-import { ErrorSnackbar } from "../../../f1-main/m1-ui/components/common/errorSnackbar/ErrorSnackbar";
 import wpStyle from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css";
-import { SuperInputText } from "../../../f1-main/m1-ui/components/common/superInput/SuperInput";
-import { SuperPasswordInput } from "../../../f1-main/m1-ui/components/common/superPasswordInput/SuperPasswordInput";
 import { useDispatch } from "react-redux";
 import { RegisterTC } from "../../../f1-main/m2-bll/reducers/register/registerReducer";
 import { Link, Navigate } from "react-router-dom";
 import { routes } from "../../../f1-main/m2-bll/routes/routes";
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { SuperButton } from "../../../f1-main/m1-ui/components/common/superButton/SuperButton";
-import { ErrorInput } from "../../../f1-main/m1-ui/components/common/errorInput/ErrorInput";
 import wpS from "../../../f1-main/m1-ui/components/common/whitePaper/whitePapter.module.css";
+import {
+  ErrorInput,
+  ErrorSnackbar,
+  SuperButton,
+  SuperInputText,
+  SuperPasswordInput,
+  WhitePaper,
+} from "../../../f1-main/m1-ui/components/common";
 
 export const Register = () => {
   const [isSuccessRegister, setIsSuccessRegister] = useState<boolean>(false);

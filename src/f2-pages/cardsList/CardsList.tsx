@@ -11,15 +11,17 @@ import {
   searchByCardsQuestionSelector,
   sortCardsValueSelector,
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
-import { Header } from "../../f1-main/m1-ui/components/common/header/Header";
 import { routes } from "../../f1-main/m2-bll/routes/routes";
-import { Loading } from "../../f1-main/m1-ui/components/common/loading/Loading";
 import s from "../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
 import { CardslistHeader } from "./components/header/CardslistHeader";
 import { CardslistSearch } from "./components/search/CardslistSearch";
 import { CardslistTable } from "./components/table/CardslistTable";
-import { CustomPagination } from "../../f1-main/m1-ui/components/common/pagination/Pagination";
 import { RootAppStateType } from "../../f1-main/m2-bll/store";
+import {
+  CustomPagination,
+  Header,
+  Loading,
+} from "../../f1-main/m1-ui/components/common";
 
 export const CardsList = () => {
   const status = useSelector(appStatusSelector);
@@ -41,13 +43,7 @@ export const CardsList = () => {
 
   useEffect(() => {
     packId && dispatch(fetchCardsTC(packId));
-  }, [
-    packId,
-    sortCardsValue,
-    searchByCardsQuestion,
-    currentPage,
-    pageSize
-  ]);
+  }, [packId, sortCardsValue, searchByCardsQuestion, currentPage, pageSize]);
 
   if (!isLoggedIn) {
     return <Navigate to={routes.login} />;
