@@ -12,7 +12,7 @@ import {
   changeStatus,
   changeStatusACTypes,
 } from "../appReducer/appReducer";
-import { serverErrorHandling } from "../../../m4-utility/serverErrorHandling";
+import {serverErrorHandling} from "../../../m4-utility";
 
 export type CardsType = {
   answer: string;

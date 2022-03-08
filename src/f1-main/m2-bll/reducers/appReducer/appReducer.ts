@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 import {authApi} from "../../../m3-dal/api";
 import {LoginAC} from "../login/loginReducer";
-import {serverErrorHandling} from "../../../m4-utility/serverErrorHandling";
+import {serverErrorHandling} from "../../../m4-utility";
 
 const initState: InitStateTypes = {
     isLoggedIn: false,

@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 import { RootAppStateType } from "../../store";
 import { DeletePackPayload, packsApi } from "../../../m3-dal/api";
 import { ThunkDispatch } from "redux-thunk";
-import { serverErrorHandling } from "../../../m4-utility/serverErrorHandling";
+import { serverErrorHandling } from "../../../m4-utility";
 
 const img =
   "https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/" +

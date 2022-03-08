@@ -9,7 +9,7 @@ import {
   packsReducer,
   profileReducer,
   registerReducer,
-} from "./reducers";
+} from "f1-main/m2-bll/reducers";
 
 const reducer = combineReducers({
   login: loginReducer,

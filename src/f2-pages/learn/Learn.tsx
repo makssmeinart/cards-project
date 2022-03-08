@@ -10,11 +10,11 @@ import {
   appStatusSelector,
   getCardsSelector,
 } from "../../f1-main/m2-bll/selectors/selectAppStatus";
-import { getRandomCard } from "../../f1-main/m4-utility/getRandomCard";
 import { Card } from "./components/card/Card";
 import s from "./Learn.module.css";
 import { Header, Loading } from "../../f1-main/m1-ui/components/common";
 import { NoCard } from "./components/noCard/NoCard";
+import {getRandomCard} from "f1-main/m4-utility";
 
 export const Learn = () => {
   const { packId } = useParams();

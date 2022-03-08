@@ -7,7 +7,7 @@ import {
   changeStatusACTypes,
   errorMessageACTypes,
 } from "../appReducer/appReducer";
-import { serverErrorHandling } from "../../../m4-utility/serverErrorHandling";
+import { serverErrorHandling } from "../../../m4-utility";
 
 const initState: InitStateTypes = {};
 

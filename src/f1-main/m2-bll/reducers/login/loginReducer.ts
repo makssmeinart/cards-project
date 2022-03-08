@@ -1,7 +1,7 @@
 import { authApi, LoginParamsType } from "../../../m3-dal/api";
 import { Dispatch } from "redux";
 import { changeStatus, setIsLoggedInAC } from "../appReducer/appReducer";
-import { serverErrorHandling } from "../../../m4-utility/serverErrorHandling";
+import {serverErrorHandling} from "../../../m4-utility";
 
 const initState: InitStateType = {
   created: "",

@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { authApi } from "../../../m3-dal/api";
-import { serverErrorHandling } from "../../../m4-utility/serverErrorHandling";
 import { changeStatus } from "../appReducer/appReducer";
+import {serverErrorHandling} from "../../../m4-utility";
 
 const initState: InitStateTypes = {
   newPassword: "",
