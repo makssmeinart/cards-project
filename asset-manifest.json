@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/cards-project/static/css/main.696ff0b0.css",
-    "main.js": "/cards-project/static/js/main.c3be9d16.js",
+    "main.js": "/cards-project/static/js/main.1b8363a0.js",
     "index.html": "/cards-project/index.html",
     "static/media/hidePass.svg": "/cards-project/static/media/hidePass.0b6b12c54c3ac3bfa28063a88b0bd7ce.svg",
     "main.696ff0b0.css.map": "/cards-project/static/css/main.696ff0b0.css.map",
-    "main.c3be9d16.js.map": "/cards-project/static/js/main.c3be9d16.js.map"
+    "main.1b8363a0.js.map": "/cards-project/static/js/main.1b8363a0.js.map"
   },
   "entrypoints": [
     "static/css/main.696ff0b0.css",
-    "static/js/main.c3be9d16.js"
+    "static/js/main.1b8363a0.js"
   ]
 }
