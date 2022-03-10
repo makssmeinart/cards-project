@@ -7,3 +7,4 @@ export { fireAddCardModal } from "./modal";
 export { fireDeleteCardModal } from "./modal";
 export { fireEditCardModal } from "./modal";
 export { serverErrorHandling } from "./serverErrorHandling";
+export { resizeFile } from "./resizeFile";

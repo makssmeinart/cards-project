@@ -70,7 +70,8 @@ export const fireAddCardModal = async (packId: string, dispatch: any) => {
       '<input placeholder="Enter new question"' +
       ' id="swal-input1" class="swal2-input">' +
       '<input placeholder="Enter new answer"' +
-      ' id="swal-input2" class="swal2-input">',
+      ' id="swal-input2" class="swal2-input">' +
+      '<input id="swal-input3" type="file">',
     focusConfirm: false,
     confirmButtonColor: "#3085d6",
     confirmButtonText: "Create",
@@ -80,12 +81,15 @@ export const fireAddCardModal = async (packId: string, dispatch: any) => {
         document.getElementById("swal-input1").value,
         //@ts-ignore
         document.getElementById("swal-input2").value,
+        //@ts-ignore
+        document.getElementById("swal-input3").files[0],
       ];
     },
   });
 
+
   if (formValues) {
-    dispatch(addCardTC(packId, formValues[0], formValues[1]));
+    dispatch(addCardTC(packId, formValues[0], formValues[1], formValues[2]));
     Swal.fire(`Card has been created`);
   }
 };

@@ -4,6 +4,7 @@ import { InitStateType } from "../m2-bll/reducers/login/loginReducer";
 
 // Axios Instance
 const instance = axios.create({
+  // https://neko-back.herokuapp.com/2.0
   baseURL: "https://neko-back.herokuapp.com/2.0",
   withCredentials: true,
 });
@@ -19,7 +20,7 @@ export const authApi = {
         email: values.email,
         from: `test-front-admin <${values.email}>`,
         message: `<div > password recovery link: 
-                            <a href='https://neko-back.herokuapp.com/2.0/cards-project#/new-password/$token$'>link</a></div>`,
+                            <a href='https://makssmeinart.github.io/cards-project/#/new-password/$token$'>link</a></div>`,
       },
       {
         baseURL: "https://neko-back.herokuapp.com/2.0",
@@ -76,6 +77,7 @@ export const packsApi = {
     });
   },
 };
+
 export const cardsApi = {
   getCards: (payload: GetCardsPayload) => {
     return instance.get("/cards/card", {
@@ -100,7 +102,19 @@ export const cardsApi = {
     return instance.delete("cards/card", { params: { id: cardId } });
   },
   gradeCard: (payload: GradeCardPayload) => {
-    return instance.put("cards/grade", { ...payload }, {});
+    return instance.put("cards/grade", { ...payload });
+  },
+  addQuestionFile: (file: Blob) => {
+    return instance.post(
+      "file",
+      {
+        formData: { myFile: file },
+      },
+      {
+        baseURL: "https://dry-forest-56016.herokuapp.com",
+        withCredentials: true,
+      }
+    );
   },
 };
 
@@ -186,7 +200,7 @@ export type AddCardPayload = {
   grade?: number;
   shots?: number;
   answerImg?: string;
-  questionImg?: string;
+  questionImg?: any;
   questionVideo?: string;
 };
 

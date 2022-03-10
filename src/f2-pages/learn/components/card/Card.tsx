@@ -1,10 +1,10 @@
-import { SuperButton } from "../../../../f1-main/m1-ui/components/common/superButton/SuperButton";
 import { routes } from "../../../../f1-main/m2-bll/routes/routes";
 import React, { useState } from "react";
 import { CardsType } from "../../../../f1-main/m2-bll/reducers/cardsReducer/cardsReducer";
 import { useNavigate } from "react-router-dom";
 import SuperRadio from "../../../../f1-main/m1-ui/components/common/superRadio/SuperRadio";
 import s from "./Card.module.css";
+import { SuperButton } from "../../../../f1-main/m1-ui/components/common";
 
 export const Card = ({
   currentCard,
@@ -18,7 +18,7 @@ export const Card = ({
   const [option, setOption] = useState("Don't know");
 
   let customOption =
-    option === "Don't know" ? 1 : option === "Sort of know" ? 2 : 3;
+    option === "Don't know" ? 1 : option === "Sort of know" ? 3 : 5;
 
   const handleNext = () => {
     setOption("Don't know");
@@ -30,6 +30,9 @@ export const Card = ({
       <div className={s.textWrapper}>
         <h2>Question:</h2>
         <p>{currentCard.question}</p>
+        {currentCard.questionImg && !isChecked && (
+          <img src={currentCard.questionImg} alt="Question Cover" />
+        )}
       </div>
       {!isChecked && (
         <div className={s.buttonWrapper}>
@@ -90,5 +93,5 @@ export type CardPropsType = {
   isChecked: boolean;
   setIsChecked: (isChecked: boolean) => void;
   nextCardHandler: (grade: number) => void;
-  navigateBack: () => void
+  navigateBack: () => void;
 };

@@ -14,7 +14,7 @@ import { Card } from "./components/card/Card";
 import s from "./Learn.module.css";
 import { Header, Loading } from "f1-main/m1-ui/components/common";
 import { NoCard } from "./components/noCard/NoCard";
-import {getRandomCard} from "f1-main/m4-utility";
+import { getRandomCard } from "f1-main/m4-utility";
 
 export const Learn = () => {
   const { packId } = useParams();

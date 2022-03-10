@@ -8,11 +8,9 @@ import {
   GradeCardPayload,
 } from "../../../m3-dal/api";
 import { ThunkDispatch } from "redux-thunk";
-import {
-  changeStatus,
-  changeStatusACTypes,
-} from "../appReducer/appReducer";
-import {serverErrorHandling} from "../../../m4-utility";
+import { changeStatus, changeStatusACTypes } from "../appReducer/appReducer";
+import {resizeFile, serverErrorHandling} from "../../../m4-utility";
+import Resizer from "react-image-file-resizer";
 
 export type CardsType = {
   answer: string;
@@ -64,12 +62,21 @@ export const cardsReducer = (
     case "CARDS/CARDS/CHANGE-PAGINATION-VALUE": {
       return { ...state, page: action.page, pageCount: action.pageSize };
     }
+    case "CARDS/UPDATE-CARD-GRADE": {
+      return {
+        ...state,
+        cards: state.cards.map((card) =>
+          card._id === action.cardId ? { ...card, grade: action.grade } : card
+        ),
+      };
+    }
     default:
       return state;
   }
 };
 
 // Action Creators
+
 export const cardsReducerAC = (data: InitStateType) => {
   return { type: "CARDS/CARD", data } as const;
 };
@@ -89,12 +96,17 @@ export const changePaginationValueCard = (page: number, pageSize: number) => {
     pageSize,
   } as const;
 };
+export const updateCardGrade = (grade: number, cardId: string) => {
+  return { type: "CARDS/UPDATE-CARD-GRADE", grade, cardId } as const;
+};
 
 // Thunk
+
 export const fetchCardsTC =
   (packId: string) =>
   (dispatch: Dispatch, getState: () => RootAppStateType) => {
     const state = getState().cards;
+
     const { sortCardsValue, searchByCardsQuestion, page, pageCount } = state;
     const payload: GetCardsPayload = {
       cardAnswer: "",
@@ -145,9 +157,9 @@ export const fetchAllCardsTC = (packId: string) => (dispatch: Dispatch) => {
 };
 
 export const addCardTC =
-  (packId: string, question: string, answer: string) =>
+  (packId: string, question: string, answer: string, file: Blob) =>
   (dispatch: ThunkDispatch<RootAppStateType, void, ActionTypes>) => {
-    const payload: AddCardPayload = {
+    let payload: AddCardPayload = {
       cardsPack_id: packId,
       question,
       answer,
@@ -158,14 +170,29 @@ export const addCardTC =
       questionVideo: "",
     };
 
-    cardsApi
-      .addCard(payload)
-      .then(() => {
-        dispatch(fetchCardsTC(packId));
-      })
-      .catch((err) => {
-        serverErrorHandling(err, dispatch);
+    if (file) {
+      resizeFile(file).then((res) => {
+        payload.questionImg = res;
+
+        cardsApi
+          .addCard(payload)
+          .then(() => {
+            dispatch(fetchCardsTC(packId));
+          })
+          .catch((err) => {
+            serverErrorHandling(err, dispatch);
+          });
       });
+    } else {
+      cardsApi
+        .addCard(payload)
+        .then(() => {
+          dispatch(fetchCardsTC(packId));
+        })
+        .catch((err) => {
+          serverErrorHandling(err, dispatch);
+        });
+    }
   };
 export const editCardTC =
   (idCard: string, question: string, answer: string, packId: string) =>
@@ -199,7 +226,6 @@ export const deleteCardTC =
         serverErrorHandling(err, dispatch);
       });
   };
-
 export const gradeCardTC =
   (grade: number, cardId: string) => (dispatch: Dispatch) => {
     dispatch(changeStatus("loading"));
@@ -213,6 +239,7 @@ export const gradeCardTC =
       .gradeCard(payload)
       .then(() => {
         dispatch(changeStatus("completed"));
+        dispatch(updateCardGrade(grade, cardId));
       })
       .catch((err) => {
         serverErrorHandling(err, dispatch);
@@ -238,4 +265,5 @@ type ActionTypes =
   | ReturnType<typeof changeCardsValueAC>
   | ReturnType<typeof changeSearchByCardsQuestionValue>
   | changeStatusACTypes
-  | ReturnType<typeof changePaginationValueCard>;
+  | ReturnType<typeof changePaginationValueCard>
+  | ReturnType<typeof updateCardGrade>;
