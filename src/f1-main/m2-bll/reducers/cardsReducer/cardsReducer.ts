@@ -110,8 +110,6 @@ export const fetchCardsTC = (packId: string) =>
 export const fetchAllCardsTC = (packId: string) =>
     (dispatch: Dispatch, getState: () => RootAppStateType) => {
 
-
-
         const payload: GetCardsPayload = {
             cardAnswer: "",
             cardQuestion: "",
