@@ -30,6 +30,8 @@ export const CustomPagination = (props: PropsType) => {
         pageSize={props.pageSize}
         onChange={changePage}
         hideOnSinglePage={false}
+        showPrevNextJumpers={false}
+        showLessItems={true}
         prevIcon={PrevIcon}
         nextIcon={NextIcon}
         locale={{

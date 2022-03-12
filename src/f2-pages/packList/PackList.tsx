@@ -66,7 +66,7 @@ export const PackList = React.memo(() => {
           <main className={packsS.main}>
             <div className={packsS.wrapper}>
               <Sidebar />
-              <div>
+              <div className={packsS.contentWrapper}>
                 <div className={packsS.content}>
                   <div className={s.nameAndBack}>
                     <h1>Pack Lists</h1>
