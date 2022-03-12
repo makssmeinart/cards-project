@@ -16,4 +16,3 @@ initializeApp(firebaseConfig)
 
 export const db = getFirestore()
 
-export const colRef = collection(db, "messages")

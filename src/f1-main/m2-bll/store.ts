@@ -10,6 +10,7 @@ import {
   profileReducer,
   registerReducer,
 } from "f1-main/m2-bll/reducers";
+import {forumReducer} from "./reducers/forumReducer/forumReducer";
 
 const reducer = combineReducers({
   login: loginReducer,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   app: appReducer,
   packs: packsReducer,
   cards: cardsReducer,
+  forum: forumReducer
 });
 
 export const store = createStore(reducer, applyMiddleware(thunk));
