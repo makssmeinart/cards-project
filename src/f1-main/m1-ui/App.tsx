@@ -9,6 +9,7 @@ import "./App.css";
 import { Loading } from "./components/common";
 import {
   CardsList,
+  Forum,
   Learn,
   Login,
   NewPassword,
@@ -43,6 +44,7 @@ export const App = () => {
         <Route path={routes.recoverPassword} element={<RecoverPassword />} />
         <Route path={routes.pageNotFound} element={<PageNotFound />} />
         <Route path={routes.packList} element={<PackList />} />
+        <Route path={routes.forum} element={<Forum />} />
         <Route path={routes.cardsList} element={<CardsList />} />
         <Route path={routes.profile} element={<Profile />} />
         <Route path={routes.packListLearn} element={<Learn />} />

@@ -43,6 +43,14 @@ export const Header = () => {
           >
             Profile page
           </NavLink>
+          <NavLink
+              className={({ isActive }) =>
+                  isActive ? headerS.activeRoute : headerS.item
+              }
+              to={routes.forum}
+          >
+            Forum
+          </NavLink>
           <SuperButton className={"border-button"} onClick={logout}>
             Logout
           </SuperButton>
