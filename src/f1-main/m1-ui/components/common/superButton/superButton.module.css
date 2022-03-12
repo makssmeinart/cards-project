@@ -19,15 +19,24 @@
 }
 
 .secondaryButton {
-    background: #D7D8EF;
-    border-radius: 30px;
-    padding: 8px 36px;
-    font-weight: 500;
+    background: #ffa31a;
+    box-shadow: rgba(243, 243, 243, 0.25) 0px 6px 12px -2px, rgba(146, 146, 146, 0.3) 0px 3px 7px -3px;
+    border-radius: 10px;
+    color: #2b2b2b;
+    font-weight: 600;
     font-size: 16px;
-    line-height: 19px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
-    color: #21268F;
-
+    letter-spacing: 0.01em;
+    padding: 8px 10px;
+    max-width: 70%;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: .3s linear background-color;
+}
+.secondaryButton:hover {
+    background: #fa9000;
+    color: #1b1b1b;
+    box-shadow: rgba(243, 243, 243, 0.25) 0px 6px 12px -2px, rgba(146, 146, 146, 0.5) 0px 3px 7px -3px;
 }
 
 /* mini Buttons*/
@@ -72,7 +81,7 @@
     letter-spacing: 2px;
     cursor: pointer;
     border: none;
-    height: 100%;
+    height: 55px;
     font-family: Roboto, sans-serif;
     font-size: .9rem;
     border-bottom: 3px solid transparent;

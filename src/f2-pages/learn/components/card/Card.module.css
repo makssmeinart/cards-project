@@ -1,0 +1,46 @@
+.card {
+    width: 430px;
+    max-height: 700px;
+    background-color: white;
+    margin-top: 8rem;
+    padding: 2rem 2.5rem;
+    border-radius: 50px;
+}
+
+.textWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: .3em;
+}
+
+.radioWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.radioWrapper input {
+    margin-right: .5rem;
+}
+.radioWrapper label {
+    font-weight: 500;
+}
+
+.answer {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 500px;
+    background-color: white;
+}
+.answerTextWrapper {
+    height: 330px;
+    overflow-y: scroll;
+}
+
+.buttonWrapper {
+    display: flex;
+    gap: 3rem;
+    justify-content: space-around;
+    padding-top: 2rem;
+}

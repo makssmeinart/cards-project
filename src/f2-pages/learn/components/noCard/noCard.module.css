@@ -1,0 +1,17 @@
+.wrapper {
+    height: 100%;
+}
+
+.inner {
+    width: 430px;
+    background-color: white;
+    margin-top: 8rem;
+    padding: 2rem 2.5rem;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.inner h1 {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+}

@@ -2,16 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Range, getTrackBackground } from "react-range";
 import { useDispatch, useSelector } from "react-redux";
 import { rangeValueAC } from "../../../../m2-bll/reducers/packsReducer/packsReducer";
-import {
-  maxRangeSelector,
-  minRangeSelector,
-} from "../../../../m2-bll/selectors/selectAppStatus";
 import { RootAppStateType } from "../../../../m2-bll/store";
 
 export const DoubleRange = () => {
   const dispatch = useDispatch();
-  const minRange = useSelector(minRangeSelector);
-  const maxRange = useSelector(maxRangeSelector);
 
   const min = useSelector<RootAppStateType>(state=> state.packs.min)
   const max = useSelector<RootAppStateType>(state=> state.packs.max)

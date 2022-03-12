@@ -1,5 +1,5 @@
 import s
-    from "../../../../f1-main/m1-ui/components/common/table/cardsListTable.module.css";
+    from "f1-main/m1-ui/components/common/table/cardsListTable.module.css";
 import React from "react";
 import {useNavigate} from "react-router-dom";
 
