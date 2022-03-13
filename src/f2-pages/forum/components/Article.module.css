@@ -18,6 +18,11 @@
   color: #220d46;
 }
 
+.title {
+  margin-bottom: 8px;
+
+}
+
 .title a:hover {
   color: #581ea0;
 }
@@ -40,6 +45,7 @@
 .buttonsWrapper {
   display: flex;
   justify-content: flex-end;
+  width: 136px;
 }
 
 .buttonsWrapper button {

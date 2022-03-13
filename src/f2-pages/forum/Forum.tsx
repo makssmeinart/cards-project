@@ -44,11 +44,11 @@ export const Forum = () => {
         name: newChatValue,
         isAdmin: email,
         data: [
-          {
-            createdData: time,
-            message: "New ting2",
-            userName: "kiril2",
-          },
+          // {
+          //   createdData: time,
+          //   message: "New ting2",
+          //   userName: "kiril2",
+          // },
         ],
       },
     }).then((res) => {
