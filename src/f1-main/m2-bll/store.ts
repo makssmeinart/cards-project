@@ -4,13 +4,13 @@ import thunk from "redux-thunk";
 import {
   appReducer,
   cardsReducer,
+  forumReducer,
   loginReducer,
   newPasswordReducer,
   packsReducer,
   profileReducer,
   registerReducer,
 } from "f1-main/m2-bll/reducers";
-import {forumReducer} from "./reducers/forumReducer/forumReducer";
 
 const reducer = combineReducers({
   login: loginReducer,
@@ -21,7 +21,7 @@ const reducer = combineReducers({
   app: appReducer,
   packs: packsReducer,
   cards: cardsReducer,
-  forum: forumReducer
+  forum: forumReducer,
 });
 
 export const store = createStore(reducer, applyMiddleware(thunk));

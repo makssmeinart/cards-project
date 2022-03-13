@@ -6,6 +6,7 @@ export const routes = {
   packListLearn: "/main/pack-list-learn/:packId",
   profile: "/main/profile",
   forum: "/forum",
+  currentForum: "/forum/:forumId",
   login: "/login",
   register: "/register",
   recoverPassword: "/recover-password",
