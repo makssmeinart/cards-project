@@ -47,23 +47,29 @@ export const Article = ({ article }: ArticlePropsType) => {
           </h2>
 
           <div className={s.lastMessageContainer}>
-            <p>{lastMessage}</p>
-            <div className={s.dateAndAuthor}>
-              <p>{lastMessageAuthor}</p>
-              <p>{date}</p>
-            </div>
+            {article.chat.data.length ? (
+              <>
+                <p>Last Message: {lastMessage}</p>
+                <div className={s.dateAndAuthor}>
+                  <p>Author: {lastMessageAuthor}</p>
+                  <p>{date}</p>
+                </div>
+              </>
+            ) : (
+              <div>Empty</div>
+            )}
           </div>
         </div>
 
         <div className={s.buttonsWrapper}>
-          {email === article.chat.isAdmin ? (
+          {email === article.chat.isAdmin && (
             <SuperButton
               className={"secondaryButton"}
               onClick={() => deleteToServer(article.id)}
             >
               Delete
             </SuperButton>
-          ) : null}
+          ) }
         </div>
       </div>
     </div>
