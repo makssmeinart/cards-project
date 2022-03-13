@@ -42,9 +42,13 @@ export const Article = ({ article }: ArticlePropsType) => {
     <div className={s.container}>
       <div className={s.inner}>
         <div className={s.content}>
-          <h2 className={s.title}>
-            <NavLink to={`/forum/${article.id}`}>{article.chat.name}</NavLink>
-          </h2>
+          <div className={s.wrapperArticleInfo}>
+            <h2 className={s.title}>
+              <NavLink to={`/forum/${article.id}`}>{article.chat.name}</NavLink>
+            </h2>
+            <div className={s.adminName}>{article.chat.isAdmin}</div>
+          </div>
+
 
           <div className={s.lastMessageContainer}>
             {article.chat.data.length ? (

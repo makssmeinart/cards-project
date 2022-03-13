@@ -36,8 +36,7 @@ export const Forum = () => {
   }, []);
 
   const addToServer = () => {
-    let time = new Date().getTime()
-
+    let time = new Date().getTime();
 
     addDoc(colRef, {
       chat: {
@@ -68,6 +67,7 @@ export const Forum = () => {
       ) : (
         <div>
           <Header />
+
           <div className={s.container}>
             <h1>Forums:</h1>
             <div className={s.formsWrapper}>
@@ -80,10 +80,11 @@ export const Forum = () => {
                 Add
               </SuperButton>
             </div>
-
-            {allForums.map((article) => {
-              return <Article key={article.id} article={article} />;
-            })}
+            <div className={s.content}>
+              {allForums.map((article) => {
+                return <Article key={article.id} article={article} />;
+              })}
+            </div>
           </div>
         </div>
       )}
