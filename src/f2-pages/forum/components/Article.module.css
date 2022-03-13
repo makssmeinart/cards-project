@@ -31,10 +31,16 @@
   width: 100%;
 }
 
+
+
 .lastMessageContainer {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  background-color: rgba(43, 43, 43, 0.89);
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
 }
 
 .dateAndAuthor {
@@ -51,4 +57,12 @@
 .buttonsWrapper button {
   width: 120px;
   box-shadow: none;
+}
+
+
+.wrapperArticleInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+
 }
