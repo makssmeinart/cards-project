@@ -51,6 +51,7 @@ export type ForumType = {
 };
 type ChatType = {
   name: string;
+  isAdmin: string;
   data: ChatDataType[];
 };
 type ChatDataType = {

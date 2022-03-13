@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  margin-top: 30px;
+  max-width: 1300px;
+  width: 100%;
+  padding: 3.5rem 2.5rem;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.formsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.formsWrapper button {
+  flex: 5;
+  flex-grow: 0.2;
+}
+
+.formsWrapper div {
+  width: 40%;
+}
+
+.formsWrapper input {
+  width: 100%;
+}

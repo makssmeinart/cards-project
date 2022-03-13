@@ -1,0 +1,48 @@
+.container {
+}
+
+.inner {
+  display: flex;
+  align-items: flex-end;
+  background-color: rgba(128, 128, 128, 0.27);
+  border-radius: 10px;
+  margin-top: 15px;
+  padding: 0.8em;
+}
+
+.buttonsWrapper {
+}
+
+.title a {
+  text-decoration: none;
+  color: #220d46;
+}
+
+.title a:hover {
+  color: #581ea0;
+}
+
+.content {
+  width: 100%;
+}
+
+.lastMessageContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.dateAndAuthor {
+  display: flex;
+  gap: 1em;
+}
+
+.buttonsWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonsWrapper button {
+  width: 120px;
+  box-shadow: none;
+}
