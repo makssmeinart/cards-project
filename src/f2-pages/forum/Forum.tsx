@@ -1,5 +1,5 @@
 import { Header } from "../../f1-main/m1-ui/components/common";
-import { collection} from "firebase/firestore";
+import { collection, addDoc} from "firebase/firestore";
 import { db } from "../../f1-main/m3-dal/firebase/config";
 import { useEffect } from "react";
 import { getAllForumBranchesTC } from "../../f1-main/m2-bll/reducers/forumReducer/forumReducer";
@@ -18,20 +18,20 @@ export const Forum = () => {
 
   const allForums = useSelector(selectAllForums);
 
-  // const addToServer = () => {
-  //   addDoc(colRef, {
-  //     chat: {
-  //       name: newChatName,
-  //       data: [
-  //         {
-  //           createdData: Date.now(),
-  //           message: "New ting2",
-  //           userName: "kiril2",
-  //         },
-  //       ],
-  //     },
-  //   }).then((res) => console.log(res));
-  // };
+  const addToServer = () => {
+    addDoc(colRef, {
+      chat: {
+        name: "Zlupa",
+        data: [
+          {
+            createdData: Date.now(),
+            message: "New ting2",
+            userName: "kiril2",
+          },
+        ],
+      },
+    }).then((res) => console.log(res));
+  };
 
   // const deleteToServer = (id: string) => {
   //   const docRef = doc(db, "branches", id);
@@ -46,6 +46,7 @@ export const Forum = () => {
         {allForums.map((article) => {
           return <Article key={article.id} article={article} />;
         })}
+          <button onClick={addToServer}>ADd</button>
       </div>
     </div>
   );
