@@ -4,10 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addDoc,
   collection,
-  doc,
-  getFirestore,
-  query,
-  where,
 } from "firebase/firestore";
 import { db } from "../../../../f1-main/m3-dal/firebase/config";
 import { selectAllForums } from "../../../../f1-main/m2-bll/selectors/selectAppStatus";
@@ -34,7 +30,9 @@ export const ArticlePage = () => {
   const email = useSelector<RootAppStateType>((state) => state.login.email);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/posts", { withCredentials: true }).then(res => console.log(res))
+    axios
+      .get("http://localhost:5000/api/posts")
+      .then((res) => console.log(res));
   }, []);
 
   const addToServer = () => {
