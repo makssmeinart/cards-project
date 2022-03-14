@@ -1,9 +1,10 @@
 import {
-    Header,
-    Loading, SuperButton,
-    SuperInputText
+  Header,
+  Loading,
+  SuperButton,
+  SuperInputText,
 } from "../../f1-main/m1-ui/components/common";
-import { collection, addDoc} from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../f1-main/m3-dal/firebase/config";
 import React, { useEffect, useState } from "react";
 import { getAllForumBranchesTC } from "../../f1-main/m2-bll/reducers/forumReducer/forumReducer";
@@ -19,7 +20,7 @@ import { routes } from "../../f1-main/m2-bll/routes/routes";
 export const Forum = () => {
   const [newChatValue, setNewChatValue] = useState("");
   const colRef = collection(db, "branches");
-
+  console.log(colRef);
   const dispatch = useDispatch();
   const allForums = useSelector(selectAllForums);
   const status = useSelector<RootAppStateType, PendingStatusType>(
@@ -34,7 +35,6 @@ export const Forum = () => {
   useEffect(() => {
     dispatch(getAllForumBranchesTC(colRef));
   }, []);
-
   const addToServer = () => {
     let time = new Date().getTime();
 
@@ -42,13 +42,7 @@ export const Forum = () => {
       chat: {
         name: newChatValue,
         isAdmin: email,
-        data: [
-          // {
-          //   createdData: time,
-          //   message: "New ting2",
-          //   userName: "kiril2",
-          // },
-        ],
+        data: [],
       },
     }).then((res) => {
       setNewChatValue("");
