@@ -9,6 +9,10 @@ const instance = axios.create({
   withCredentials: true,
 });
 
+const instanceForum = axios.create({
+  baseURL: "https://backendforum.herokuapp.com/api/",
+});
+
 export const authApi = {
   recoverPassword: (values: RecoverPasswordFormValues) => {
     return axios.post<
@@ -77,7 +81,6 @@ export const packsApi = {
     });
   },
 };
-
 export const cardsApi = {
   getCards: (payload: GetCardsPayload) => {
     return instance.get("/cards/card", {
@@ -116,6 +119,29 @@ export const cardsApi = {
       }
     );
   },
+};
+
+export const forumApi = {
+  getAllForums: () => {
+    return instanceForum.get("forums");
+  },
+  createForum: (payload: CreateForumPayload) => {
+    return instanceForum.post("forums", { ...payload });
+  },
+  deleteForum: (idForum: string) => {
+    return instanceForum.delete(`forums/${idForum}`);
+  },
+};
+export const messageApi = {
+  getAllMessagesById: (forumId: string) => {
+    return instanceForum.get(`messages/${forumId}`);
+  },
+  sendMessage: (payload: SendMessagePayload) => {
+    return instanceForum.post(`message`, { ...payload });
+  },
+  deleteMessage: (id: string) => {
+    return instanceForum.delete(`/message/${id}`)
+  }
 };
 
 // Types
@@ -213,4 +239,18 @@ export type EditCardsPayload = {
 export type GradeCardPayload = {
   grade: number;
   card_id: string;
+};
+
+export type CreateForumPayload = {
+  _id?: string;
+  createDate: string;
+  isAdmin: string;
+  name: string;
+};
+
+export type SendMessagePayload = {
+  createDate: string;
+  message: string;
+  userName: string;
+  forumId: string;
 };
