@@ -52,6 +52,18 @@
 .miniDeleteButton:hover {
     background: #e04039;
 }
+.miniDeleteMessageButton {
+    color: white;
+    padding: 3px 7px;
+    background: #F1453D;
+    border-radius: 2px;
+    border: 0;
+    cursor: pointer;
+    transition: .3s linear all;
+}
+.miniDeleteMessageButton:hover {
+    background: #e04039;
+}
 
 .miniCommonButton {
     color: white;

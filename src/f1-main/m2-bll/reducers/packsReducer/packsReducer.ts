@@ -23,7 +23,7 @@ const initState: InitStateType = {
   //sort btn
   sortedPackBtn: false,
   //range
-  min: 0,
+  min: 5,
   max: 200,
   // currentPackId
   id: "",
