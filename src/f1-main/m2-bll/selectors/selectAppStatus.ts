@@ -33,6 +33,7 @@ export const sortCardsValueSelector = (state: RootAppStateType) =>
   state.cards.sortCardsValue;
 export const searchByCardsQuestionSelector = (state: RootAppStateType) =>
   state.cards.searchByCardsQuestion;
+export const getEmailSelector = (state: RootAppStateType) => state.login.email
 
 // Pagination
 
@@ -45,3 +46,6 @@ export const selectPageSize = (state: RootAppStateType) =>
 // Forum
 export const selectAllForums = (state: RootAppStateType) =>
   state.forum
+// Messages
+export const selectAllMessages = (state: RootAppStateType) =>
+    state.messageForum

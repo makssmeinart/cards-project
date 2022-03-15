@@ -1,64 +1,43 @@
 import { Dispatch } from "redux";
-import { getDocs } from "firebase/firestore";
-import { changeStatus } from "../appReducer/appReducer";
-import { serverErrorHandling } from "../../../m4-utility";
+import { forumApi } from "../../../m3-dal/api";
 
-const initState: ForumType[] = [];
+const initState: Array<InitialStateType> = [];
 
 export const forumReducer = (
-  state: ForumType[] = initState,
+  state = initState,
   action: ActionTypes
-): ForumType[] => {
+): Array<InitialStateType> => {
   switch (action.type) {
-    case "FORUM/SET-ALL-FORUM-BRANCHES": {
-      return [...action.data];
-    }
+    case "FORUM/SET_ALL_FORUMS":
+      return  [...action.data ];
     default:
       return state;
   }
 };
 
 // Action Creators
-const setAllForumBranches = (data: Array<ForumType>) => {
-  return { type: "FORUM/SET-ALL-FORUM-BRANCHES", data } as const;
+const setAllForums = (data: InitialStateType[]) => {
+  return {
+    type: "FORUM/SET_ALL_FORUMS",
+    data,
+  } as const;
 };
 
 // Thunk
-export const getAllForumBranchesTC = (colRef: any) => (dispatch: Dispatch) => {
-  dispatch(changeStatus("loading"));
 
-  getDocs(colRef)
-    .then((snapshot: any) => {
-      dispatch(changeStatus("completed"));
-
-      let branches: Array<ForumType> = [];
-      snapshot.docs.forEach((doc: any) => {
-        branches.push({ ...doc.data(), id: doc.id });
-      });
-
-
-      dispatch(setAllForumBranches(branches));
-    })
-    .catch((err) => {
-      serverErrorHandling(err, dispatch);
-    });
+export const getAllForumsTC = () => (dispatch: Dispatch) => {
+  forumApi.getAllForums().then((res) => {
+    console.log(res);
+    dispatch(setAllForums(res.data))
+  });
 };
 
 // Types
-export type ForumType = {
-  chat: ChatType;
-  id: string;
-};
-type ChatType = {
-  name: string;
+export type InitialStateType = {
+  _id: string;
+  createDate: string;
   isAdmin: string;
-  data: ChatDataType[];
-};
-type ChatDataType = {
-  createdData: number;
-  message: string;
-  userName: string;
-  messageId: string;
+  name: string;
 };
 
-type ActionTypes = ReturnType<typeof setAllForumBranches>;
+type ActionTypes = ReturnType<typeof setAllForums>;
